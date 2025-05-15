@@ -444,12 +444,12 @@
  <script>
   document.addEventListener('DOMContentLoaded', () => {
     const elements = [
-      { id: 'about-title', delay: 0 },
+      { id: 'about-title', delay: 100 },
       { id: 'about-subtitle', delay: 100 },
       { id: 'about-name', delay: 200 },
-      { id: 'about-image', delay: 200 },
-      { id: 'about-desc', delay: 300 },
-      { id: 'about-buttons', delay: 400 }
+      { id: 'about-image', delay: 250 },
+      { id: 'about-desc', delay: 250 },
+      { id: 'about-buttons', delay: 300 }
     ];
 
     const observer = new IntersectionObserver((entries) => {
@@ -495,25 +495,25 @@
       <div class="w-full max-w-5xl grid grid-cols-1 lg:grid-cols-2 gap-8">
         <!-- Project 1 - AutoChat-Discord -->
         <div class="bg-gray-800 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 opacity-0 transform translate-y-10 transition-all duration-500 ease-out" id="project-1">
-          <div class="h-64 bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
+          <div class="h-48 bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
             <img src="https://via.placeholder.com/800x500/1e3a8a/ffffff?text=AutoChat-Discord" alt="AutoChat-Discord Preview" class="w-full h-full object-cover">
           </div>
-          <div class="p-8">
-            <h3 class="text-3xl font-bold text-white mb-4">AutoChat-Discord</h3>
-            <p class="text-gray-400 mb-6 text-lg leading-relaxed">
+          <div class="p-6">
+            <h3 class="text-2xl font-bold text-white mb-3">AutoChat-Discord</h3>
+            <p class="text-gray-400 mb-5 text-base leading-relaxed">
               A Discord bot that automates message posting to channels with custom scheduling, template variables, and conditional triggers for seamless community management.
             </p>
             <div class="flex gap-4">
               <a href="#" class="flex-1 text-center transition-all duration-300 ease-in-out
                 border border-primary text-primary-light
-                px-6 py-3 rounded-lg font-medium
+                px-4 py-2 rounded-lg font-medium
                 hover:bg-gradient-to-r hover:from-primary hover:to-primary-dark
                 hover:text-white hover:shadow-md">
                 Details
               </a>
               <a href="#" class="flex-1 text-center transition-all duration-300 ease-in-out
                 border border-accent text-accent-light
-                px-6 py-3 rounded-lg font-medium
+                px-4 py-2 rounded-lg font-medium
                 hover:bg-gradient-to-r hover:from-accent hover:to-accent-dark
                 hover:text-white hover:shadow-md">
                 Demo
@@ -524,25 +524,25 @@
 
         <!-- Project 2 - Arithmetic Solver -->
         <div class="bg-gray-800 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 opacity-0 transform translate-y-10 transition-all duration-500 ease-out delay-100" id="project-2">
-          <div class="h-64 bg-gradient-to-br from-secondary/20 to-accent/20 flex items-center justify-center">
+          <div class="h-48 bg-gradient-to-br from-secondary/20 to-accent/20 flex items-center justify-center">
             <img src="https://via.placeholder.com/800x500/7c3aed/ffffff?text=Arithmetic+Solver" alt="Arithmetic Solver Preview" class="w-full h-full object-cover">
           </div>
-          <div class="p-8">
-            <h3 class="text-3xl font-bold text-white mb-4">Arithmetic Solver</h3>
-            <p class="text-gray-400 mb-6 text-lg leading-relaxed">
+          <div class="p-6">
+            <h3 class="text-2xl font-bold text-white mb-3">Arithmetic Solver</h3>
+            <p class="text-gray-400 mb-5 text-base leading-relaxed">
               Intelligent math assistant that solves complex equations with step-by-step explanations and graphical visualization capabilities for better understanding.
             </p>
             <div class="flex gap-4">
               <a href="#" class="flex-1 text-center transition-all duration-300 ease-in-out
                 border border-primary text-primary-light
-                px-6 py-3 rounded-lg font-medium
+                px-4 py-2 rounded-lg font-medium
                 hover:bg-gradient-to-r hover:from-primary hover:to-primary-dark
                 hover:text-white hover:shadow-md">
                 Details
               </a>
               <a href="#" class="flex-1 text-center transition-all duration-300 ease-in-out
                 border border-accent text-accent-light
-                px-6 py-3 rounded-lg font-medium
+                px-4 py-2 rounded-lg font-medium
                 hover:bg-gradient-to-r hover:from-accent hover:to-accent-dark
                 hover:text-white hover:shadow-md">
                 Demo
@@ -601,7 +601,7 @@
 
 
     <!-- Experience Section -->
-  <section id="experience" class="py-5">
+  <section id="experience" class="pt-32 pb-20">
     <div class="container mx-auto px-6 md:px-12">
       <div class="max-w-4xl mx-auto">
         
@@ -614,7 +614,7 @@
 
 
   <!-- Blog Section -->
-  <section id="blog" class="py-5">
+  <section id="blog" class="pt-32 pb-20">
     <div class="container mx-auto px-6 md:px-12">
       <div class="max-w-4xl mx-auto">
 
@@ -628,7 +628,7 @@
 
 
     <!-- Contact Section -->
-  <section id="contact" class="py-5">
+  <section id="contact" class="pt-32 pb-20">
     <div class="container mx-auto px-6 md:px-12">
       <div class="max-w-4xl mx-auto">
         
