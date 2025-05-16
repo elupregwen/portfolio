@@ -1,0 +1,102 @@
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #1a202c;
+      color: #e2e8f0;
+      min-height: 100vh;
+    }
+    
+    /* Smooth scrolling */
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    /* Custom selection color */
+    ::selection {
+      background: #00BFFF;
+      color: white;
+    }
+    
+    /* Image hover effect */
+    .profile-img-container {
+      transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+      border-radius: 1rem;
+      padding: 0.5rem;
+    }
+    
+    .profile-img-container:hover {
+      transform: scale(1.05);
+    }
+    
+    .profile-img-container:hover .profile-img {
+      transform: scale(1.03);
+    }
+    
+    .profile-img {
+      transition: transform 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+      border-radius: 0.75rem;
+    }
+    
+    /* Typewriter cursor */
+    .typewriter-cursor {
+      animation: blink 1s step-end infinite;
+    }
+    
+    @keyframes blink {
+      from, to { opacity: 1 }
+      50% { opacity: 0 }
+    }
+    
+    /* Gradient text */
+    .gradient-text {
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
+    /* Social icon hover */
+    .social-icon {
+      transition: all 0.3s ease;
+    }
+    
+    .social-icon:hover {
+      transform: translateY(-3px);
+      color: #00BFFF;
+    }
+
+    /* Nav link hover */
+    .nav-link {
+      transition: all 0.3s ease;
+      font-size: 1.1rem;
+      padding: 0.5rem 0;
+    }
+    
+    .nav-link:hover {
+      color: #00BFFF !important;
+    }
+
+    /* Header styles */
+    .main-header {
+      height: 5rem;
+    }
+
+    /* Mobile menu button */
+    .mobile-menu-btn {
+      font-size: 1.5rem;
+    }
+
+    /*Experience style*/
+    .experience-tab.active {
+    border-color: var(--tw-gradient-from) !important;
+    box-shadow: 0 0 0 1px var(--tw-gradient-from);
+    }
+
+    .experience-details {
+    animation: fadeIn 0.5s ease-out forwards;
+    }
+
+    @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+    }
