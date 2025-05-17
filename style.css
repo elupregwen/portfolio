@@ -85,6 +85,12 @@ html {
   font-size: 1.5rem;
 }
 
+/* Button focus */
+a:focus, button:focus {
+  outline: 2px solid #00BFFF;
+  outline-offset: 2px;
+}
+
 /*Experience style*/
   .experience-tab.active {
   border-color: var(--tw-gradient-from) !important;
@@ -100,3 +106,4 @@ html {
  from { opacity: 0; transform: translateY(10px); }
  to { opacity: 1; transform: translateY(0); }
 }
+
