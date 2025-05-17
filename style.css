@@ -88,7 +88,8 @@ html {
 /*Experience style*/
   .experience-tab.active {
   border-color: var(--tw-gradient-from) !important;
-  box-shadow: 0 0 0 1px var(--tw-gradient-from);
+  transform: scale(1.02);
+  box-shadow: 0 4px 6px -1px rgba(0, 191, 255, 0.1), 0 2px 4px -1px rgba(0, 191, 255, 0.06);
 }
 
 .experience-details {

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List Application</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-align: center;
+            background-color: white;
+            margin: 0;
+            padding: 50px;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+        }
+
+        .input-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        #task-input {
+            padding: 15px;
+            font-size: 18px;
+            border: 2px solid #ccc;
+            border-radius: 25px;
+            width: 300px;
+            transition: border-color 0.3s;
+            margin-right: 10px; 
+        }
+
+        #task-input:focus {
+            border-color: #6c757d;
+            outline: none;
+        }
+
+        #add-task-btn {
+            padding: 12px 20px;
+            font-size: 18px;
+            border: none;
+            border-radius: 25px;
+            background-color: #6c757d;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        #add-task-btn:hover {
+            background-color: #5a6268;
+        }
+
+        #remove-completed-btn {
+            padding: 12px 20px;
+            font-size: 18px;
+            border: none;
+            border-radius: 25px;
+            background-color: #6c757d;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 10px;
+        }
+
+        #remove-completed-btn:hover {
+            background-color: #5a6268;
+        }
+
+        #task-list {
+            list-style: none;
+            padding: 0;
+            margin: 20px 5%;
+        }
+
+        .task {
+            padding: 15px;
+            border-left: 5px solid #6c757d;
+            border-radius: 10px;
+            margin: 15px 0;
+            background-color: #ffffff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 90%;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s;
+        }
+
+        .task:hover {
+            background-color: #f9f9f9;
+        }
+
+        .remove-btn {
+            background-color: #e57373;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 5px 10px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .remove-btn:hover {
+            background-color: #d32f2f;
+        }
+
+        input[type="checkbox"] {
+            margin-left: 10px;
+        }
+
+        .gif-container {
+            margin-bottom: 30px; 
+        }
+
+    </style>
+</head>
+<body>
+    <div class="gif-container">
+        <img src="https://static.wixstatic.com/media/6b7afb_f4f0eb6684aa471987fe87ab82eebaa9~mv2.gif" alt="Decorative GIF" width="300">
+    </div>
+
+    <h1>To-Do List Application</h1>
+    <div class="input-container">
+        <input type="text" id="task-input" placeholder="Enter a task">
+        <button id="add-task-btn">Add Task</button>
+    </div>
+    <ul id="task-list"></ul>
+    <button id="remove-completed-btn">Remove Completed Tasks</button>
+    
+    <script>
+        let taskList = document.getElementById('task-list');
+        let addTaskBtn = document.getElementById('add-task-btn');
+        let removeCompletedBtn = document.getElementById('remove-completed-btn');
+        let taskInput = document.getElementById('task-input');
+
+        addTaskBtn.addEventListener('click', addTask);
+        removeCompletedBtn.addEventListener('click', removeCompletedTasks);
+
+        function addTask() {
+            let task = taskInput.value.trim();
+            if (task) {
+                let taskElement = document.createElement('li');
+                taskElement.className = 'task';
+                taskElement.innerHTML = `
+                    <span>${task}</span>
+                    <div>
+                        <input type="checkbox">
+                        <button class="remove-btn">Remove</button>
+                    </div>
+                `;
+                taskList.appendChild(taskElement);
+                taskInput.value = '';
+            }
+        }
+
+        taskList.addEventListener('click', function(event) {
+            if (event.target.className === 'remove-btn') {
+                let taskElement = event.target.parentNode.parentNode;
+                taskElement.remove();
+            } else if (event.target.type === 'checkbox') {
+                let taskElement = event.target.parentNode.parentNode;
+                taskElement.classList.toggle('completed');
+            }
+        });
+
+        function removeCompletedTasks() {
+            let completedTasks = taskList.querySelectorAll('.completed');
+            completedTasks.forEach(function(task) {
+                task.remove();
+            });
+        }
+    </script>
+</body>
+</html>

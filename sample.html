@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>To-Do List App | Shanica Gwen Elupre</title>
+  <meta name="description" content="A beautiful, minimalist to-do list application">
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#00BFFF',
+            secondary: '#7C3AED',
+            accent: '#2dd4bf',
+            dark: '#0f172a',
+            light: '#f8fafc'
+          },
+          spacing: {
+            '128': '32rem',
+          }
+        }
+      }
+    }
+  </script>
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #0f172a;
+      color: #e2e8f0;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    
+    .gradient-text {
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
+    .glass-card {
+      background: rgba(15, 23, 42, 0.7);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    
+    .project-image {
+      max-height: 50vh;
+      object-fit: contain;
+      border-radius: 1rem;
+      box-shadow: 0 25px 50px -12px rgba(0, 191, 255, 0.15);
+      transition: all 0.3s ease;
+    }
+    
+    .project-image:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 25px 50px -12px rgba(0, 191, 255, 0.25);
+    }
+    
+    .feature-bullet {
+      width: 24px;
+      height: 24px;
+      background: linear-gradient(135deg, #00BFFF 0%, #7C3AED 100%);
+    }
+    
+    @media (max-width: 1023px) {
+      .project-image {
+        max-height: 40vh;
+      }
+    }
+    
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    
+    ::-webkit-scrollbar-track {
+      background: #0f172a;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(to bottom, #00BFFF, #7C3AED);
+      border-radius: 4px;
+    }
+    
+    ::-webkit-scrollbar-thumb:hover {
+      background: linear-gradient(to bottom, #00BFFF, #2dd4bf);
+    }
+  </style>
+</head>
+
+<body class="antialiased">
+  <!-- Navigation -->
+  <nav class="glass-card fixed w-full z-50">
+    <div class="container mx-auto px-6 py-3">
+      <a href="index.html" class="inline-flex items-center px-4 py-2 rounded-lg font-medium text-sm 
+                bg-gradient-to-r from-primary to-secondary text-white
+                hover:shadow-lg hover:shadow-primary/30 transition-all duration-300
+                transform hover:-translate-y-0.5">
+        <i class="fas fa-arrow-left mr-2"></i> Back
+      </a>
+    </div>
+  </nav>
+
+  <!-- Project Content -->
+  <main class="pt-24 pb-16">
+    <div class="container mx-auto px-6 max-w-6xl">
+      <div class="flex flex-col lg:flex-row gap-12">
+
+        <!-- Left Column - Project Info -->
+        <div class="lg:w-1/2">
+          <div class="space-y-8">
+            <!-- Project Title -->
+            <div>
+              <span class="text-sm font-semibold text-primary tracking-wider">WEB APPLICATION</span>
+              <h1 class="text-4xl md:text-5xl font-bold mt-2 mb-4 leading-tight">
+                <span class="gradient-text bg-gradient-to-r from-primary to-accent">To-Do List</span> App
+              </h1>
+              <div class="w-16 h-1 bg-gradient-to-r from-primary to-secondary rounded-full my-6"></div>
+            </div>
+            
+            <!-- Project Description -->
+            <div class="space-y-4">
+              <p class="text-lg text-gray-300 leading-relaxed">
+                A beautifully designed, responsive To-Do List application that helps you stay organized with minimal effort. Built with pure HTML, CSS, and JavaScript.
+              </p>
+              <p class="text-lg text-gray-300 leading-relaxed">
+                The app features a clean interface with smooth interactions, making task management intuitive and enjoyable.
+              </p>
+            </div>
+            
+            <!-- Demo Button -->
+            <div>
+              <a href="projects/to-dolist.html" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center px-8 py-3.5 rounded-lg font-semibold
+                        bg-gradient-to-r from-primary to-secondary text-white
+                        hover:shadow-lg hover:shadow-primary/30 transition-all duration-300
+                        transform hover:-translate-y-0.5 hover:scale-[1.02]">
+                Live Demo <i class="fas fa-external-link-alt ml-1 text-xs opacity-70"></i>
+              </a>
+            </div>
+            
+            <!-- Technologies -->
+            <div class="space-y-4">
+              <h3 class="text-xl font-bold text-white">Built With</h3>
+              <div class="flex flex-wrap gap-3">
+                <span class="inline-flex items-center px-5 py-2.5 rounded-full text-sm font-medium
+                          bg-gray-800 text-primary-light border border-gray-700
+                          hover:bg-gray-700/50 hover:border-primary/30 transition-all">
+                  <i class="fab fa-html5 text-orange-400 mr-2"></i> HTML5
+                </span>
+                <span class="inline-flex items-center px-5 py-2.5 rounded-full text-sm font-medium
+                          bg-gray-800 text-primary-light border border-gray-700
+                          hover:bg-gray-700/50 hover:border-primary/30 transition-all">
+                  <i class="fab fa-css3-alt text-blue-400 mr-2"></i> CSS3
+                </span>
+                <span class="inline-flex items-center px-5 py-2.5 rounded-full text-sm font-medium
+                          bg-gray-800 text-primary-light border border-gray-700
+                          hover:bg-gray-700/50 hover:border-primary/30 transition-all">
+                  <i class="fab fa-js-square text-yellow-300 mr-2"></i> JavaScript
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column - Image & Features -->
+        <div class="lg:w-1/2 space-y-8">
+          <!-- Project Image -->
+          <div class="rounded-2xl overflow-hidden">
+            <img src="https://static.wixstatic.com/media/6b7afb_f4f0eb6684aa471987fe87ab82eebaa9~mv2.gif" 
+                 alt="To-do List Application Interface" 
+                 class="project-image w-full"
+                 loading="lazy">
+          </div>
+          
+          <!-- Key Features Section -->
+          <div class="glass-card rounded-2xl p-8 space-y-6">
+            <div class="space-y-2">
+              <h3 class="text-2xl font-bold text-white">
+                Key Features
+              </h3>
+              <div class="w-12 h-1 bg-gradient-to-r from-primary to-secondary rounded-full"></div>
+            </div>
+            
+            <ul class="space-y-4">
+              <li class="flex items-start space-x-4">
+                <div class="feature-bullet rounded-full flex-shrink-0 flex items-center justify-center mt-0.5">
+                  <i class="fas fa-plus text-white text-xs"></i>
+                </div>
+                <div>
+                  <h4 class="font-semibold text-white">Add Tasks</h4>
+                  <p class="text-gray-300 mt-1">Quickly add new tasks with a simple input field</p>
+                </div>
+              </li>
+              
+              <li class="flex items-start space-x-4">
+                <div class="feature-bullet rounded-full flex-shrink-0 flex items-center justify-center mt-0.5">
+                  <i class="fas fa-check text-white text-xs"></i>
+                </div>
+                <div>
+                  <h4 class="font-semibold text-white">Mark Complete</h4>
+                  <p class="text-gray-300 mt-1">Check off completed tasks with satisfying animations</p>
+                </div>
+              </li>
+              
+              <li class="flex items-start space-x-4">
+                <div class="feature-bullet rounded-full flex-shrink-0 flex items-center justify-center mt-0.5">
+                  <i class="fas fa-trash text-white text-xs"></i>
+                </div>
+                <div>
+                  <h4 class="font-semibold text-white">Delete Tasks</h4>
+                  <p class="text-gray-300 mt-1">Remove individual tasks or clear all completed ones</p>
+                </div>
+              </li>
+              
+              <li class="flex items-start space-x-4">
+                <div class="feature-bullet rounded-full flex-shrink-0 flex items-center justify-center mt-0.5">
+                  <i class="fas fa-mobile-alt text-white text-xs"></i>
+                </div>
+                <div>
+                  <h4 class="font-semibold text-white">Responsive Design</h4>
+                  <p class="text-gray-300 mt-1">Works perfectly on all device sizes</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</body>
+</html>
