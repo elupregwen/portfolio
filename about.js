@@ -2,6 +2,7 @@
     const elements = [
       { id: 'about-title', delay: 100 },
       { id: 'about-subtitle', delay: 100 },
+      { id: 'about-hello', delay: 200 },
       { id: 'about-name', delay: 200 },
       { id: 'about-image', delay: 250 },
       { id: 'about-desc', delay: 250 },
