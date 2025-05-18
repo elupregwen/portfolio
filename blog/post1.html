@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>From 'Nope' to IoT Hope</title>
+  <meta name="description" content="Personal insights and reflections">
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#00BFFF',
+            secondary: '#7C3AED',
+            accent: '#2dd4bf',
+            dark: '#0f172a',
+            light: '#f8fafc'
+          },
+          spacing: {
+            '128': '32rem',
+          }
+        }
+      }
+    }
+  </script>
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #0f172a;
+      color: #e2e8f0;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    
+    .gradient-text {
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
+    .glass-card {
+      background: rgba(15, 23, 42, 0.7);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    
+    .blog-image {
+      max-height: 50vh;
+      object-fit: cover;
+      border-radius: 1rem;
+      box-shadow: 0 25px 50px -12px rgba(0, 191, 255, 0.15);
+      transition: all 0.3s ease;
+    }
+    
+    .blog-image:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 25px 50px -12px rgba(0, 191, 255, 0.25);
+    }
+    
+    .highlight-bullet {
+      width: 24px;
+      height: 24px;
+      background: linear-gradient(135deg, #00BFFF 0%, #7C3AED 100%);
+    }
+    
+    .content-block {
+      background: rgba(15, 23, 42, 0.5);
+      border-left: 3px solid #00BFFF;
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+      border-radius: 0 8px 8px 0;
+    }
+    
+    @media (max-width: 1023px) {
+      .blog-image {
+        max-height: 40vh;
+      }
+    }
+    
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    
+    ::-webkit-scrollbar-track {
+      background: #0f172a;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(to bottom, #00BFFF, #7C3AED);
+      border-radius: 4px;
+    }
+    
+    ::-webkit-scrollbar-thumb:hover {
+      background: linear-gradient(to bottom, #00BFFF, #2dd4bf);
+    }
+  </style>
+</head>
+
+<body class="antialiased">
+  <!-- Navigation -->
+  <nav class="glass-card fixed w-full z-50">
+    <div class="container mx-auto px-6 py-3">
+      <button onclick="history.back()" class="inline-flex items-center px-4 py-2 rounded-lg font-medium text-sm 
+                bg-gradient-to-r from-primary to-secondary text-white
+                hover:shadow-lg hover:shadow-primary/30 transition-all duration-300
+                transform hover:-translate-y-0.5">
+        <i class="fas fa-arrow-left mr-2"></i> Back
+      </button>
+    </div>
+  </nav>
+
+  <!-- Blog Content -->
+  <main class="pt-24 pb-16">
+    <div class="container mx-auto px-6 max-w-4xl">
+      <!-- Article Header -->
+      <div class="text-center mb-16">
+        <span class="text-sm font-semibold text-primary tracking-wider">PERSONAL REFLECTION</span>
+        <h1 class="text-4xl md:text-5xl font-bold mt-2 mb-6 leading-tight">From ‘Nope’ 
+          <span class="gradient-text bg-gradient-to-r from-primary to-accent">to IoT Hope</span>
+        </h1>
+        <div class="flex justify-center">
+          <div class="w-16 h-1 bg-gradient-to-r from-primary to-secondary rounded-full"></div>
+        </div>
+      </div>
+      
+      <!-- Featured Image -->
+      <div class="rounded-2xl overflow-hidden mb-12">
+        <img src="https://images.unsplash.com/photo-1586920740199-47ce35183cfd?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8YXJkdWlubyUyMGFuZCUyMHJhc3BiZXJyeSUyMHBpfGVufDB8fDB8fHww"
+             alt="Raspberry Pi and Arduino" 
+             class="blog-image w-full"
+             loading="lazy">
+      </div>
+      
+      <!-- Article Content -->
+      <article class="prose prose-invert max-w-none">
+        <div class="glass-card rounded-2xl p-8 mb-12">
+          <p class="text-xl italic text-gray-300 mb-0">
+            "I used to panic at the sight of wires and resistors. Now I get excited connecting a Raspberry Pi to an Arduino and accessing it through the web—who would've thought?"
+          </p>
+        </div>
+        
+        <p class="text-lg leading-relaxed mb-6">
+         So, here's the thing: IT wasn't exactly my dream major. I woke up one day enrolled, and honestly, I'm still not entirely sure how that happened. It felt like a cosmic joke, a plot twist in the grand narrative of my life. But hey, I'm passing, and that's a victory in itself! And surprisingly, I'm starting to love the challenge.
+        </p>
+        
+        <p class="text-lg leading-relaxed mb-6">
+         My biggest nemesis? Hardware. I'm ridiculously clumsy. Give me a breadboard and some wires, and I'll probably accidentally invent a new kind of firework. Ask anyone in my class—they'll have a hilarious story about my hardware mishaps.
+        </p>
+        
+        <p class="text-lg leading-relaxed mb-6">
+         Second year rolled around, and we faced a fork in the road: IoT or databases. The advice? "Love SQL? Databases. Love Flutter? IoT." I was lukewarm on both, but the thought of accidentally nuking my entire database with one rogue command? Hard pass. IoT it was. It felt like climbing Mount Improbable, and I was up for the challenge.
+        </p>
+        
+        <p class="text-lg leading-relaxed mb-6">
+         IoT 1 was a breeze—mostly Python and a touch of Packet Tracer. Chill vibes only. Then came IoT 2, and I braced myself for the inevitable disaster. Spoiler alert: I was spectacularly wrong. Arduino projects stole my heart. I transformed from a reluctant student into a lab rat, happily gnawing on the delicious cheese of embedded systems.
+        </p>
+        
+        <p class="text-lg leading-relaxed mb-6">
+         In IoT 3, lab sessions are my happy place. They call it 'learning with fun,' and I can see why; it doesn’t feel like studying at all. We’re just playing around with circuits and code, and time flies by. Honestly, there are times when I don’t even want to go home!
+        </p>
+        
+        <p class="text-lg leading-relaxed mb-6">
+         The best part? We're now connecting Raspberry Pis to Arduinos and accessing them via the web. Mind. Blown. Seeing my progress is the ultimate reward, fueling my excitement for what's next. Who knew clumsy, spark-happy me would conquer the hardware beast? I'm here, wires, codes, and all—and loving every chaotic, exhilarating minute of it.
+        </p>
+        
+        <h2 class="text-2xl font-bold mt-12 mb-6 flex items-center">
+          <span class="highlight-bullet rounded-full flex-shrink-0 mr-3 flex items-center justify-center">
+            <i class="fas fa-lightbulb text-white text-xs"></i>
+          </span>
+          Final Thoughts
+        </h2>
+        
+        <p class="text-lg leading-relaxed">
+          If there’s one thing I’ve learned from this journey, it’s this: don’t pressure yourself when things don’t work right away. It’s okay to make mistakes, get confused, or even start over multiple times. What matters most is that you’re learning and finding joy in the process. Take your time, enjoy the ride, and don’t lose hope—because sometimes, the things that once scared you end up becoming the things you’re most passionate about.
+        </p>
+      </article>
+      
+    </div>
+  </main>
+</body>
+</html>
