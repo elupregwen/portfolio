@@ -115,13 +115,33 @@
   <!-- Project Content -->
   <main class="pt-24 pb-16">
     <div class="container mx-auto px-6 max-w-6xl">
-      <div class="flex flex-col lg:flex-row gap-12">
+      <!-- Mobile View - Title and Image First -->
+      <div class="lg:hidden space-y-8">
+        <!-- Project Title -->
+        <div>
+          <span class="text-sm font-semibold text-primary tracking-wider">WEB APPLICATION</span>
+          <h1 class="text-4xl md:text-5xl font-bold mt-2 mb-4 leading-tight">
+            <span class="gradient-text bg-gradient-to-r from-primary to-accent">To-Do List</span> App
+          </h1>
+          <div class="w-16 h-1 bg-gradient-to-r from-primary to-secondary rounded-full my-6"></div>
+        </div>
+        
+        <!-- Project Image (Mobile Only) -->
+        <div class="rounded-2xl overflow-hidden">
+          <a href="https://ibb.co/zVCqsqqL"><img src="https://i.ibb.co/N2fcxcck/image.png"
+               alt="To-do List" 
+               class="project-image w-full"
+               loading="lazy">
+          </a>
+        </div>
+      </div>
 
+      <div class="flex flex-col lg:flex-row gap-12">
         <!-- Left Column - Project Info -->
         <div class="lg:w-1/2">
           <div class="space-y-8">
-            <!-- Project Title -->
-            <div>
+            <!-- Desktop: Project Title (Hidden on mobile) -->
+            <div class="hidden lg:block">
               <span class="text-sm font-semibold text-primary tracking-wider">WEB APPLICATION</span>
               <h1 class="text-4xl md:text-5xl font-bold mt-2 mb-4 leading-tight">
                 <span class="gradient-text bg-gradient-to-r from-primary to-accent">To-Do List</span> App
@@ -175,8 +195,8 @@
 
         <!-- Right Column - Image & Features -->
         <div class="lg:w-1/2 space-y-8">
-          <!-- Project Image -->
-          <div class="rounded-2xl overflow-hidden">
+          <!-- Project Image (Desktop Only) -->
+          <div class="rounded-2xl overflow-hidden hidden lg:block">
             <a href="https://ibb.co/zVCqsqqL"><img src="https://i.ibb.co/N2fcxcck/image.png"
                  alt="To-do List" 
                  class="project-image w-full"
