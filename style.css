@@ -85,13 +85,31 @@ html {
   font-size: 1.5rem;
 }
 
-/*Experience style*/
-  .experience-tab.active {
-  border-color: var(--tw-gradient-from) !important;
+.experience-tab.active {
+  position: relative;
   transform: scale(1.02);
   box-shadow: 0 4px 6px -1px rgba(0, 191, 255, 0.1), 0 2px 4px -1px rgba(0, 191, 255, 0.06);
+  border-radius: 0.5rem; /* adjust as needed */
 }
 
+/* Gradient border using pseudo-element */
+.experience-tab.active::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 0.5rem; /* same as parent */
+  padding: 2px; /* border width */
+  background: linear-gradient(to right, #00BFFF, #7C3AED);
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  pointer-events: none;
+}
 .experience-details {
   animation: fadeIn 0.5s ease-out forwards;
 }
