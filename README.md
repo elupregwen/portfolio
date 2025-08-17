@@ -39,9 +39,9 @@ A modern, responsive portfolio website showcasing my skills, projects, and exper
 ## Live Demo
 
 The portfolio is hosted at 
-eluprepersonalportfoliowebsite.vercel.app
-eluprepersonalportfoliowebsite-git-main-shans-projects-e87334aa.vercel.app
-eluprepersonalportfoliowebsite-7xkhbiv9a.vercel.app
+https://elupreshanicagwenportfolio.vercel.app/
+https://elupreshanicagwenportfolio-shans-projects-e87334aa.vercel.app/
+https://elupreshanicagwenportfolio-git-main-shans-projects-e87334aa.vercel.app/
 
 ## Contact
 
