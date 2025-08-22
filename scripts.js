@@ -1,7 +1,7 @@
 //Main js
     document.addEventListener('DOMContentLoaded', () => {
       // Typewriter effect
-      const words = ["IoT Developer", "Tech Problem Solver", "Python Programmer", "Flutter Enthusiast"];
+      const words = ["IoT Developer  ", "Tech Problem Solver  ", "Python Programmer  ", "Flutter Enthusiast  "];
       const typewriterEl = document.getElementById('typewriter');
       let i = 0, j = 0, currentWord = '', isDeleting = false;
       let typingTimeout;
