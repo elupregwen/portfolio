@@ -16,6 +16,18 @@ html {
  background: #00BFFF;
  color: white;
 }
+
+/* Additional styles for the GIF in header */
+.header-gif {
+  height: 150px; /* Reduced size */
+  width: 150px;
+  transition: all 0.3s ease;
+  border-radius: 6px;
+}
+    
+.header-gif:hover {
+  transform: scale(1.10);
+}
     
 /* Image hover effect */
 .profile-img-container {
