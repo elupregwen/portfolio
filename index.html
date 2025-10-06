@@ -550,244 +550,264 @@
 
 
   <!-- Tech Stack Section -->
-  <section id="tech-stack" class="py-20">
-    <div class="container mx-auto px-6 md:px-12">
-      <!-- Section Header -->
-      <div class="text-center mb-16">
-        <h2 class="text-5xl md:text-6xl font-bold leading-tight">
-          <span class="gradient-text bg-gradient-to-r from-primary to-secondary">Tech Stack</span>
-        </h2>
-        <p class="text-xl text-gray-400 mt-4">Technologies I build with</p>
+<section id="tech-stack" class="py-20">
+  <div class="container mx-auto px-6 md:px-12">
+    <!-- Section Header -->
+    <div class="text-center mb-16">
+      <h2 class="text-5xl md:text-6xl font-bold leading-tight">
+        <span class="gradient-text bg-gradient-to-r from-primary to-secondary">Tech Stack</span>
+      </h2>
+      <p class="text-xl text-gray-400 mt-4">Technologies I build with</p>
+    </div>
+
+    <!-- Tech Stack Navigation Tabs -->
+    <div class="flex flex-wrap justify-center gap-4 mb-12">
+      <button class="tech-tab active" data-category="all">
+        <i class="fas fa-layer-group mr-2"></i>
+        All Technologies
+      </button>
+      <button class="tech-tab" data-category="languages">
+        <i class="fas fa-code mr-2"></i>
+        Languages
+      </button>
+      <button class="tech-tab" data-category="frameworks">
+        <i class="fas fa-cubes mr-2"></i>
+        Frameworks
+      </button>
+      <button class="tech-tab" data-category="tools">
+        <i class="fas fa-tools mr-2"></i>
+        Tools
+      </button>
+      <button class="tech-tab" data-category="hardware">
+        <i class="fas fa-microchip mr-2"></i>
+        Hardware
+      </button>
+    </div>
+
+    <!-- Tech Stack Grid -->
+    <div class="max-w-6xl mx-auto">
+      <!-- Programming Languages -->
+      <div class="tech-category" data-category="languages">
+        <h3 class="text-2xl font-bold text-white mb-8 text-center md:text-left flex items-center justify-center md:justify-start">
+          <i class="fas fa-code text-primary mr-3 text-xl"></i>
+          Programming Languages
+        </h3>
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          <!-- Python -->
+          <div class="tech-card group">
+            <div class="tech-icon bg-gradient-to-br from-primary/20 to-accent/20">
+              <i class="fab fa-python text-primary text-2xl"></i>
+            </div>
+            <span class="tech-name">Python</span>
+          </div>
+
+          <!-- JavaScript -->
+          <div class="tech-card group">
+            <div class="tech-icon bg-gradient-to-br from-secondary/20 to-primary/20">
+              <i class="fab fa-js text-secondary text-2xl"></i>
+            </div>
+            <span class="tech-name">JavaScript</span>
+          </div>
+
+          <!-- C#/.NET -->
+          <div class="tech-card group">
+            <div class="tech-icon bg-gradient-to-br from-accent/20 to-secondary/20">
+              <i class="fas fa-code text-accent text-2xl"></i>
+            </div>
+            <span class="tech-name">C# / .NET</span>
+          </div>
+
+          <!-- SQL -->
+          <div class="tech-card group">
+            <div class="tech-icon bg-gradient-to-br from-primary/20 to-accent/30">
+              <i class="fas fa-database text-primary-light text-2xl"></i>
+            </div>
+            <span class="tech-name">SQL</span>
+          </div>
+
+          <!-- HTML5 -->
+          <div class="tech-card group">
+            <div class="tech-icon bg-gradient-to-br from-secondary/20 to-accent/20">
+              <i class="fab fa-html5 text-secondary-light text-2xl"></i>
+            </div>
+            <span class="tech-name">HTML5</span>
+          </div>
+
+          <!-- CSS3 -->
+          <div class="tech-card group">
+            <div class="tech-icon bg-gradient-to-br from-accent/20 to-primary/20">
+              <i class="fab fa-css3-alt text-accent text-2xl"></i>
+            </div>
+            <span class="tech-name">CSS3</span>
+          </div>
+
+          <!-- Dart -->
+          <div class="tech-card group">
+            <div class="tech-icon bg-gradient-to-br from-primary/30 to-secondary/20">
+              <i class="fab fa-dart text-primary text-2xl"></i>
+            </div>
+            <span class="tech-name">Dart</span>
+          </div>
+        </div>
       </div>
 
-      <!-- Tech Stack Grid -->
-      <div class="max-w-6xl mx-auto">
-        <!-- Programming Languages -->
-        <div class="mb-12">
-          <h3
-            class="text-2xl font-bold text-white mb-8 text-center md:text-left flex items-center justify-center md:justify-start">
-            <i class="fas fa-code text-primary mr-3 text-xl"></i>
-            Programming Languages
-          </h3>
-          <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            <!-- Python -->
-            <div class="tech-card group">
-              <div class="tech-icon bg-gradient-to-br from-primary/20 to-accent/20">
-                <i class="fab fa-python text-primary text-2xl"></i>
-              </div>
-              <span class="tech-name">Python</span>
+      <!-- Frameworks & Libraries -->
+      <div class="tech-category" data-category="frameworks">
+        <h3 class="text-2xl font-bold text-white mb-8 text-center md:text-left flex items-center justify-center md:justify-start">
+          <i class="fas fa-cubes text-secondary mr-3 text-xl"></i>
+          Frameworks & Libraries
+        </h3>
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          <!-- Flutter -->
+          <div class="tech-card group">
+            <div class="tech-icon bg-gradient-to-br from-accent/20 to-primary/20">
+              <i class="fas fa-mobile-alt text-accent text-2xl"></i>
             </div>
+            <span class="tech-name">Flutter</span>
+          </div>
 
-            <!-- JavaScript -->
-            <div class="tech-card group">
-              <div class="tech-icon bg-gradient-to-br from-secondary/20 to-primary/20">
-                <i class="fab fa-js text-secondary text-2xl"></i>
-              </div>
-              <span class="tech-name">JavaScript</span>
+          <!-- Quasar -->
+          <div class="tech-card group">
+            <div class="tech-icon bg-gradient-to-br from-primary/20 to-secondary/20">
+              <i class="fas fa-cube text-primary text-2xl"></i>
             </div>
+            <span class="tech-name">Quasar</span>
+          </div>
 
-            <!-- C#/.NET -->
-            <div class="tech-card group">
-              <div class="tech-icon bg-gradient-to-br from-accent/20 to-secondary/20">
-                <i class="fas fa-code text-accent text-2xl"></i>
-              </div>
-              <span class="tech-name">C# / .NET</span>
+          <!-- React -->
+          <div class="tech-card group">
+            <div class="tech-icon bg-gradient-to-br from-secondary/20 to-accent/20">
+              <i class="fab fa-react text-secondary-light text-2xl"></i>
             </div>
+            <span class="tech-name">React</span>
+          </div>
 
-            <!-- SQL -->
-            <div class="tech-card group">
-              <div class="tech-icon bg-gradient-to-br from-primary/20 to-accent/30">
-                <i class="fas fa-database text-primary-light text-2xl"></i>
-              </div>
-              <span class="tech-name">SQL</span>
+          <!-- .NET Framework -->
+          <div class="tech-card group">
+            <div class="tech-icon bg-gradient-to-br from-accent/30 to-primary/20">
+              <i class="fas fa-window-restore text-accent text-2xl"></i>
             </div>
+            <span class="tech-name">.NET Framework</span>
+          </div>
 
-            <!-- HTML5 -->
-            <div class="tech-card group">
-              <div class="tech-icon bg-gradient-to-br from-secondary/20 to-accent/20">
-                <i class="fab fa-html5 text-secondary-light text-2xl"></i>
-              </div>
-              <span class="tech-name">HTML5</span>
+          <!-- Bootstrap -->
+          <div class="tech-card group">
+            <div class="tech-icon bg-gradient-to-br from-primary/20 to-accent/20">
+              <i class="fab fa-bootstrap text-primary text-2xl"></i>
             </div>
+            <span class="tech-name">Bootstrap</span>
+          </div>
 
-            <!-- CSS3 -->
-            <div class="tech-card group">
-              <div class="tech-icon bg-gradient-to-br from-accent/20 to-primary/20">
-                <i class="fab fa-css3-alt text-accent text-2xl"></i>
-              </div>
-              <span class="tech-name">CSS3</span>
+          <!-- Tailwind CSS -->
+          <div class="tech-card group">
+            <div class="tech-icon bg-gradient-to-br from-secondary/20 to-primary/20">
+              <i class="fab fa-css3 text-secondary text-2xl"></i>
             </div>
-
-            <!-- Dart -->
-            <div class="tech-card group">
-              <div class="tech-icon bg-gradient-to-br from-primary/30 to-secondary/20">
-                <i class="fab fa-dart text-primary text-2xl"></i>
-              </div>
-              <span class="tech-name">Dart</span>
-            </div>
+            <span class="tech-name">Tailwind CSS</span>
           </div>
         </div>
+      </div>
 
-        <!-- Frameworks & Libraries -->
-        <div class="mb-12">
-          <h3
-            class="text-2xl font-bold text-white mb-8 text-center md:text-left flex items-center justify-center md:justify-start">
-            <i class="fas fa-cubes text-secondary mr-3 text-xl"></i>
-            Frameworks & Libraries
-          </h3>
-          <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            <!-- Flutter -->
-            <div class="tech-card group">
-              <div class="tech-icon bg-gradient-to-br from-accent/20 to-primary/20">
-                <i class="fas fa-mobile-alt text-accent text-2xl"></i>
-              </div>
-              <span class="tech-name">Flutter</span>
+      <!-- Tools & Platforms -->
+      <div class="tech-category" data-category="tools">
+        <h3 class="text-2xl font-bold text-white mb-8 text-center md:text-left flex items-center justify-center md:justify-start">
+          <i class="fas fa-tools text-accent mr-3 text-xl"></i>
+          Tools & Platforms
+        </h3>
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          <!-- Git -->
+          <div class="tech-card group">
+            <div class="tech-icon bg-gradient-to-br from-accent/20 to-secondary/20">
+              <i class="fab fa-git-alt text-accent text-2xl"></i>
             </div>
+            <span class="tech-name">Git</span>
+          </div>
 
-            <!-- Quasar -->
-            <div class="tech-card group">
-              <div class="tech-icon bg-gradient-to-br from-primary/20 to-secondary/20">
-                <i class="fas fa-cube text-primary text-2xl"></i>
-              </div>
-              <span class="tech-name">Quasar</span>
+          <!-- VS Code -->
+          <div class="tech-card group">
+            <div class="tech-icon bg-gradient-to-br from-primary/20 to-accent/20">
+              <i class="fas fa-code text-primary text-2xl"></i>
             </div>
+            <span class="tech-name">VS Code</span>
+          </div>
 
-            <!-- React -->
-            <div class="tech-card group">
-              <div class="tech-icon bg-gradient-to-br from-secondary/20 to-accent/20">
-                <i class="fab fa-react text-secondary-light text-2xl"></i>
-              </div>
-              <span class="tech-name">React</span>
+          <!-- Android Studio -->
+          <div class="tech-card group">
+            <div class="tech-icon bg-gradient-to-br from-secondary/20 to-primary/20">
+              <i class="fab fa-android text-secondary text-2xl"></i>
             </div>
+            <span class="tech-name">Android Studio</span>
+          </div>
 
-            <!-- .NET Framework -->
-            <div class="tech-card group">
-              <div class="tech-icon bg-gradient-to-br from-accent/30 to-primary/20">
-                <i class="fas fa-window-restore text-accent text-2xl"></i>
-              </div>
-              <span class="tech-name">.NET Framework</span>
+          <!-- Visual Studio -->
+          <div class="tech-card group">
+            <div class="tech-icon bg-gradient-to-br from-accent/20 to-secondary/20">
+              <i class="fas fa-laptop-code text-accent text-2xl"></i>
             </div>
+            <span class="tech-name">Visual Studio</span>
+          </div>
 
-            <!-- Bootstrap -->
-            <div class="tech-card group">
-              <div class="tech-icon bg-gradient-to-br from-primary/20 to-accent/20">
-                <i class="fab fa-bootstrap text-primary text-2xl"></i>
-              </div>
-              <span class="tech-name">Bootstrap</span>
+          <!-- Figma -->
+          <div class="tech-card group">
+            <div class="tech-icon bg-gradient-to-br from-primary/20 to-accent/20">
+              <i class="fab fa-figma text-primary text-2xl"></i>
             </div>
+            <span class="tech-name">Figma</span>
+          </div>
 
-            <!-- Tailwind CSS -->
-            <div class="tech-card group">
-              <div class="tech-icon bg-gradient-to-br from-secondary/20 to-primary/20">
-                <i class="fab fa-css3 text-secondary text-2xl"></i>
-              </div>
-              <span class="tech-name">Tailwind CSS</span>
+          <!-- Excel -->
+          <div class="tech-card group">
+            <div class="tech-icon bg-gradient-to-br from-secondary/20 to-accent/20">
+              <i class="fas fa-table text-secondary text-2xl"></i>
             </div>
+            <span class="tech-name">Excel</span>
           </div>
         </div>
+      </div>
 
-        <!-- Tools & Platforms -->
-        <div class="mb-12">
-          <h3
-            class="text-2xl font-bold text-white mb-8 text-center md:text-left flex items-center justify-center md:justify-start">
-            <i class="fas fa-tools text-accent mr-3 text-xl"></i>
-            Tools & Platforms
-          </h3>
-          <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            <!-- Git -->
-            <div class="tech-card group">
-              <div class="tech-icon bg-gradient-to-br from-accent/20 to-secondary/20">
-                <i class="fab fa-git-alt text-accent text-2xl"></i>
-              </div>
-              <span class="tech-name">Git</span>
+      <!-- Hardware & IoT -->
+      <div class="tech-category" data-category="hardware">
+        <h3 class="text-2xl font-bold text-white mb-8 text-center md:text-left flex items-center justify-center md:justify-start">
+          <i class="fas fa-microchip text-primary mr-3 text-xl"></i>
+          Hardware & IoT
+        </h3>
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          <!-- Arduino -->
+          <div class="tech-card group">
+            <div class="tech-icon bg-gradient-to-br from-accent/20 to-primary/20">
+              <i class="fas fa-microchip text-accent text-2xl"></i>
             </div>
-
-            <!-- VS Code -->
-            <div class="tech-card group">
-              <div class="tech-icon bg-gradient-to-br from-primary/20 to-accent/20">
-                <i class="fas fa-code text-primary text-2xl"></i>
-              </div>
-              <span class="tech-name">VS Code</span>
-            </div>
-
-            <!-- Android Studio -->
-            <div class="tech-card group">
-              <div class="tech-icon bg-gradient-to-br from-secondary/20 to-primary/20">
-                <i class="fab fa-android text-secondary text-2xl"></i>
-              </div>
-              <span class="tech-name">Android Studio</span>
-            </div>
-
-            <!-- Visual Studio -->
-            <div class="tech-card group">
-              <div class="tech-icon bg-gradient-to-br from-accent/20 to-secondary/20">
-                <i class="fas fa-laptop-code text-accent text-2xl"></i>
-              </div>
-              <span class="tech-name">Visual Studio</span>
-            </div>
-
-            <!-- Figma -->
-            <div class="tech-card group">
-              <div class="tech-icon bg-gradient-to-br from-primary/20 to-accent/20">
-                <i class="fab fa-figma text-primary text-2xl"></i>
-              </div>
-              <span class="tech-name">Figma</span>
-            </div>
-
-            <!-- Excel -->
-            <div class="tech-card group">
-              <div class="tech-icon bg-gradient-to-br from-secondary/20 to-accent/20">
-                <i class="fas fa-table text-secondary text-2xl"></i>
-              </div>
-              <span class="tech-name">Excel</span>
-            </div>
+            <span class="tech-name">Arduino</span>
           </div>
-        </div>
 
-        <!-- Hardware & IoT -->
-        <div class="mb-12">
-          <h3
-            class="text-2xl font-bold text-white mb-8 text-center md:text-left flex items-center justify-center md:justify-start">
-            <i class="fas fa-microchip text-primary mr-3 text-xl"></i>
-            Hardware & IoT
-          </h3>
-          <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            <!-- Arduino -->
-            <div class="tech-card group">
-              <div class="tech-icon bg-gradient-to-br from-accent/20 to-primary/20">
-                <i class="fas fa-microchip text-accent text-2xl"></i>
-              </div>
-              <span class="tech-name">Arduino</span>
+          <!-- Raspberry Pi -->
+          <div class="tech-card group">
+            <div class="tech-icon bg-gradient-to-br from-primary/20 to-secondary/20">
+              <i class="fas fa-desktop text-primary text-2xl"></i>
             </div>
+            <span class="tech-name">Raspberry Pi</span>
+          </div>
 
-            <!-- Raspberry Pi -->
-            <div class="tech-card group">
-              <div class="tech-icon bg-gradient-to-br from-primary/20 to-secondary/20">
-                <i class="fas fa-desktop text-primary text-2xl"></i>
-              </div>
-              <span class="tech-name">Raspberry Pi</span>
+          <!-- ESP32 -->
+          <div class="tech-card group">
+            <div class="tech-icon bg-gradient-to-br from-secondary/20 to-accent/20">
+              <i class="fas fa-wifi text-secondary text-2xl"></i>
             </div>
+            <span class="tech-name">ESP32</span>
+          </div>
 
-            <!-- ESP32 -->
-            <div class="tech-card group">
-              <div class="tech-icon bg-gradient-to-br from-secondary/20 to-accent/20">
-                <i class="fas fa-wifi text-secondary text-2xl"></i>
-              </div>
-              <span class="tech-name">ESP32</span>
+          <!-- Basic Electronics -->
+          <div class="tech-card group">
+            <div class="tech-icon bg-gradient-to-br from-accent/20 to-primary/20">
+              <i class="fas fa-bolt text-accent text-2xl"></i>
             </div>
-
-            <!-- Basic Electronics -->
-            <div class="tech-card group">
-              <div class="tech-icon bg-gradient-to-br from-accent/20 to-primary/20">
-                <i class="fas fa-bolt text-accent text-2xl"></i>
-              </div>
-              <span class="tech-name">Basic Electronics</span>
-            </div>
+            <span class="tech-name">Basic Electronics</span>
           </div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
 
 

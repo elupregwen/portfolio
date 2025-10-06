@@ -328,3 +328,41 @@
       }
     });
   });
+
+
+  // Tech Stack Tabs Functionality
+function initTechTabs() {
+  const tabs = document.querySelectorAll('.tech-tab');
+  const categories = document.querySelectorAll('.tech-category');
+  
+  // Show all categories by default
+  categories.forEach(cat => cat.classList.remove('hidden'));
+  
+  tabs.forEach(tab => {
+    tab.addEventListener('click', function() {
+      const category = this.getAttribute('data-category');
+      
+      // Update active tab
+      tabs.forEach(t => t.classList.remove('active'));
+      this.classList.add('active');
+      
+      // Show/hide categories
+      categories.forEach(cat => {
+        if (category === 'all') {
+          cat.classList.remove('hidden');
+        } else {
+          if (cat.getAttribute('data-category') === category) {
+            cat.classList.remove('hidden');
+          } else {
+            cat.classList.add('hidden');
+          }
+        }
+      });
+    });
+  });
+}
+
+// Initialize when page loads
+document.addEventListener('DOMContentLoaded', function() {
+  initTechTabs();
+});

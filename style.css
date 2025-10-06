@@ -178,3 +178,54 @@ html {
   color: rgb(0, 191, 255);
   font-weight: 600;
 }
+
+/* Tech Stack Tabs */
+.tech-tab {
+  background: rgba(30, 30, 46, 0.5);
+  border: 1px solid rgba(55, 65, 81, 0.5);
+  color: rgb(156, 163, 175);
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.75rem;
+  font-weight: 500;
+  transition: all 0.3s ease-out;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.tech-tab:hover {
+  border-color: rgba(0, 191, 255, 0.4);
+  color: rgb(0, 191, 255);
+  transform: translateY(-2px);
+}
+
+.tech-tab.active {
+  background: linear-gradient(135deg, rgba(0, 191, 255, 0.1), rgba(124, 58, 237, 0.1));
+  border-color: rgba(0, 191, 255, 0.6);
+  color: rgb(0, 191, 255);
+  box-shadow: 0 4px 12px rgba(0, 191, 255, 0.2);
+}
+
+/* Tech Categories */
+.tech-category {
+  transition: all 0.3s ease-out;
+}
+
+.tech-category.hidden {
+  display: none;
+}
+
+.tech-category:not(.hidden) {
+  animation: fadeInUp 0.5s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
