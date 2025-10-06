@@ -133,42 +133,36 @@ html {
 
 /* Tech Stack Styles */
 .tech-card {
-  @apply relative bg-gradient-to-br from-gray-800/50 to-gray-900/50 
-         p-6 rounded-2xl border border-gray-700 shadow-lg 
-         transition-all duration-300 hover:scale-105 
-         hover:shadow-xl cursor-default overflow-hidden
-         flex flex-col items-center text-center;
+  @apply relative bg-gray-800/50 rounded-xl p-4 border border-gray-700 
+         transition-all duration-300 ease-out cursor-default
+         hover:border-primary/40 hover:scale-105 hover:shadow-lg 
+         hover:shadow-primary/10 group-hover:shadow-primary/5;
 }
 
 .tech-icon {
-  @apply w-16 h-16 rounded-2xl flex items-center justify-center 
-         mb-4 text-2xl transition-all duration-300 
-         group-hover:scale-110 group-hover:rotate-3;
+  @apply w-16 h-16 rounded-xl flex items-center justify-center mb-3 
+         mx-auto transition-all duration-300 ease-out
+         group-hover:scale-110 group-hover:shadow-inner;
+}
+
+.tech-icon i {
+  @apply text-2xl transition-all duration-300 ease-out;
 }
 
 .tech-name {
-  @apply text-white font-semibold text-lg transition-colors duration-300 
-         group-hover:text-primary;
+  @apply text-gray-300 font-medium text-sm text-center block
+         transition-all duration-300 ease-out
+         group-hover:text-primary group-hover:font-semibold;
 }
 
 .tech-hover-gradient {
-  @apply absolute inset-0 bg-gradient-to-r from-primary/5 to-secondary/5 
-         opacity-0 transition-opacity duration-300 group-hover:opacity-100 
-         rounded-2xl;
+  @apply absolute inset-0 rounded-xl bg-gradient-to-br from-primary/5 to-secondary/5 
+         opacity-0 transition-all duration-300 ease-out
+         group-hover:opacity-100;
 }
 
-/* Animation for tech stack items */
-@keyframes techSlideIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.tech-card {
-  animation: techSlideIn 0.6s ease-out forwards;
+/* Animation for tech stack sections when they come into view */
+.tech-stack-animate {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
 }
