@@ -131,6 +131,68 @@ html {
  to { opacity: 1; transform: translateY(0); }
 }
 
+/* Tech Stack Styles */
+.tech-card {
+  position: relative;
+  background: linear-gradient(135deg, rgba(30, 30, 46, 0.5), rgba(17, 17, 27, 0.5));
+  padding: 1.5rem;
+  border-radius: 1rem;
+  border: 1px solid rgba(55, 65, 81, 1);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  cursor: default;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.tech-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+.tech-icon {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.tech-card:hover .tech-icon {
+  transform: scale(1.1) rotate(3deg);
+}
+
+.tech-name {
+  color: white;
+  font-weight: 600;
+  font-size: 1.125rem;
+  transition: color 0.3s ease;
+}
+
+.tech-card:hover .tech-name {
+  color: #00BFFF; /* primary color */
+}
+
+.tech-hover-gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, rgba(0, 191, 255, 0.05), rgba(124, 58, 237, 0.05));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: 1rem;
+}
+
+.tech-card:hover .tech-hover-gradient {
+  opacity: 1;
+}
+
 /* Ensure the grid can handle more items */
 .grid-cols-2 {
   grid-template-columns: repeat(2, minmax(0, 1fr));
