@@ -182,7 +182,12 @@ html {
 /* Tech Stack Tabs */
 .tech-tab {
   background: rgba(30, 30, 46, 0.5);
-  border: 1px solid rgba(55, 65, 81, 0.5);
+  border:linear-gradient(to right, #00BFFF, #7C3AED);
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
   color: rgb(156, 163, 175);
   padding: 0.75rem 1.5rem;
   border-radius: 0.75rem;
