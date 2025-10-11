@@ -209,10 +209,13 @@ html {
 /* Tech Categories */
 .tech-category {
   transition: all 0.3s ease-out;
+  margin-bottom: 4rem !important; /* HUGE space between sections */
 }
 
+/* Even more space when it's hidden (for smooth transitions) */
 .tech-category.hidden {
   display: none;
+  margin-bottom: 0;
 }
 
 .tech-category:not(.hidden) {
@@ -222,11 +225,10 @@ html {
 @keyframes fadeInUp {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(30px);
   }
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
-
