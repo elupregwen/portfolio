@@ -93,6 +93,18 @@
       background: linear-gradient(135deg, #00BFFF 0%, #7C3AED 100%);
     }
     
+    /* Animation base styles */
+    .animate-on-scroll {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.6s ease-out;
+    }
+    
+    .animate-on-scroll.animated {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
     /* Custom scrollbar */
     ::-webkit-scrollbar {
       width: 8px;
@@ -138,7 +150,7 @@
   <main class="pt-28 pb-16">
     <div class="container mx-auto px-6 max-w-7xl">
       <!-- Page Header -->
-      <div class="text-center mb-16">
+      <div id="page-header" class="text-center mb-16 animate-on-scroll">
         <h1 class="text-5xl md:text-6xl font-bold mb-6 leading-tight">
           All 
           <span class="gradient-text bg-gradient-to-r from-primary to-accent">Projects</span>
@@ -152,7 +164,7 @@
       <!-- Projects Grid -->
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         <!-- Project 1 - To-do List -->
-        <div class="project-card rounded-2xl overflow-hidden group cursor-pointer">
+        <div id="project-card-1" class="project-card rounded-2xl overflow-hidden group cursor-pointer animate-on-scroll">
           <div class="h-48 bg-gradient-to-br from-primary/10 to-secondary/10 overflow-hidden">
             <img src="https://i.ibb.co/N2fcxcck/image.png" 
                  alt="To-do List Application"
@@ -199,7 +211,7 @@
         </div>
 
         <!-- Project 2 - Video Game Landing Page -->
-        <div class="project-card rounded-2xl overflow-hidden group cursor-pointer">
+        <div id="project-card-2" class="project-card rounded-2xl overflow-hidden group cursor-pointer animate-on-scroll">
           <div class="h-48 bg-gradient-to-br from-primary/10 to-secondary/10 overflow-hidden">
             <img src="https://i.ibb.co/gMmTHWF6/image.png" 
                  alt="Class of Heroes - Video Game Landing Page"
@@ -249,7 +261,7 @@
         </div>
 
         <!-- Project 3 - Grocery App UI Design -->
-        <div class="project-card rounded-2xl overflow-hidden group cursor-pointer">
+        <div id="project-card-3" class="project-card rounded-2xl overflow-hidden group cursor-pointer animate-on-scroll">
           <div class="h-48 bg-gradient-to-br from-primary/10 to-secondary/10 overflow-hidden">
             <img src="https://i.ibb.co/Lzq6JbV4/image.png" 
                  alt="Grocery App UI Design"
@@ -301,7 +313,7 @@
       </div>
 
       <!-- Call to Action -->
-      <div class="text-center mt-16">
+      <div id="cta-section" class="text-center mt-16 animate-on-scroll">
         <div class="glass-card rounded-2xl p-8 max-w-2xl mx-auto">
           <h3 class="text-2xl font-bold text-white mb-4">
             Interested in working together?
@@ -350,22 +362,34 @@
     </div>
   </footer>
 
+  
   <script>
-    // Add smooth animations for project cards
-    document.addEventListener('DOMContentLoaded', function() {
-      const projectCards = document.querySelectorAll('.project-card');
-      
-      projectCards.forEach((card, index) => {
-        // Initial hidden state
-        card.style.opacity = '0';
-        card.style.transform = 'translateY(20px)';
-        
-        // Animate in with delay
-        setTimeout(() => {
-          card.style.transition = 'all 0.6s ease-out';
-          card.style.opacity = '1';
-          card.style.transform = 'translateY(0)';
-        }, index * 200);
+    // All Projects Page JavaScript
+    document.addEventListener('DOMContentLoaded', () => {
+      const projectElements = [
+        { id: 'page-header', delay: 0 },
+        { id: 'project-card-1', delay: 100 },
+        { id: 'project-card-2', delay: 200 },
+        { id: 'project-card-3', delay: 300 },
+        { id: 'cta-section', delay: 400 }
+      ];
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const element = projectElements.find(el => el.id === entry.target.id);
+            if (element && !entry.target.classList.contains('animated')) {
+              setTimeout(() => {
+                entry.target.classList.add('animated');
+              }, element.delay);
+            }
+          }
+        });
+      }, { threshold: 0.1 });
+
+      projectElements.forEach(({ id }) => {
+        const el = document.getElementById(id);
+        if (el) observer.observe(el);
       });
     });
   </script>
