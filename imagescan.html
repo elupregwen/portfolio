@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Text Scanner | Google Lens Clone</title>
+  <meta name="description" content="Extract text from images using Google Lens-style technology">
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#00BFFF',
+            secondary: '#7C3AED',
+            accent: '#2dd4bf',
+            dark: '#0f172a',
+            light: '#f8fafc'
+          },
+          spacing: {
+            '128': '32rem',
+          }
+        }
+      }
+    }
+  </script>
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  
+  <!-- Tesseract.js for OCR -->
+  <script src="https://unpkg.com/tesseract.js@v2.1.0/dist/tesseract.min.js"></script>
+  
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #0f172a;
+      color: #e2e8f0;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    
+    .gradient-text {
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
+    .glass-card {
+      background: rgba(15, 23, 42, 0.7);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    
+    .feature-bullet {
+      width: 24px;
+      height: 24px;
+      background: linear-gradient(135deg, #00BFFF 0%, #7C3AED 100%);
+    }
+    
+    .image-container {
+      border-radius: 1rem;
+      box-shadow: 0 25px 50px -12px rgba(0, 191, 255, 0.15);
+      transition: all 0.3s ease;
+      max-height: 500px;
+      min-height: 300px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    
+    .image-container:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 25px 50px -12px rgba(0, 191, 255, 0.25);
+    }
+    
+    .text-output {
+      min-height: 300px;
+      max-height: 500px;
+      overflow-y: auto;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+    }
+    
+    .upload-area {
+      border: 2px dashed rgba(0, 191, 255, 0.3);
+      transition: all 0.3s ease;
+    }
+    
+    .upload-area:hover, .upload-area.dragover {
+      border-color: #00BFFF;
+      background-color: rgba(0, 191, 255, 0.05);
+    }
+    
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    
+    ::-webkit-scrollbar-track {
+      background: #0f172a;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(to bottom, #00BFFF, #7C3AED);
+      border-radius: 4px;
+    }
+    
+    ::-webkit-scrollbar-thumb:hover {
+      background: linear-gradient(to bottom, #00BFFF, #2dd4bf);
+    }
+  </style>
+</head>
+
+<body class="antialiased">
+  <!-- Navigation -->
+  <nav class="glass-card fixed w-full z-50">
+    <div class="container mx-auto px-6 py-3">
+      <a href="index.html" class="inline-flex items-center px-4 py-2 rounded-lg font-medium text-sm 
+                bg-gradient-to-r from-primary to-secondary text-white
+                hover:shadow-lg hover:shadow-primary/30 transition-all duration-300
+                transform hover:-translate-y-0.5">
+        <i class="fas fa-arrow-left mr-2"></i> Back
+      </a>
+    </div>
+  </nav>
+
+  <!-- Project Content -->
+  <main class="pt-24 pb-16">
+    <div class="container mx-auto px-6 max-w-6xl">
+      <!-- Mobile View - Title First -->
+      <div class="lg:hidden space-y-8">
+        <!-- Project Title -->
+        <div>
+          <span class="text-sm font-semibold text-primary tracking-wider">Image Processing Tool</span>
+          <h1 class="text-4xl md:text-5xl font-bold mt-2 mb-4 leading-tight">
+            Image Text 
+            <span class="gradient-text bg-gradient-to-r from-primary to-accent">Scanner</span>
+          </h1>
+          <div class="w-16 h-1 bg-gradient-to-r from-primary to-secondary rounded-full my-6"></div>
+        </div>
+      </div>
+
+      <div class="flex flex-col lg:flex-row gap-12">
+        <!-- Left Column - Project Info -->
+        <div class="lg:w-1/2">
+          <div class="space-y-8">
+            <!-- Desktop: Project Title (Hidden on mobile) -->
+            <div class="hidden lg:block">
+              <span class="text-sm font-semibold text-primary tracking-wider">Image Processing Tool</span>
+              <h1 class="text-4xl md:text-5xl font-bold mt-2 mb-4 leading-tight">
+                Image Text 
+                <span class="gradient-text bg-gradient-to-r from-primary to-accent">Scanner</span>
+              </h1>
+              <div class="w-16 h-1 bg-gradient-to-r from-primary to-secondary rounded-full my-6"></div>
+            </div>
+            
+            <!-- Project Description -->
+            <div class="space-y-4">
+              <p class="text-lg text-gray-300 leading-relaxed">
+                A Google Lens-style tool that extracts text from images using Optical Character Recognition (OCR). Upload any image containing text, and the scanner will process it to extract readable text.
+              </p>
+              <p class="text-lg text-gray-300 leading-relaxed">
+                Perfect for digitizing documents, extracting text from screenshots, or translating text from images. Works entirely in your browser—no data is sent to external servers.
+              </p>
+            </div>
+            
+            <!-- Upload Area -->
+            <div class="glass-card rounded-2xl p-6 space-y-6">
+              <div class="space-y-2">
+                <h3 class="text-2xl font-bold text-white">
+                  Upload Image
+                </h3>
+                <div class="w-12 h-1 bg-gradient-to-r from-primary to-secondary rounded-full"></div>
+              </div>
+              
+              <!-- Upload Interface -->
+              <div id="uploadContainer" class="upload-area rounded-xl p-8 text-center cursor-pointer transition-all">
+                <div class="flex flex-col items-center justify-center space-y-4">
+                  <div class="w-20 h-20 rounded-full bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
+                    <i class="fas fa-cloud-upload-alt text-3xl text-primary"></i>
+                  </div>
+                  <div>
+                    <h4 class="text-xl font-bold text-white mb-2">Drop your image here</h4>
+                    <p class="text-gray-300 mb-4">or click to browse files</p>
+                    <p class="text-sm text-gray-400">Supports JPG, PNG, BMP, and WebP formats</p>
+                  </div>
+                  <div>
+                    <button id="browseButton" class="inline-flex items-center px-5 py-2.5 rounded-lg font-medium text-sm
+                              bg-gradient-to-r from-primary to-secondary text-white
+                              hover:shadow-lg hover:shadow-primary/30 transition-all duration-300">
+                      <i class="fas fa-folder-open mr-2"></i> Browse Files
+                    </button>
+                  </div>
+                </div>
+                <input type="file" id="imageInput" accept="image/*" class="hidden">
+              </div>
+              
+              <!-- Processing Controls -->
+              <div id="processingControls" class="hidden space-y-4">
+                <div class="flex flex-wrap gap-4 justify-center">
+                  <button id="scanButton" class="inline-flex items-center px-6 py-3 rounded-lg font-semibold
+                            bg-gradient-to-r from-primary to-secondary text-white
+                            hover:shadow-lg hover:shadow-primary/30 transition-all duration-300
+                            transform hover:-translate-y-0.5">
+                    <i class="fas fa-search mr-2"></i> Scan Text
+                  </button>
+                  <button id="resetButton" class="inline-flex items-center px-6 py-3 rounded-lg font-semibold
+                            bg-gray-700 text-gray-300 border border-gray-600
+                            hover:bg-gray-600/50 hover:border-primary/30 transition-all">
+                    <i class="fas fa-redo mr-2"></i> Reset
+                  </button>
+                </div>
+                
+                <!-- Language Selection -->
+                <div class="pt-4">
+                  <label for="languageSelect" class="block text-sm font-medium text-gray-300 mb-2">
+                    Select Text Language
+                  </label>
+                  <select id="languageSelect" class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                    <option value="eng">English</option>
+                    <option value="spa">Spanish</option>
+                    <option value="fra">French</option>
+                    <option value="deu">German</option>
+                    <option value="jpn">Japanese</option>
+                    <option value="kor">Korean</option>
+                    <option value="chi_sim">Chinese (Simplified)</option>
+                  </select>
+                </div>
+              </div>
+              
+              <!-- Processing Status -->
+              <div id="statusContainer" class="hidden">
+                <div class="flex items-center space-x-4 p-4 bg-gray-800/50 rounded-lg">
+                  <div class="loader ease-linear rounded-full border-4 border-t-4 border-gray-200 h-8 w-8"></div>
+                  <div>
+                    <p id="statusText" class="text-white font-medium">Processing image...</p>
+                    <p id="progressText" class="text-sm text-gray-400">0%</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Technologies -->
+            <div class="space-y-4">
+              <h3 class="text-xl font-bold text-white">Powered By</h3>
+              <div class="flex flex-wrap gap-3">
+                <span class="inline-flex items-center px-5 py-2.5 rounded-full text-sm font-medium
+                          bg-gray-800 text-primary-light border border-gray-700
+                          hover:bg-gray-700/50 hover:border-primary/30 transition-all">
+                  <i class="fa-brands fa-js text-yellow-400 mr-2"></i> Tesseract.js OCR
+                </span>
+                <span class="inline-flex items-center px-5 py-2.5 rounded-full text-sm font-medium
+                          bg-gray-800 text-primary-light border border-gray-700
+                          hover:bg-gray-700/50 hover:border-primary/30 transition-all">
+                  <i class="fa-brands fa-html5 text-orange-400 mr-2"></i> HTML, CSS, JavaScript
+                </span>
+                <span class="inline-flex items-center px-5 py-2.5 rounded-full text-sm font-medium
+                          bg-gray-800 text-primary-light border border-gray-700
+                          hover:bg-gray-700/50 hover:border-primary/30 transition-all">
+                  <i class="fa-solid fa-bolt text-cyan-400 mr-2"></i> Client-side Processing
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column - Image & Text Output -->
+        <div class="lg:w-1/2 space-y-8">
+          <!-- Preview and Output Section -->
+          <div class="glass-card rounded-2xl p-8 space-y-8">
+            <div class="space-y-2">
+              <h3 class="text-2xl font-bold text-white">
+                Scan Results
+              </h3>
+              <div class="w-12 h-1 bg-gradient-to-r from-primary to-secondary rounded-full"></div>
+            </div>
+            
+            <!-- Two Column Layout for Results -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <!-- Image Preview -->
+              <div class="space-y-4">
+                <h4 class="font-semibold text-white flex items-center">
+                  <i class="fas fa-image text-primary mr-2"></i> Image Preview
+                </h4>
+                <div id="imagePreview" class="image-container bg-gray-900/50">
+                  <div class="text-center p-8">
+                    <i class="fas fa-image text-5xl text-gray-700 mb-4"></i>
+                    <p class="text-gray-500">Image will appear here</p>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Extracted Text -->
+              <div class="space-y-4">
+                <h4 class="font-semibold text-white flex items-center">
+                  <i class="fas fa-text-height text-accent mr-2"></i> Extracted Text
+                </h4>
+                <div id="textOutput" class="text-output glass-card rounded-xl p-6 bg-gray-900/30">
+                  <div class="text-center p-8">
+                    <i class="fas fa-align-left text-5xl text-gray-700 mb-4"></i>
+                    <p class="text-gray-500">Extracted text will appear here</p>
+                    <p class="text-sm text-gray-600 mt-2">Click "Scan Text" to begin processing</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Text Actions -->
+            <div id="textActions" class="hidden flex flex-wrap gap-4 justify-center pt-4">
+              <button id="copyButton" class="inline-flex items-center px-5 py-2.5 rounded-lg font-medium text-sm
+                        bg-gray-800 text-primary-light border border-gray-700
+                        hover:bg-gray-700/50 hover:border-primary/30 transition-all">
+                <i class="fas fa-copy mr-2"></i> Copy Text
+              </button>
+              <button id="clearTextButton" class="inline-flex items-center px-5 py-2.5 rounded-lg font-medium text-sm
+                        bg-gray-800 text-gray-300 border border-gray-700
+                        hover:bg-gray-700/50 hover:border-primary/30 transition-all">
+                <i class="fas fa-eraser mr-2"></i> Clear Text
+              </button>
+              <button id="downloadButton" class="inline-flex items-center px-5 py-2.5 rounded-lg font-medium text-sm
+                        bg-gradient-to-r from-accent to-green-500 text-white
+                        hover:shadow-lg hover:shadow-accent/30 transition-all">
+                <i class="fas fa-download mr-2"></i> Download Text
+              </button>
+            </div>
+          </div>
+          
+          <!-- Key Features Section -->
+          <div class="glass-card rounded-2xl p-8 space-y-6">
+            <div class="space-y-2">
+              <h3 class="text-2xl font-bold text-white">
+                How It Works
+              </h3>
+              <div class="w-12 h-1 bg-gradient-to-r from-primary to-secondary rounded-full"></div>
+            </div>
+            
+            <ul class="space-y-4">
+              <li class="flex items-start space-x-4">
+                <div class="feature-bullet rounded-full flex-shrink-0 flex items-center justify-center mt-0.5">
+                  <i class="fas fa-upload text-white text-xs"></i>
+                </div>
+                <div>
+                  <h4 class="font-semibold text-white">Upload Image</h4>
+                  <p class="text-gray-300 mt-1">Drag & drop or click to upload an image containing text</p>
+                </div>
+              </li>
+              
+              <li class="flex items-start space-x-4">
+                <div class="feature-bullet rounded-full flex-shrink-0 flex items-center justify-center mt-0.5">
+                  <i class="fas fa-cogs text-white text-xs"></i>
+                </div>
+                <div>
+                  <h4 class="font-semibold text-white">Process Image</h4>
+                  <p class="text-gray-300 mt-1">OCR engine analyzes the image to detect and recognize text</p>
+                </div>
+              </li>
+              
+              <li class="flex items-start space-x-4">
+                <div class="feature-bullet rounded-full flex-shrink-0 flex items-center justify-center mt-0.5">
+                  <i class="fas fa-file-alt text-white text-xs"></i>
+                </div>
+                <div>
+                  <h4 class="font-semibold text-white">Extract Text</h4>
+                  <p class="text-gray-300 mt-1">Text is extracted and displayed in the output panel</p>
+                </div>
+              </li>
+              
+              <li class="flex items-start space-x-4">
+                <div class="feature-bullet rounded-full flex-shrink-0 flex items-center justify-center mt-0.5">
+                  <i class="fas fa-clipboard text-white text-xs"></i>
+                </div>
+                <div>
+                  <h4 class="font-semibold text-white">Copy & Use</h4>
+                  <p class="text-gray-300 mt-1">Copy the extracted text or download it as a text file</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // DOM Elements
+    const uploadContainer = document.getElementById('uploadContainer');
+    const imageInput = document.getElementById('imageInput');
+    const browseButton = document.getElementById('browseButton');
+    const imagePreview = document.getElementById('imagePreview');
+    const textOutput = document.getElementById('textOutput');
+    const processingControls = document.getElementById('processingControls');
+    const scanButton = document.getElementById('scanButton');
+    const resetButton = document.getElementById('resetButton');
+    const statusContainer = document.getElementById('statusContainer');
+    const statusText = document.getElementById('statusText');
+    const progressText = document.getElementById('progressText');
+    const textActions = document.getElementById('textActions');
+    const copyButton = document.getElementById('copyButton');
+    const clearTextButton = document.getElementById('clearTextButton');
+    const downloadButton = document.getElementById('downloadButton');
+    const languageSelect = document.getElementById('languageSelect');
+    
+    // Variables
+    let uploadedImage = null;
+    let extractedText = '';
+    
+    // Event Listeners
+    browseButton.addEventListener('click', () => imageInput.click());
+    
+    imageInput.addEventListener('change', handleImageUpload);
+    
+    uploadContainer.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      uploadContainer.classList.add('dragover');
+    });
+    
+    uploadContainer.addEventListener('dragleave', () => {
+      uploadContainer.classList.remove('dragover');
+    });
+    
+    uploadContainer.addEventListener('drop', (e) => {
+      e.preventDefault();
+      uploadContainer.classList.remove('dragover');
+      
+      if (e.dataTransfer.files.length) {
+        imageInput.files = e.dataTransfer.files;
+        handleImageUpload();
+      }
+    });
+    
+    scanButton.addEventListener('click', processImage);
+    resetButton.addEventListener('click', resetScanner);
+    copyButton.addEventListener('click', copyText);
+    clearTextButton.addEventListener('click', clearText);
+    downloadButton.addEventListener('click', downloadText);
+    
+    // Handle image upload
+    function handleImageUpload() {
+      const file = imageInput.files[0];
+      
+      if (!file || !file.type.startsWith('image/')) {
+        showMessage('Please upload a valid image file', 'error');
+        return;
+      }
+      
+      const reader = new FileReader();
+      
+      reader.onload = function(e) {
+        uploadedImage = e.target.result;
+        
+        // Display image preview
+        imagePreview.innerHTML = `<img src="${uploadedImage}" alt="Uploaded image" class="w-full h-full object-contain">`;
+        
+        // Show processing controls
+        processingControls.classList.remove('hidden');
+        
+        // Update text output placeholder
+        textOutput.innerHTML = `
+          <div class="text-center p-8">
+            <i class="fas fa-search text-5xl text-primary mb-4"></i>
+            <p class="text-gray-300">Image ready for processing</p>
+            <p class="text-sm text-gray-500 mt-2">Click "Scan Text" to extract text from the image</p>
+          </div>
+        `;
+        
+        // Hide text actions if they were visible
+        textActions.classList.add('hidden');
+      };
+      
+      reader.readAsDataURL(file);
+    }
+    
+    // Process image with OCR
+    async function processImage() {
+      if (!uploadedImage) {
+        showMessage('Please upload an image first', 'error');
+        return;
+      }
+      
+      // Show processing status
+      statusContainer.classList.remove('hidden');
+      statusText.textContent = 'Initializing OCR engine...';
+      progressText.textContent = '0%';
+      
+      // Disable scan button during processing
+      scanButton.disabled = true;
+      scanButton.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Processing...';
+      
+      try {
+        // Get selected language
+        const language = languageSelect.value;
+        
+        // Initialize Tesseract
+        const worker = Tesseract.createWorker();
+        
+        await worker.load();
+        await worker.loadLanguage(language);
+        await worker.initialize(language);
+        
+        // Update status
+        statusText.textContent = 'Processing image...';
+        
+        // Perform OCR
+        const { data: { text, progress } } = await worker.recognize(uploadedImage, {
+          logger: (m) => {
+            // Update progress
+            if (m.status === 'recognizing text') {
+              const percent = Math.round(m.progress * 100);
+              progressText.textContent = `${percent}%`;
+              statusText.textContent = `Recognizing text: ${percent}%`;
+            }
+          }
+        });
+        
+        // Update status
+        statusText.textContent = 'Processing complete!';
+        progressText.textContent = '100%';
+        
+        // Extract and display text
+        extractedText = text.trim();
+        
+        if (extractedText) {
+          textOutput.innerHTML = `<div class="p-4 whitespace-pre-wrap">${extractedText}</div>`;
+          
+          // Show text actions
+          textActions.classList.remove('hidden');
+          
+          showMessage('Text extracted successfully!', 'success');
+        } else {
+          textOutput.innerHTML = `
+            <div class="text-center p-8">
+              <i class="fas fa-exclamation-triangle text-5xl text-yellow-500 mb-4"></i>
+              <p class="text-gray-300">No text detected in the image</p>
+              <p class="text-sm text-gray-500 mt-2">Try a different image or language setting</p>
+            </div>
+          `;
+          
+          showMessage('No text detected in the image', 'warning');
+        }
+        
+        // Terminate worker
+        await worker.terminate();
+        
+      } catch (error) {
+        console.error('OCR Error:', error);
+        statusText.textContent = 'Error processing image';
+        progressText.textContent = 'Failed';
+        
+        textOutput.innerHTML = `
+          <div class="text-center p-8">
+            <i class="fas fa-exclamation-circle text-5xl text-red-500 mb-4"></i>
+            <p class="text-gray-300">Error processing image</p>
+            <p class="text-sm text-gray-500 mt-2">${error.message || 'Please try again'}</p>
+          </div>
+        `;
+        
+        showMessage('Error extracting text from image', 'error');
+      } finally {
+        // Hide status and re-enable scan button
+        setTimeout(() => {
+          statusContainer.classList.add('hidden');
+          scanButton.disabled = false;
+          scanButton.innerHTML = '<i class="fas fa-search mr-2"></i> Scan Text';
+        }, 1500);
+      }
+    }
+    
+    // Reset scanner to initial state
+    function resetScanner() {
+      uploadedImage = null;
+      extractedText = '';
+      
+      // Reset file input
+      imageInput.value = '';
+      
+      // Reset image preview
+      imagePreview.innerHTML = `
+        <div class="text-center p-8">
+          <i class="fas fa-image text-5xl text-gray-700 mb-4"></i>
+          <p class="text-gray-500">Image will appear here</p>
+        </div>
+      `;
+      
+      // Reset text output
+      textOutput.innerHTML = `
+        <div class="text-center p-8">
+          <i class="fas fa-align-left text-5xl text-gray-700 mb-4"></i>
+          <p class="text-gray-500">Extracted text will appear here</p>
+          <p class="text-sm text-gray-600 mt-2">Click "Scan Text" to begin processing</p>
+        </div>
+      `;
+      
+      // Hide processing controls
+      processingControls.classList.add('hidden');
+      
+      // Hide text actions
+      textActions.classList.add('hidden');
+      
+      // Hide status
+      statusContainer.classList.add('hidden');
+      
+      showMessage('Scanner has been reset', 'info');
+    }
+    
+    // Copy extracted text to clipboard
+    function copyText() {
+      if (!extractedText) {
+        showMessage('No text to copy', 'warning');
+        return;
+      }
+      
+      navigator.clipboard.writeText(extractedText)
+        .then(() => {
+          showMessage('Text copied to clipboard!', 'success');
+          
+          // Visual feedback
+          copyButton.innerHTML = '<i class="fas fa-check mr-2"></i> Copied!';
+          copyButton.classList.remove('bg-gray-800');
+          copyButton.classList.add('bg-green-600/20', 'border-green-500/30');
+          
+          setTimeout(() => {
+            copyButton.innerHTML = '<i class="fas fa-copy mr-2"></i> Copy Text';
+            copyButton.classList.remove('bg-green-600/20', 'border-green-500/30');
+            copyButton.classList.add('bg-gray-800');
+          }, 2000);
+        })
+        .catch(err => {
+          console.error('Copy failed:', err);
+          showMessage('Failed to copy text', 'error');
+        });
+    }
+    
+    // Clear extracted text
+    function clearText() {
+      extractedText = '';
+      textOutput.innerHTML = `
+        <div class="text-center p-8">
+          <i class="fas fa-eraser text-5xl text-accent mb-4"></i>
+          <p class="text-gray-300">Text cleared</p>
+          <p class="text-sm text-gray-500 mt-2">Upload a new image or scan again</p>
+        </div>
+      `;
+      
+      // Hide text actions
+      textActions.classList.add('hidden');
+      
+      showMessage('Text cleared', 'info');
+    }
+    
+    // Download extracted text as a .txt file
+    function downloadText() {
+      if (!extractedText) {
+        showMessage('No text to download', 'warning');
+        return;
+      }
+      
+      const blob = new Blob([extractedText], { type: 'text/plain' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      
+      a.href = url;
+      a.download = `extracted-text-${new Date().getTime()}.txt`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      
+      showMessage('Text downloaded!', 'success');
+    }
+    
+    // Show temporary message/notification
+    function showMessage(message, type) {
+      // Remove any existing message
+      const existingMessage = document.querySelector('.temp-message');
+      if (existingMessage) existingMessage.remove();
+      
+      // Create message element
+      const messageEl = document.createElement('div');
+      messageEl.className = `temp-message fixed top-24 right-6 z-50 px-6 py-3 rounded-lg shadow-lg transform transition-all duration-300 ${
+        type === 'success' ? 'bg-green-900/80 border border-green-700' :
+        type === 'error' ? 'bg-red-900/80 border border-red-700' :
+        type === 'warning' ? 'bg-yellow-900/80 border border-yellow-700' :
+        'bg-primary/80 border border-primary'
+      }`;
+      
+      messageEl.innerHTML = `
+        <div class="flex items-center">
+          <i class="fas ${
+            type === 'success' ? 'fa-check-circle' :
+            type === 'error' ? 'fa-exclamation-circle' :
+            type === 'warning' ? 'fa-exclamation-triangle' :
+            'fa-info-circle'
+          } mr-3"></i>
+          <span>${message}</span>
+        </div>
+      `;
+      
+      document.body.appendChild(messageEl);
+      
+      // Animate in
+      setTimeout(() => {
+        messageEl.classList.remove('opacity-0', 'translate-x-8');
+      }, 10);
+      
+      // Remove after 3 seconds
+      setTimeout(() => {
+        messageEl.classList.add('opacity-0', 'translate-x-8');
+        setTimeout(() => {
+          if (messageEl.parentNode) messageEl.parentNode.removeChild(messageEl);
+        }, 300);
+      }, 3000);
+    }
+    
+    // Initialize some CSS for loader
+    const style = document.createElement('style');
+    style.textContent = `
+      .loader {
+        border-top-color: #00BFFF;
+        animation: spinner 1s linear infinite;
+      }
+      
+      @keyframes spinner {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+    `;
+    document.head.appendChild(style);
+  </script>
+</body>
+</html>
