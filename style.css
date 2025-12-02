@@ -1,273 +1,262 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+    
 body {
-  font-family: 'Poppins', sans-serif; /* More feminine font */
-  background: linear-gradient(135deg, #FFEAF3 0%, #F5F0FF 50%, #E6F7FF 100%); /* Soft pastel gradient */
-  color: #5A4D6B; /* Soft purple-gray text */
+  font-family: 'Inter', sans-serif;
+  background-color: #1a202c;
+  color: #e2e8f0;
   min-height: 100vh;
 }
-
+    
 html {
   scroll-behavior: smooth;
 }
-
-/* Custom selection color - Very girly */
-::selection {
-  background: rgba(255, 182, 193, 0.5); /* Light pink with transparency */
-  color: #8B5FBF;
+    
+/* Custom selection color */
+ ::selection {
+ background: #00BFFF;
+ color: white;
 }
 
-/* Header */
-.main-header {
-  background: rgba(255, 255, 255, 0.9) !important;
-  backdrop-filter: blur(15px);
-  border-bottom: 1px solid rgba(255, 182, 193, 0.2);
-  height: 5rem;
-}
-
-/* Nav links - Girly colors */
-.nav-link {
-  transition: all 0.3s ease;
-  font-size: 1.1rem;
-  padding: 0.5rem 0;
-  color: #8B5FBF !important; /* Soft purple */
-}
-
-.nav-link:hover {
-  color: #FF85A2 !important; /* Soft pink */
-}
-
-.nav-link span {
-  background: linear-gradient(to right, #FF85A2, #D4A5F3) !important;
-}
-
-/* GIF in header */
+/* Additional styles for the GIF in header */
 .header-gif {
-  height: 150px;
+  height: 150px; /* Reduced size */
   width: 150px;
   transition: all 0.3s ease;
-  border-radius: 20px; /* More rounded */
-  border: 3px solid #FFE4EC; /* Pink border */
+  border-radius: 6px;
 }
-
+    
 .header-gif:hover {
-  transform: scale(1.10) rotate(3deg);
-  box-shadow: 0 10px 30px rgba(255, 133, 162, 0.3);
+  transform: scale(1.10);
 }
-
+    
 /* Image hover effect */
 .profile-img-container {
-  transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
-  border-radius: 25px;
-  padding: 0.5rem;
-  background: linear-gradient(135deg, #FFE4EC, #F0E6FF);
+ transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+ border-radius: 1rem;
+ padding: 0.5rem;
 }
-
+    
 .profile-img-container:hover {
   transform: scale(1.05);
-  box-shadow: 0 15px 35px rgba(255, 133, 162, 0.2);
 }
-
+    
 .profile-img-container:hover .profile-img {
   transform: scale(1.03);
 }
-
+    
 .profile-img {
   transition: transform 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
-  border-radius: 20px;
-  border: 4px solid white;
-  box-shadow: 0 8px 25px rgba(139, 95, 191, 0.15);
+  border-radius: 0.75rem;
 }
-
-/* Typewriter cursor - Girly color */
-.typewriter-cursor {
-  animation: blink 1s step-end infinite;
-  color: #FF85A2;
+    
+/* Typewriter cursor */
+  .typewriter-cursor {
+ animation: blink 1s step-end infinite;
 }
-
+    
 @keyframes blink {
   from, to { opacity: 1 }
   50% { opacity: 0 }
 }
-
-/* Gradient text - Girly gradient */
-.gradient-text {
+    
+/* Gradient text */
+  .gradient-text {
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  background-image: linear-gradient(135deg, #FF85A2, #D4A5F3, #85D3FF) !important;
-}
-
-/* Social icon hover - Girly colors */
-.social-icon {
+  }
+    
+/* Social icon hover */
+  .social-icon {
   transition: all 0.3s ease;
-  color: #8B5FBF;
+}
+    
+.social-icon:hover {
+ transform: translateY(-3px);
+ color: #00BFFF;
 }
 
-.social-icon:hover {
-  transform: translateY(-5px) scale(1.2);
-  color: #FF85A2 !important;
+/* Nav link hover */
+  .nav-link {
+  transition: all 0.3s ease;
+  font-size: 1.1rem;
+  padding: 0.5rem 0;
+}
+    
+.nav-link:hover {
+  color: #00BFFF !important;
+}
+
+/* Header styles */
+.main-header {
+  height: 5rem;
 }
 
 /* Mobile menu button */
-.mobile-menu-btn {
+  .mobile-menu-btn {
   font-size: 1.5rem;
-  color: #8B5FBF;
-}
-
-.mobile-menu-btn:hover {
-  color: #FF85A2;
-}
-
-/* Experience tab - Girly style */
-.experience-tab {
-  background: rgba(255, 255, 255, 0.8);
-  border: 2px solid #FFE4EC;
-  color: #8B5FBF;
-  border-radius: 15px;
-  transition: all 0.3s ease;
-}
-
-.experience-tab:hover {
-  border-color: #FF85A2;
-  transform: translateY(-3px);
-  box-shadow: 0 10px 25px rgba(255, 133, 162, 0.15);
 }
 
 .experience-tab.active {
-  background: white;
-  border-color: #FF85A2;
-  box-shadow: 0 10px 25px rgba(255, 133, 162, 0.2);
+  position: relative;
   transform: scale(1.02);
+  box-shadow: 0 4px 6px -1px rgba(0, 191, 255, 0.1), 0 2px 4px -1px rgba(0, 191, 255, 0.06);
+  border-radius: 0.5rem; /* adjust as needed */
 }
 
+/* Gradient border using pseudo-element */
 .experience-tab.active::before {
-  background: linear-gradient(135deg, #FF85A2, #D4A5F3);
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 0.5rem; /* same as parent */
+  padding: 2px; /* border width */
+  background: linear-gradient(to right, #00BFFF, #7C3AED);
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  pointer-events: none;
 }
-
 .experience-details {
-  background: white;
-  border: 2px solid #FFE4EC;
-  border-radius: 20px;
   animation: fadeIn 0.5s ease-out forwards;
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+ from { opacity: 0; transform: translateY(10px); }
+ to { opacity: 1; transform: translateY(0); }
 }
 
-/* Tech Stack - Girly redesign */
+/* Tech Stack Styles */
 .tech-card {
-  background: rgba(255, 255, 255, 0.9);
-  border: 2px solid #FFE4EC;
-  border-radius: 15px;
-  padding: 1.5rem;
-  transition: all 0.3s ease;
+  position: relative;
+  background: rgba(30, 30, 46, 0.5);
+  border: 1px solid rgba(55, 65, 81, 0.5);
+  border-radius: 0.75rem;
+  padding: 1rem;
+  transition: all 0.3s ease-out;
   cursor: default;
-  backdrop-filter: blur(10px);
 }
 
 .tech-card:hover {
-  border-color: #FF85A2;
-  transform: scale(1.05) translateY(-5px);
-  box-shadow: 0 15px 35px rgba(255, 133, 162, 0.2);
-  background: white;
+  border-color: rgba(0, 191, 255, 0.4);
+  transform: scale(1.05);
+  box-shadow: 0 10px 25px -5px rgba(0, 191, 255, 0.1);
 }
 
 .tech-icon {
   width: 4rem;
   height: 4rem;
-  border-radius: 12px;
+  border-radius: 0.75rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
   margin-left: auto;
   margin-right: auto;
-  transition: all 0.3s ease;
-  background: linear-gradient(135deg, #FFE4EC, #F0E6FF);
+  transition: all 0.3s ease-out;
 }
 
 .tech-card:hover .tech-icon {
   transform: scale(1.1);
-  background: linear-gradient(135deg, #FF85A2, #D4A5F3);
-}
-
-.tech-icon i {
-  color: #8B5FBF;
-}
-
-.tech-card:hover .tech-icon i {
-  color: white;
 }
 
 .tech-name {
-  color: #8B5FBF;
+  color: rgb(209, 213, 219);
   font-weight: 500;
-  font-size: 0.9rem;
+  font-size: 0.875rem;
   text-align: center;
   display: block;
-  transition: all 0.3s ease;
+  transition: all 0.3s ease-out;
 }
 
 .tech-card:hover .tech-name {
-  color: #FF85A2;
+  color: rgb(0, 191, 255);
   font-weight: 600;
 }
 
 /* Tech Stack Tabs */
 .tech-tab {
-  background: rgba(255, 255, 255, 0.9);
-  border: 2px solid #FFE4EC;
-  color: #8B5FBF;
+  background: rgba(30, 30, 46, 0.5);
+  border: 1px solid rgba(55, 65, 81, 0.5);
+  color: rgb(156, 163, 175);
   padding: 0.75rem 1.5rem;
-  border-radius: 12px;
+  border-radius: 0.75rem;
   font-weight: 500;
-  transition: all 0.3s ease;
+  transition: all 0.3s ease-out;
   cursor: pointer;
   display: flex;
   align-items: center;
-  backdrop-filter: blur(10px);
 }
 
 .tech-tab:hover {
-  border-color: #FF85A2;
-  color: #FF85A2;
-  transform: translateY(-3px);
-  box-shadow: 0 10px 25px rgba(255, 133, 162, 0.15);
+  border-color: rgba(0, 191, 255, 0.4);
+  color: rgb(0, 191, 255);
+  transform: translateY(-2px);
 }
 
 .tech-tab.active {
-  background: white;
-  border-color: #FF85A2;
-  color: #FF85A2;
-  box-shadow: 0 10px 25px rgba(255, 133, 162, 0.2);
+  background: linear-gradient(135deg, rgba(0, 191, 255, 0.1), rgba(124, 58, 237, 0.1));
+  border-color: rgba(0, 191, 255, 0.6);
+  color: rgb(0, 191, 255);
+  box-shadow: 0 4px 12px rgba(0, 191, 255, 0.2);
 }
 
-/* See All Projects Button - Girly style */
+/* Tech Categories */
+.tech-category {
+  transition: all 0.3s ease-out;
+  margin-bottom: 4rem !important; /* HUGE space between sections */
+}
+
+/* Even more space when it's hidden (for smooth transitions) */
+.tech-category.hidden {
+  display: none;
+  margin-bottom: 0;
+}
+
+.tech-category:not(.hidden) {
+  animation: fadeInUp 0.5s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* See All Projects Button */
 .see-all-projects-btn {
   position: relative;
   display: inline-flex;
   align-items: center;
-  background: linear-gradient(135deg, #FF85A2, #D4A5F3);
-  color: white;
+  background: linear-gradient(135deg, rgba(0, 191, 255, 0.1), rgba(124, 58, 237, 0.1));
+  border: 1px solid rgba(0, 191, 255, 0.3);
+  color: rgb(0, 191, 255);
   padding: 1rem 2.5rem;
-  border-radius: 15px;
+  border-radius: 0.75rem;
   font-weight: 600;
   font-size: 1.125rem;
   text-decoration: none;
-  transition: all 0.3s ease;
+  transition: all 0.3s ease-out;
   overflow: hidden;
   cursor: pointer;
-  border: none;
-  box-shadow: 0 10px 25px rgba(255, 133, 162, 0.3);
 }
 
 .see-all-projects-btn:hover {
-  transform: translateY(-3px) scale(1.05);
-  box-shadow: 0 15px 35px rgba(255, 133, 162, 0.4);
   color: white;
+  border-color: rgba(0, 191, 255, 0.6);
+  box-shadow: 0 10px 30px -5px rgba(0, 191, 255, 0.3);
+  transform: translateY(-2px);
 }
 
 .see-all-projects-gradient {
@@ -276,7 +265,7 @@ html {
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  background: linear-gradient(90deg, transparent, rgba(0, 191, 255, 0.2), transparent);
   transition: left 0.6s ease-out;
 }
 
@@ -289,105 +278,4 @@ html {
   z-index: 1;
   display: flex;
   align-items: center;
-}
-
-/* Project Cards - Girly makeover */
-.bg-gray-800 {
-  background: rgba(255, 255, 255, 0.9) !important;
-  border: 2px solid #FFE4EC;
-  border-radius: 20px;
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-.bg-gray-800:hover {
-  border-color: #FF85A2;
-  transform: translateY(-8px) scale(1.02);
-  box-shadow: 0 20px 40px rgba(255, 133, 162, 0.25);
-  background: white !important;
-}
-
-/* Update text colors in project cards */
-.text-white {
-  color: #5A4D6B !important;
-}
-
-.text-gray-400 {
-  color: #8B7CA4 !important;
-}
-
-.group:hover .text-gray-400 {
-  color: #FF85A2 !important;
-}
-
-.group:hover .text-white {
-  color: #FF85A2 !important;
-}
-
-/* Update buttons in project cards */
-.border-primary {
-  border-color: #FF85A2 !important;
-  color: #FF85A2 !important;
-}
-
-.border-accent {
-  border-color: #85D3FF !important;
-  color: #85D3FF !important;
-}
-
-.hover\:bg-gradient-to-r:hover {
-  background-image: linear-gradient(135deg, #FF85A2, #D4A5F3) !important;
-  color: white !important;
-  border-color: transparent !important;
-}
-
-/* Footer - Girly style */
-footer {
-  background: rgba(255, 255, 255, 0.9) !important;
-  border-top: 1px solid #FFE4EC;
-}
-
-/* Add floating elements for extra girly vibe */
-.floating-element {
-  position: absolute;
-  z-index: -1;
-  opacity: 0.1;
-}
-
-.floating-element:nth-child(1) {
-  top: 10%;
-  left: 5%;
-  animation: float 20s infinite linear;
-}
-
-.floating-element:nth-child(2) {
-  top: 30%;
-  right: 10%;
-  animation: float 25s infinite linear reverse;
-}
-
-.floating-element:nth-child(3) {
-  bottom: 20%;
-  left: 15%;
-  animation: float 30s infinite linear;
-}
-
-@keyframes float {
-  0% { transform: translateY(0) rotate(0deg); }
-  100% { transform: translateY(-1000px) rotate(360deg); }
-}
-
-/* Add some cute patterns in background */
-body::before {
-  content: '';
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: 
-    radial-gradient(circle at 20% 80%, rgba(255, 133, 162, 0.05) 0%, transparent 50%),
-    radial-gradient(circle at 80% 20%, rgba(212, 165, 243, 0.05) 0%, transparent 50%),
-    radial-gradient(circle at 40% 40%, rgba(133, 211, 255, 0.05) 0%, transparent 50%);
-  z-index: -1;
-  pointer-events: none;
 }
