@@ -2,7 +2,7 @@
     
 body {
   font-family: 'Inter', sans-serif;
-  background-color: #2D1B46; /* Changed to deep purple */
+  background-color: #1a202c;
   color: #e2e8f0;
   min-height: 100vh;
 }
@@ -11,10 +11,10 @@ html {
   scroll-behavior: smooth;
 }
     
-/* Custom selection color - Updated to pink */
-::selection {
-  background: #FF6B8B; /* Changed to pink */
-  color: white;
+/* Custom selection color */
+ ::selection {
+ background: #00BFFF;
+ color: white;
 }
 
 /* Additional styles for the GIF in header */
@@ -31,9 +31,9 @@ html {
     
 /* Image hover effect */
 .profile-img-container {
-  transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
-  border-radius: 1rem;
-  padding: 0.5rem;
+ transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+ border-radius: 1rem;
+ padding: 0.5rem;
 }
     
 .profile-img-container:hover {
@@ -50,8 +50,8 @@ html {
 }
     
 /* Typewriter cursor */
-.typewriter-cursor {
-  animation: blink 1s step-end infinite;
+  .typewriter-cursor {
+ animation: blink 1s step-end infinite;
 }
     
 @keyframes blink {
@@ -60,31 +60,31 @@ html {
 }
     
 /* Gradient text */
-.gradient-text {
+  .gradient-text {
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-}
+  }
     
-/* Social icon hover - Updated to pink */
-.social-icon {
+/* Social icon hover */
+  .social-icon {
   transition: all 0.3s ease;
 }
     
 .social-icon:hover {
-  transform: translateY(-3px);
-  color: #FF6B8B !important; /* Changed to pink */
+ transform: translateY(-3px);
+ color: #00BFFF;
 }
 
-/* Nav link hover - Updated to pink */
-.nav-link {
+/* Nav link hover */
+  .nav-link {
   transition: all 0.3s ease;
   font-size: 1.1rem;
   padding: 0.5rem 0;
 }
     
 .nav-link:hover {
-  color: #FF6B8B !important; /* Changed to pink */
+  color: #00BFFF !important;
 }
 
 /* Header styles */
@@ -93,19 +93,18 @@ html {
 }
 
 /* Mobile menu button */
-.mobile-menu-btn {
+  .mobile-menu-btn {
   font-size: 1.5rem;
 }
 
-/* Experience tab active - Updated gradient */
 .experience-tab.active {
   position: relative;
   transform: scale(1.02);
-  box-shadow: 0 4px 6px -1px rgba(255, 107, 139, 0.1), 0 2px 4px -1px rgba(157, 123, 239, 0.06);
-  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 191, 255, 0.1), 0 2px 4px -1px rgba(0, 191, 255, 0.06);
+  border-radius: 0.5rem; /* adjust as needed */
 }
 
-/* Gradient border using pseudo-element - Updated to pink/lavender */
+/* Gradient border using pseudo-element */
 .experience-tab.active::before {
   content: "";
   position: absolute;
@@ -113,9 +112,9 @@ html {
   left: 0;
   right: 0;
   bottom: 0;
-  border-radius: 0.5rem;
-  padding: 2px;
-  background: linear-gradient(to right, #FF6B8B, #9D7BEF); /* Updated gradient */
+  border-radius: 0.5rem; /* same as parent */
+  padding: 2px; /* border width */
+  background: linear-gradient(to right, #00BFFF, #7C3AED);
   -webkit-mask: 
     linear-gradient(#fff 0 0) content-box, 
     linear-gradient(#fff 0 0);
@@ -123,21 +122,20 @@ html {
           mask-composite: exclude;
   pointer-events: none;
 }
-
 .experience-details {
   animation: fadeIn 0.5s ease-out forwards;
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+ from { opacity: 0; transform: translateY(10px); }
+ to { opacity: 1; transform: translateY(0); }
 }
 
-/* Tech Stack Styles - Updated colors */
+/* Tech Stack Styles */
 .tech-card {
   position: relative;
-  background: rgba(45, 27, 70, 0.5); /* Updated to deep purple */
-  border: 1px solid rgba(157, 123, 239, 0.3); /* Updated to lavender */
+  background: rgba(30, 30, 46, 0.5);
+  border: 1px solid rgba(55, 65, 81, 0.5);
   border-radius: 0.75rem;
   padding: 1rem;
   transition: all 0.3s ease-out;
@@ -145,9 +143,9 @@ html {
 }
 
 .tech-card:hover {
-  border-color: rgba(255, 107, 139, 0.6); /* Updated to pink */
+  border-color: rgba(0, 191, 255, 0.4);
   transform: scale(1.05);
-  box-shadow: 0 10px 25px -5px rgba(255, 107, 139, 0.2); /* Updated shadow */
+  box-shadow: 0 10px 25px -5px rgba(0, 191, 255, 0.1);
 }
 
 .tech-icon {
@@ -177,14 +175,14 @@ html {
 }
 
 .tech-card:hover .tech-name {
-  color: #FF6B8B; /* Updated to pink */
+  color: rgb(0, 191, 255);
   font-weight: 600;
 }
 
-/* Tech Stack Tabs - Updated colors */
+/* Tech Stack Tabs */
 .tech-tab {
-  background: rgba(45, 27, 70, 0.5); /* Updated to deep purple */
-  border: 1px solid rgba(157, 123, 239, 0.3); /* Updated to lavender */
+  background: rgba(30, 30, 46, 0.5);
+  border: 1px solid rgba(55, 65, 81, 0.5);
   color: rgb(156, 163, 175);
   padding: 0.75rem 1.5rem;
   border-radius: 0.75rem;
@@ -196,24 +194,25 @@ html {
 }
 
 .tech-tab:hover {
-  border-color: rgba(255, 107, 139, 0.4); /* Updated to pink */
-  color: #FF6B8B; /* Updated to pink */
+  border-color: rgba(0, 191, 255, 0.4);
+  color: rgb(0, 191, 255);
   transform: translateY(-2px);
 }
 
 .tech-tab.active {
-  background: linear-gradient(135deg, rgba(255, 107, 139, 0.1), rgba(157, 123, 239, 0.1)); /* Updated gradient */
-  border-color: rgba(255, 107, 139, 0.6); /* Updated to pink */
-  color: #FF6B8B; /* Updated to pink */
-  box-shadow: 0 4px 12px rgba(255, 107, 139, 0.2); /* Updated shadow */
+  background: linear-gradient(135deg, rgba(0, 191, 255, 0.1), rgba(124, 58, 237, 0.1));
+  border-color: rgba(0, 191, 255, 0.6);
+  color: rgb(0, 191, 255);
+  box-shadow: 0 4px 12px rgba(0, 191, 255, 0.2);
 }
 
 /* Tech Categories */
 .tech-category {
   transition: all 0.3s ease-out;
-  margin-bottom: 4rem !important;
+  margin-bottom: 4rem !important; /* HUGE space between sections */
 }
 
+/* Even more space when it's hidden (for smooth transitions) */
 .tech-category.hidden {
   display: none;
   margin-bottom: 0;
@@ -234,14 +233,15 @@ html {
   }
 }
 
-/* See All Projects Button - Updated colors */
+
+/* See All Projects Button */
 .see-all-projects-btn {
   position: relative;
   display: inline-flex;
   align-items: center;
-  background: linear-gradient(135deg, rgba(255, 107, 139, 0.1), rgba(157, 123, 239, 0.1)); /* Updated gradient */
-  border: 1px solid rgba(255, 107, 139, 0.3); /* Updated to pink */
-  color: #FF6B8B; /* Updated to pink */
+  background: linear-gradient(135deg, rgba(0, 191, 255, 0.1), rgba(124, 58, 237, 0.1));
+  border: 1px solid rgba(0, 191, 255, 0.3);
+  color: rgb(0, 191, 255);
   padding: 1rem 2.5rem;
   border-radius: 0.75rem;
   font-weight: 600;
@@ -254,8 +254,8 @@ html {
 
 .see-all-projects-btn:hover {
   color: white;
-  border-color: rgba(255, 107, 139, 0.6); /* Updated to pink */
-  box-shadow: 0 10px 30px -5px rgba(255, 107, 139, 0.3); /* Updated shadow */
+  border-color: rgba(0, 191, 255, 0.6);
+  box-shadow: 0 10px 30px -5px rgba(0, 191, 255, 0.3);
   transform: translateY(-2px);
 }
 
@@ -265,7 +265,7 @@ html {
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 107, 139, 0.2), transparent); /* Updated to pink */
+  background: linear-gradient(90deg, transparent, rgba(0, 191, 255, 0.2), transparent);
   transition: left 0.6s ease-out;
 }
 
@@ -278,73 +278,4 @@ html {
   z-index: 1;
   display: flex;
   align-items: center;
-}
-
-/* NEW: Girly Rounded Corners - Add this */
-.girly-rounded {
-  border-radius: 1.5rem !important;
-}
-
-/* NEW: Elegant Underline Effect - Add this */
-.girly-underline {
-  position: relative;
-}
-
-.girly-underline::after {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background: linear-gradient(to right, #FF6B8B, #9D7BEF);
-  transition: width 0.3s ease;
-}
-
-.girly-underline:hover::after {
-  width: 100%;
-}
-
-/* NEW: Update project card hover colors */
-.bg-gray-800:hover {
-  border-color: rgba(255, 107, 139, 0.4) !important;
-}
-
-.group-hover\:text-primary {
-  color: #FF6B8B !important; /* Updated to pink */
-}
-
-/* NEW: Button hover colors */
-.hover\:bg-gradient-to-r:hover {
-  background-image: linear-gradient(to right, #FF6B8B, #E55A75) !important; /* Updated gradient */
-}
-
-/* NEW: Update border colors */
-.border-primary {
-  border-color: #FF6B8B !important; /* Updated to pink */
-}
-
-.border-accent {
-  border-color: #6DD4BF !important; /* Updated to mint teal */
-}
-
-/* NEW: Update text colors */
-.text-primary {
-  color: #FF6B8B !important; /* Updated to pink */
-}
-
-.text-primary-light {
-  color: #FF8FA3 !important; /* Updated to light pink */
-}
-
-.text-secondary {
-  color: #9D7BEF !important; /* Updated to lavender */
-}
-
-.text-accent {
-  color: #6DD4BF !important; /* Updated to mint teal */
-}
-
-.text-accent-light {
-  color: #A3E4D8 !important; /* Updated to light mint */
 }
