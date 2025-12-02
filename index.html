@@ -21,52 +21,65 @@
 
   <!-- Tailwind with custom config -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          /* Replace in your Tailwind config */
-colors: {
-  primary: {
-    DEFAULT: '#FF6B8B',  // Soft coral pink instead of blue
-    dark: '#E55A75',
-    light: '#FF8FA3'
-  },
-  secondary: {
-    DEFAULT: '#9D7BEF',  // Soft lavender purple
-    dark: '#8A6BD6',
-    light: '#C4B5FD'
-  },
-  accent: {
-    DEFAULT: '#6DD4BF',  // Muted mint teal
-    dark: '#4DB3A2',
-    light: '#A3E4D8'
-  },
-  neutral: {
-    DEFAULT: '#2D1B46',  // Deep purple background (softer than black)
-    dark: '#1E112E',
-    light: '#F8F5FF'     // Soft lilac white
-  }
-},
-          animation: {
-            'fade-in': 'fadeIn 0.8s ease-out forwards',
-            'float-slow': 'float 6s ease-in-out infinite'
+ <script>
+  tailwind.config = {
+    darkMode: 'class',
+    theme: {
+      extend: {
+        colors: {
+          primary: {
+            DEFAULT: '#FF85A2',  // Soft pink
+            dark: '#FF6B8B',
+            light: '#FFA8C0'
           },
-          keyframes: {
-            float: {
-              '0%, 100%': { transform: 'translateY(0)' },
-              '50%': { transform: 'translateY(-8px)' }
-            },
-            fadeIn: {
-              '0%': { opacity: '0', transform: 'translateY(10px)' },
-              '100%': { opacity: '1', transform: 'translateY(0)' }
-            }
+          secondary: {
+            DEFAULT: '#D4A5F3',  // Soft lavender
+            dark: '#C28AEF',
+            light: '#E6C5FF'
+          },
+          accent: {
+            DEFAULT: '#85D3FF',  // Soft baby blue
+            dark: '#66C1FF',
+            light: '#A3E4FF'
+          },
+          neutral: {
+            DEFAULT: '#F8F5FF',  // Very light lavender
+            dark: '#E6E1F5',
+            light: '#FFFFFF'
+          },
+          text: {
+            DEFAULT: '#5A4D6B',  // Soft purple-gray
+            light: '#8B7CA4',
+            dark: '#3D3549'
           }
+        },
+        animation: {
+          'fade-in': 'fadeIn 0.8s ease-out forwards',
+          'float-slow': 'float 8s ease-in-out infinite',
+          'bounce-soft': 'bounceSoft 2s infinite'
+        },
+        keyframes: {
+          float: {
+            '0%, 100%': { transform: 'translateY(0) rotate(0deg)' },
+            '50%': { transform: 'translateY(-15px) rotate(5deg)' }
+          },
+          bounceSoft: {
+            '0%, 100%': { transform: 'translateY(0)' },
+            '50%': { transform: 'translateY(-10px)' }
+          },
+          fadeIn: {
+            '0%': { opacity: '0', transform: 'translateY(10px)' },
+            '100%': { opacity: '1', transform: 'translateY(0)' }
+          }
+        },
+        backgroundImage: {
+          'girly-gradient': 'linear-gradient(135deg, #FFEAF3 0%, #F5F0FF 50%, #E6F7FF 100%)',
+          'card-gradient': 'linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 248, 252, 0.9))'
         }
       }
     }
-  </script>
+  }
+</script>
 
 
 
