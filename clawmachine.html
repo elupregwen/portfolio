@@ -135,6 +135,20 @@
       border: 4px solid rgba(255, 255, 255, 0.1);
       background: linear-gradient(180deg, #4c1d95 0%, #2e1065 100%);
     }
+    
+    /* Prize images styling */
+    .prize-image {
+      width: 50px;
+      height: 50px;
+      object-fit: contain;
+      border-radius: 10px;
+      border: 2px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    .claw-open {
+      transform: scaleY(1.2);
+      transition: transform 0.2s;
+    }
   </style>
 </head>
 
@@ -191,7 +205,7 @@
               </h3>
               <div class="grid grid-cols-2 gap-4 mb-6">
                 <div class="text-center">
-                  <div class="text-3xl font-bold text-pink-350" id="tokenCount">50</div>
+                  <div class="text-3xl font-bold text-pink-350" id="tokenCount">100</div>
                   <div class="text-sm text-gray-300">Tokens</div>
                 </div>
                 <div class="text-center">
@@ -326,7 +340,7 @@
                 <h3 class="text-2xl font-bold text-white cute-font">
                   <i class="fas fa-gift text-pink-350 mr-2"></i> Prize Machine
                 </h3>
-                <p class="text-gray-400 text-sm">Drop the claw to grab prizes!</p>
+                <p class="text-gray-400 text-sm">Position claw over any prize, then drop!</p>
               </div>
               <div class="flex items-center space-x-4 mt-4 md:mt-0">
                 <div class="text-center">
@@ -371,6 +385,20 @@
                   </button>
                 </div>
               </div>
+              
+              <!-- No Tokens Message -->
+              <div id="noTokensMessage" class="absolute inset-0 flex items-center justify-center hidden">
+                <div class="text-center p-8 rounded-2xl bg-gradient-to-r from-yellow-900/90 to-yellow-800/90 backdrop-blur-sm">
+                  <div class="text-6xl mb-4">🪙</div>
+                  <h3 class="text-3xl font-bold text-white mb-2">NO TOKENS LEFT!</h3>
+                  <p class="text-xl text-gray-300 mb-4">Get more tokens to keep playing</p>
+                  <button id="getMoreTokensBtn" class="mt-4 px-6 py-2 rounded-lg font-bold
+                            bg-gradient-to-r from-yellow-500 to-yellow-600 text-white
+                            hover:shadow-lg transition-all">
+                    Get 20 Tokens
+                  </button>
+                </div>
+              </div>
             </div>
             
             <!-- Game Instructions -->
@@ -381,7 +409,7 @@
                 </div>
                 <div>
                   <div class="font-bold text-white">Move Claw</div>
-                  <div class="text-gray-400">Position over prizes</div>
+                  <div class="text-gray-400">Position over any prize</div>
                 </div>
               </div>
               
@@ -391,7 +419,7 @@
                 </div>
                 <div>
                   <div class="font-bold text-white">Drop Claw</div>
-                  <div class="text-gray-400">Try to grab a prize</div>
+                  <div class="text-gray-400">Will grab if positioned well</div>
                 </div>
               </div>
               
@@ -478,7 +506,7 @@
   <!-- Game JavaScript -->
   <script>
     // Game Variables
-    let tokens = 50;
+    let tokens = 100; // Increased starting tokens
     let score = 0;
     let wins = 0;
     let collectedPrizes = 0;
@@ -490,24 +518,126 @@
     let clawDropping = false;
     let clawRaising = false;
     let clawHasPrize = false;
+    let clawOpen = false;
     let difficulty = 'easy';
     let currentPrize = null;
+    let clawWidth = 40; // Width of claw grab area
+    let clawHeight = 40; // Height of claw grab area
     
-    // Prize data
+    // Prize data with actual image URLs (cute plushie images)
     const prizes = [
-      { id: 1, name: "Pink Unicorn", emoji: "🦄", points: 50, color: "#FFB3C6", x: 100, y: 400, width: 60, height: 60, collected: false },
-      { id: 2, name: "Cute Cat", emoji: "🐱", points: 40, color: "#FF9EBD", x: 200, y: 380, width: 50, height: 50, collected: false },
-      { id: 3, name: "Rainbow Bear", emoji: "🐻", points: 60, color: "#FF6B9D", x: 300, y: 420, width: 70, height: 70, collected: false },
-      { id: 4, name: "Sparkly Star", emoji: "⭐", points: 30, color: "#FFD166", x: 400, y: 390, width: 40, height: 40, collected: false },
-      { id: 5, name: "Magic Bunny", emoji: "🐰", points: 45, color: "#C77DFF", x: 500, y: 410, width: 55, height: 55, collected: false },
-      { id: 6, name: "Sweet Donut", emoji: "🍩", points: 25, color: "#FF9EBD", x: 600, y: 380, width: 45, height: 45, collected: false },
-      { id: 7, name: "Glitter Heart", emoji: "💖", points: 35, color: "#FF6B9D", x: 150, y: 430, width: 50, height: 50, collected: false },
-      { id: 8, name: "Fluffy Cloud", emoji: "☁️", points: 20, color: "#B8F2E6", x: 250, y: 400, width: 65, height: 40, collected: false },
-      { id: 9, name: "Moon Fairy", emoji: "🧚", points: 55, color: "#C77DFF", x: 350, y: 430, width: 50, height: 60, collected: false },
-      { id: 10, name: "Candy Apple", emoji: "🍎", points: 15, color: "#FF6B6B", x: 450, y: 390, width: 40, height: 40, collected: false },
-      { id: 11, name: "Butterfly", emoji: "🦋", points: 30, color: "#A3BFFA", x: 550, y: 420, width: 50, height: 40, collected: false },
-      { id: 12, name: "Crystal Ball", emoji: "🔮", points: 70, color: "#B8F2E6", x: 650, y: 400, width: 50, height: 50, collected: false }
+      { 
+        id: 1, 
+        name: "Pink Unicorn", 
+        image: "https://images.unsplash.com/photo-1594787317391-5b8c7eaff6e9?w=100&h=100&fit=crop&crop=center", 
+        points: 50, 
+        color: "#FFB3C6", 
+        x: 100, y: 380, width: 60, height: 60, 
+        collected: false 
+      },
+      { 
+        id: 2, 
+        name: "Cute Cat Plush", 
+        image: "https://images.unsplash.com/photo-1514888286974-6d03bde4ba42?w=100&h=100&fit=crop&crop=center", 
+        points: 40, 
+        color: "#FF9EBD", 
+        x: 200, y: 400, width: 55, height: 55, 
+        collected: false 
+      },
+      { 
+        id: 3, 
+        name: "Rainbow Bear", 
+        image: "https://images.unsplash.com/photo-1541783245831-57d6fb0926d3?w=100&h=100&fit=crop&crop=center", 
+        points: 60, 
+        color: "#FF6B9D", 
+        x: 300, y: 390, width: 65, height: 65, 
+        collected: false 
+      },
+      { 
+        id: 4, 
+        name: "Star Pillow", 
+        image: "https://images.unsplash.com/photo-1578632749014-ca77efd052eb?w=100&h=100&fit=crop&crop=center", 
+        points: 30, 
+        color: "#FFD166", 
+        x: 400, y: 410, width: 50, height: 50, 
+        collected: false 
+      },
+      { 
+        id: 5, 
+        name: "Magic Bunny", 
+        image: "https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=100&h=100&fit=crop&crop=center", 
+        points: 45, 
+        color: "#C77DFF", 
+        x: 500, y: 380, width: 55, height: 55, 
+        collected: false 
+      },
+      { 
+        id: 6, 
+        name: "Donut Plush", 
+        image: "https://images.unsplash.com/photo-1582480899903-a7d01c7f6b85?w=100&h=100&fit=crop&crop=center", 
+        points: 25, 
+        color: "#FF9EBD", 
+        x: 600, y: 400, width: 50, height: 50, 
+        collected: false 
+      },
+      { 
+        id: 7, 
+        name: "Heart Plush", 
+        image: "https://images.unsplash.com/photo-1574007557239-acf6863bc375?w=100&h=100&fit=crop&crop=center", 
+        points: 35, 
+        color: "#FF6B9D", 
+        x: 150, y: 420, width: 55, height: 55, 
+        collected: false 
+      },
+      { 
+        id: 8, 
+        name: "Cloud Pillow", 
+        image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=100&h=100&fit=crop&crop=center", 
+        points: 20, 
+        color: "#B8F2E6", 
+        x: 250, y: 390, width: 60, height: 50, 
+        collected: false 
+      },
+      { 
+        id: 9, 
+        name: "Moon Fairy", 
+        image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=100&h=100&fit=crop&crop=center", 
+        points: 55, 
+        color: "#C77DFF", 
+        x: 350, y: 410, width: 55, height: 60, 
+        collected: false 
+      },
+      { 
+        id: 10, 
+        name: "Apple Plush", 
+        image: "https://images.unsplash.com/photo-1567306301408-9b74779a11af?w=100&h=100&fit=crop&crop=center", 
+        points: 15, 
+        color: "#FF6B6B", 
+        x: 450, y: 380, width: 45, height: 45, 
+        collected: false 
+      },
+      { 
+        id: 11, 
+        name: "Butterfly Plush", 
+        image: "https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=100&h=100&fit=crop&crop=face", 
+        points: 30, 
+        color: "#A3BFFA", 
+        x: 550, y: 420, width: 55, height: 45, 
+        collected: false 
+      },
+      { 
+        id: 12, 
+        name: "Crystal Ball", 
+        image: "https://images.unsplash.com/photo-1531214159280-079b95d26139?w=100&h=100&fit=crop&crop=center", 
+        points: 70, 
+        color: "#B8F2E6", 
+        x: 650, y: 390, width: 55, height: 55, 
+        collected: false 
+      }
     ];
+    
+    // Cache images
+    const prizeImages = {};
     
     // DOM Elements
     const canvas = document.getElementById('gameCanvas');
@@ -521,6 +651,7 @@
     const prizeCollectionEl = document.getElementById('prizeCollection');
     const winMessageEl = document.getElementById('winMessage');
     const loseMessageEl = document.getElementById('loseMessage');
+    const noTokensMessageEl = document.getElementById('noTokensMessage');
     const prizeNameEl = document.getElementById('prizeName');
     const prizePointsEl = document.getElementById('prizePoints');
     
@@ -532,17 +663,40 @@
     const continueBtn = document.getElementById('continueBtn');
     const tryAgainBtn = document.getElementById('tryAgainBtn');
     const addTokensBtn = document.getElementById('addTokensBtn');
+    const getMoreTokensBtn = document.getElementById('getMoreTokensBtn');
     const easyBtn = document.getElementById('easyBtn');
     const mediumBtn = document.getElementById('mediumBtn');
     const hardBtn = document.getElementById('hardBtn');
     
     // Initialize game
-    function initGame() {
-      updateUI();
+    async function initGame() {
+      await loadPrizeImages();
       createSparkles();
-      drawGame();
       setupEventListeners();
+      updateUI();
+      drawGame();
       gameLoop();
+    }
+    
+    // Load prize images
+    async function loadPrizeImages() {
+      const loadPromises = prizes.map(prize => {
+        return new Promise((resolve, reject) => {
+          const img = new Image();
+          img.onload = () => {
+            prizeImages[prize.id] = img;
+            resolve();
+          };
+          img.onerror = () => {
+            // If image fails to load, use a colored rectangle
+            console.log(`Failed to load image for ${prize.name}`);
+            resolve();
+          };
+          img.src = prize.image;
+        });
+      });
+      
+      await Promise.all(loadPromises);
     }
     
     // Create sparkle effects
@@ -585,9 +739,11 @@
         if (i < prizes.length) {
           const prize = prizes[i];
           if (prize.collected) {
+            // Show the actual prize image
             prizeSlots[i].innerHTML = `
-              <div class="text-3xl mb-2">${prize.emoji}</div>
-              <div class="text-xs font-bold text-white">${prize.name}</div>
+              <img src="${prize.image}" alt="${prize.name}" 
+                   class="w-12 h-12 object-cover rounded-lg mx-auto mb-2 border-2 border-pink-300">
+              <div class="text-xs font-bold text-white truncate">${prize.name}</div>
               <div class="text-xs text-gray-400">${prize.points} pts</div>
             `;
             prizeSlots[i].classList.remove('bg-gray-800/50', 'border-gray-700');
@@ -623,33 +779,49 @@
       ctx.fillRect(0, 0, 10, canvas.height); // Left border
       ctx.fillRect(canvas.width - 10, 0, 10, canvas.height); // Right border
       
+      // Draw prize area floor
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.1)';
+      ctx.fillRect(20, 450, canvas.width - 40, 30);
+      
       // Draw prizes
       prizes.forEach(prize => {
         if (!prize.collected) {
           // Draw prize shadow
-          ctx.fillStyle = 'rgba(0, 0, 0, 0.2)';
-          ctx.fillRect(prize.x + 3, prize.y + 3, prize.width, prize.height);
+          ctx.fillStyle = 'rgba(0, 0, 0, 0.3)';
+          ctx.fillRect(prize.x + 4, prize.y + 4, prize.width, prize.height);
           
-          // Draw prize
-          ctx.fillStyle = prize.color;
-          ctx.fillRect(prize.x, prize.y, prize.width, prize.height);
+          // Try to draw prize image, fallback to colored rectangle
+          if (prizeImages[prize.id]) {
+            ctx.drawImage(prizeImages[prize.id], prize.x, prize.y, prize.width, prize.height);
+          } else {
+            // Fallback to colored rectangle
+            ctx.fillStyle = prize.color;
+            ctx.fillRect(prize.x, prize.y, prize.width, prize.height);
+            
+            // Draw prize name
+            ctx.font = '10px Arial';
+            ctx.fillStyle = '#FFFFFF';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText(prize.name.substring(0, 8), prize.x + prize.width/2, prize.y + prize.height/2);
+          }
           
-          // Draw prize border
+          // Draw prize border glow
           ctx.strokeStyle = '#FFFFFF';
           ctx.lineWidth = 2;
           ctx.strokeRect(prize.x, prize.y, prize.width, prize.height);
-          
-          // Draw prize emoji
-          ctx.font = '24px Arial';
-          ctx.fillStyle = '#FFFFFF';
-          ctx.textAlign = 'center';
-          ctx.textBaseline = 'middle';
-          ctx.fillText(prize.emoji, prize.x + prize.width/2, prize.y + prize.height/2);
         }
       });
       
       // Draw claw
       drawClaw();
+      
+      // Draw claw grab area (for debugging - can be removed)
+      if (false) { // Set to true to see grab area
+        ctx.strokeStyle = 'rgba(255, 255, 0, 0.5)';
+        ctx.lineWidth = 1;
+        ctx.strokeRect(clawX - clawWidth/2, clawY - clawHeight/2, clawWidth, clawHeight);
+      }
     }
     
     // Draw the claw
@@ -675,15 +847,17 @@
       ctx.arc(clawX, clawY, 20, 0, Math.PI * 2);
       ctx.stroke();
       
-      // Claw opening
-      ctx.fillStyle = '#FFB3C6';
+      // Claw opening - animate when open
+      ctx.fillStyle = clawOpen ? '#FF0000' : '#FFB3C6';
+      const openAmount = clawOpen ? 0.8 : 0.5;
       ctx.beginPath();
-      ctx.arc(clawX, clawY, 15, 0, Math.PI);
+      ctx.arc(clawX, clawY, 15, 0, Math.PI * openAmount);
       ctx.fill();
       
       // Claw teeth
       ctx.fillStyle = '#FFFFFF';
-      for (let i = -1; i <= 1; i++) {
+      const toothCount = clawOpen ? 3 : 2;
+      for (let i = -toothCount + 1; i < toothCount; i++) {
         ctx.beginPath();
         ctx.arc(clawX + i * 8, clawY + 15, 3, 0, Math.PI * 2);
         ctx.fill();
@@ -706,6 +880,11 @@
       if (clawDropping) {
         clawY += 8;
         
+        // Open claw when near prizes
+        if (clawY > 300 && !clawOpen) {
+          clawOpen = true;
+        }
+        
         // Check if claw reached bottom
         if (clawY > 450) {
           clawDropping = false;
@@ -718,9 +897,15 @@
       if (clawRaising) {
         clawY -= 6;
         
+        // Close claw when raising
+        if (clawOpen && clawY < 400) {
+          clawOpen = false;
+        }
+        
         // Check if claw reached top
         if (clawY <= 50) {
           clawRaising = false;
+          clawOpen = false;
           
           if (clawHasPrize && currentPrize) {
             // Prize collected successfully
@@ -736,23 +921,58 @@
       requestAnimationFrame(gameLoop);
     }
     
-    // Check if claw grabbed a prize
+    // Check if claw grabbed a prize - IMPROVED DETECTION
     function checkPrizeGrab() {
+      let bestPrize = null;
+      let bestDistance = Infinity;
+      
       for (const prize of prizes) {
-        if (!prize.collected && 
-            clawX > prize.x && clawX < prize.x + prize.width &&
-            clawY > prize.y && clawY < prize.y + prize.height) {
+        if (!prize.collected) {
+          // Calculate distance between claw center and prize center
+          const prizeCenterX = prize.x + prize.width / 2;
+          const prizeCenterY = prize.y + prize.height / 2;
+          const clawCenterX = clawX;
+          const clawCenterY = clawY;
           
-          // Success chance based on difficulty
-          let successChance = 0.8; // 80% for easy
-          if (difficulty === 'medium') successChance = 0.6;
-          if (difficulty === 'hard') successChance = 0.4;
+          const distanceX = Math.abs(clawCenterX - prizeCenterX);
+          const distanceY = Math.abs(clawCenterY - prizeCenterY);
           
-          if (Math.random() < successChance) {
-            clawHasPrize = true;
-            currentPrize = prize;
-            return;
+          // Check if claw is close enough to grab (within grab range)
+          const grabRangeX = (clawWidth + prize.width) / 2;
+          const grabRangeY = (clawHeight + prize.height) / 2;
+          
+          if (distanceX < grabRangeX && distanceY < grabRangeY) {
+            // Calculate total distance (for selecting closest prize if multiple are close)
+            const totalDistance = Math.sqrt(distanceX * distanceX + distanceY * distanceY);
+            
+            if (totalDistance < bestDistance) {
+              bestDistance = totalDistance;
+              bestPrize = prize;
+            }
           }
+        }
+      }
+      
+      if (bestPrize) {
+        // Success chance based on difficulty and distance
+        let successChance = 0.8; // Base 80% for easy
+        
+        // Adjust based on distance (closer = better chance)
+        const distanceFactor = Math.max(0.3, 1 - (bestDistance / 100));
+        successChance *= distanceFactor;
+        
+        // Adjust based on difficulty
+        if (difficulty === 'medium') successChance *= 0.7;
+        if (difficulty === 'hard') successChance *= 0.5;
+        
+        // Adjust based on prize size (smaller = harder)
+        const sizeFactor = Math.min(1, (bestPrize.width * bestPrize.height) / 2500);
+        successChance *= sizeFactor;
+        
+        if (Math.random() < successChance) {
+          clawHasPrize = true;
+          currentPrize = bestPrize;
+          return;
         }
       }
       
@@ -770,7 +990,7 @@
       score += prize.points;
       wins++;
       collectedPrizes++;
-      tokens -= 1; // Cost per play
+      tokens -= parseInt(document.getElementById('playCost').textContent); // Cost per play
       
       // Update UI
       updateUI();
@@ -787,13 +1007,17 @@
     // Lose game
     function loseGame() {
       gameActive = false;
-      tokens -= 1; // Cost per play
+      tokens -= parseInt(document.getElementById('playCost').textContent); // Cost per play
       
       // Update UI
       updateUI();
       
-      // Show lose message
-      loseMessageEl.classList.remove('hidden');
+      // Check if out of tokens
+      if (tokens <= 0) {
+        noTokensMessageEl.classList.remove('hidden');
+      } else {
+        loseMessageEl.classList.remove('hidden');
+      }
       
       // Play lose sound effect (simulated)
       playSoundEffect('lose');
@@ -828,7 +1052,13 @@
       rightBtn.addEventListener('mouseleave', () => rightBtn.classList.remove('active'));
       
       // Drop button
-      dropBtn.addEventListener('click', dropClaw);
+      dropBtn.addEventListener('click', () => {
+        if (tokens <= 0) {
+          noTokensMessageEl.classList.remove('hidden');
+          return;
+        }
+        dropClaw();
+      });
       
       // Continue and try again buttons
       continueBtn.addEventListener('click', () => {
@@ -845,14 +1075,11 @@
         gameLoop();
       });
       
-      // Add tokens button
-      addTokensBtn.addEventListener('click', () => {
-        tokens += 20;
-        updateUI();
-        
-        // Show notification
-        showNotification('+20 Tokens Added!', 'success');
-      });
+      // Add tokens buttons
+      addTokensBtn.addEventListener('click', addTokens);
+      if (getMoreTokensBtn) {
+        getMoreTokensBtn.addEventListener('click', addTokens);
+      }
       
       // Difficulty buttons
       easyBtn.addEventListener('click', () => setDifficulty('easy'));
@@ -886,6 +1113,10 @@
             break;
           case ' ':
           case 'Spacebar':
+            if (tokens <= 0) {
+              noTokensMessageEl.classList.remove('hidden');
+              return;
+            }
             dropClaw();
             e.preventDefault();
             break;
@@ -912,6 +1143,16 @@
       playSoundEffect('drop');
     }
     
+    // Add tokens
+    function addTokens() {
+      tokens += 20;
+      updateUI();
+      noTokensMessageEl.classList.add('hidden');
+      
+      // Show notification
+      showNotification('+20 Tokens Added!', 'success');
+    }
+    
     // Reset claw position
     function resetClaw() {
       clawX = 400;
@@ -919,6 +1160,7 @@
       clawDropping = false;
       clawRaising = false;
       clawHasPrize = false;
+      clawOpen = false;
       currentPrize = null;
     }
     
@@ -940,16 +1182,22 @@
         easyBtn.classList.add('bg-gradient-to-r', 'from-green-900/30', 'to-green-800/30', 'border-green-700/30');
         easyBtn.querySelector('div:last-child').textContent = 'ACTIVE';
         clawSpeed = 5;
+        clawWidth = 40;
+        clawHeight = 40;
         document.getElementById('playCost').textContent = '1';
       } else if (level === 'medium') {
         mediumBtn.classList.add('bg-gradient-to-r', 'from-yellow-900/30', 'to-yellow-800/30', 'border-yellow-700/30');
         mediumBtn.querySelector('div:last-child').textContent = 'ACTIVE';
         clawSpeed = 7;
+        clawWidth = 35;
+        clawHeight = 35;
         document.getElementById('playCost').textContent = '2';
       } else if (level === 'hard') {
         hardBtn.classList.add('bg-gradient-to-r', 'from-red-900/30', 'to-red-800/30', 'border-red-700/30');
         hardBtn.querySelector('div:last-child').textContent = 'ACTIVE';
         clawSpeed = 9;
+        clawWidth = 30;
+        clawHeight = 30;
         document.getElementById('playCost').textContent = '3';
       }
       
