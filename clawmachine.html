@@ -64,6 +64,11 @@
       100% { filter: hue-rotate(360deg); }
     }
     
+    @keyframes prizeGlow {
+      0%, 100% { filter: drop-shadow(0 0 5px rgba(255, 107, 181, 0.3)); }
+      50% { filter: drop-shadow(0 0 15px rgba(255, 107, 181, 0.6)); }
+    }
+    
     .sparkle {
       position: absolute;
       width: 8px;
@@ -92,6 +97,10 @@
     
     .rainbow-animation {
       animation: rainbow 3s linear infinite;
+    }
+    
+    .prize-glow {
+      animation: prizeGlow 2s ease-in-out infinite;
     }
     
     /* Kawaii heart background */
@@ -221,15 +230,16 @@
     }
     
     .prize-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 15px 30px rgba(255, 107, 181, 0.2);
+      transform: translateY(-10px) scale(1.05);
+      box-shadow: 0 20px 40px rgba(255, 107, 181, 0.3);
       border-color: #ff6bb5;
+      z-index: 10;
     }
     
     .prize-card.collected {
       background: linear-gradient(145deg, #fff0f7, #ffebf3);
       border-color: #ff4da6;
-      box-shadow: 0 10px 20px rgba(255, 77, 166, 0.2);
+      box-shadow: 0 10px 20px rgba(255, 77, 166, 0.3);
     }
     
     /* Kawaii modal */
@@ -294,6 +304,39 @@
       0% { transform: translateX(-100%) rotate(30deg); }
       100% { transform: translateX(100%) rotate(30deg); }
     }
+    
+    /* Prize image container */
+    .prize-image-container {
+      position: relative;
+      overflow: hidden;
+      border-radius: 12px;
+    }
+    
+    .prize-image-container::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(to bottom, transparent 70%, rgba(255, 255, 255, 0.3));
+      pointer-events: none;
+    }
+    
+    /* Lock overlay for uncollected prizes */
+    .lock-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(255, 255, 255, 0.9);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border-radius: 12px;
+    }
   </style>
 </head>
 
@@ -323,7 +366,7 @@
           </h1>
           <div class="text-6xl rainbow-animation ml-4">🎮</div>
         </div>
-        <p class="text-xl text-pink-600 mb-2">Win the cutest plushies ever! ✨</p>
+        <p class="text-xl text-pink-600 mb-2">Win these ADORABLE plushies! Can you collect them all? ✨</p>
         <div class="flex justify-center items-center space-x-2">
           <div class="w-32 h-2 bg-gradient-to-r from-pink-300 to-purple-300 rounded-full"></div>
           <div class="text-2xl">🌸</div>
@@ -331,9 +374,130 @@
         </div>
       </div>
 
+      <!-- Prize Preview Section - Show ALL prizes before playing! -->
+      <div class="mb-10">
+        <div class="sticker mb-6">
+          <div class="flex items-center mb-4">
+            <div class="w-10 h-10 rounded-full bg-gradient-to-r from-pink-400 to-purple-400 flex items-center justify-center mr-3">
+              <i class="fas fa-eye text-white text-lg"></i>
+            </div>
+            <h2 class="text-2xl font-bold cute-font text-pink-600">Look at ALL the prizes you can win! 🎁</h2>
+          </div>
+          <p class="text-gray-700 mb-6 text-center">Move the claw over ANY of these cuties and try to grab them! Each prize is unique and adorable!</p>
+          
+          <!-- All Prizes Display -->
+          <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+            <!-- Prize 1 - Jiji Black Cat -->
+            <div class="prize-card prize-glow">
+              <div class="prize-image-container h-32">
+                <img src="https://i.pinimg.com/736x/43/28/78/4328785c6b89d4daa0eb985469913126.jpg" 
+                     alt="Jiji Black Cat" 
+                     class="w-full h-full object-cover">
+              </div>
+              <div class="p-3">
+                <div class="font-bold text-gray-800 text-sm truncate">Jiji Black Cat</div>
+                <div class="flex justify-between items-center mt-1">
+                  <span class="text-xs text-pink-500 font-bold">50 pts</span>
+                  <span class="text-xs bg-pink-100 text-pink-600 px-2 py-0.5 rounded-full">Rare</span>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Prize 2 - White Plushie -->
+            <div class="prize-card prize-glow">
+              <div class="prize-image-container h-32">
+                <img src="https://i.pinimg.com/1200x/94/b3/0a/94b30afc24a34e2aff6224f677c92e4e.jpg" 
+                     alt="White Plushie" 
+                     class="w-full h-full object-cover">
+              </div>
+              <div class="p-3">
+                <div class="font-bold text-gray-800 text-sm truncate">White Plushie</div>
+                <div class="flex justify-between items-center mt-1">
+                  <span class="text-xs text-pink-500 font-bold">45 pts</span>
+                  <span class="text-xs bg-pink-100 text-pink-600 px-2 py-0.5 rounded-full">Common</span>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Prize 3 - Molang -->
+            <div class="prize-card prize-glow">
+              <div class="prize-image-container h-32">
+                <img src="https://i.pinimg.com/736x/58/18/b1/5818b1415ad5aca0b2c43ae449963f00.jpg" 
+                     alt="Molang" 
+                     class="w-full h-full object-cover">
+              </div>
+              <div class="p-3">
+                <div class="font-bold text-gray-800 text-sm truncate">Molang</div>
+                <div class="flex justify-between items-center mt-1">
+                  <span class="text-xs text-pink-500 font-bold">60 pts</span>
+                  <span class="text-xs bg-pink-100 text-pink-600 px-2 py-0.5 rounded-full">Super Rare</span>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Prize 4 - Nailong -->
+            <div class="prize-card prize-glow">
+              <div class="prize-image-container h-32">
+                <img src="https://i.pinimg.com/736x/66/c2/6f/66c26fc7b91b45591e699d597f0dc09a.jpg" 
+                     alt="Nailong" 
+                     class="w-full h-full object-cover">
+              </div>
+              <div class="p-3">
+                <div class="font-bold text-gray-800 text-sm truncate">Nailong</div>
+                <div class="flex justify-between items-center mt-1">
+                  <span class="text-xs text-pink-500 font-bold">55 pts</span>
+                  <span class="text-xs bg-pink-100 text-pink-600 px-2 py-0.5 rounded-full">Rare</span>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Prize 5 - Mushroom -->
+            <div class="prize-card prize-glow">
+              <div class="prize-image-container h-32">
+                <img src="https://i.pinimg.com/736x/e7/3e/67/e73e67be321aa34cff5a71ae0d69a4c3.jpg" 
+                     alt="Mushroom" 
+                     class="w-full h-full object-cover">
+              </div>
+              <div class="p-3">
+                <div class="font-bold text-gray-800 text-sm truncate">Mushroom</div>
+                <div class="flex justify-between items-center mt-1">
+                  <span class="text-xs text-pink-500 font-bold">40 pts</span>
+                  <span class="text-xs bg-pink-100 text-pink-600 px-2 py-0.5 rounded-full">Common</span>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Prize 6 - Cow -->
+            <div class="prize-card prize-glow">
+              <div class="prize-image-container h-32">
+                <img src="https://i.pinimg.com/736x/23/9e/77/239e77469aa4e9d19eef3f9de6349558.jpg" 
+                     alt="Cow" 
+                     class="w-full h-full object-cover">
+              </div>
+              <div class="p-3">
+                <div class="font-bold text-gray-800 text-sm truncate">Cow</div>
+                <div class="flex justify-between items-center mt-1">
+                  <span class="text-xs text-pink-500 font-bold">50 pts</span>
+                  <span class="text-xs bg-pink-100 text-pink-600 px-2 py-0.5 rounded-full">Rare</span>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Show "See more" for remaining prizes -->
+            <div class="prize-card flex flex-col items-center justify-center p-6 bg-gradient-to-br from-pink-50 to-purple-50">
+              <div class="text-4xl mb-2">🎁</div>
+              <div class="font-bold text-gray-800 text-center">And 10 MORE cuties in the machine!</div>
+              <button id="showAllPrizesBtn" class="kawaii-btn px-4 py-2 mt-4 text-sm">
+                See All Prizes
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <!-- Game Container -->
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        <!-- Left Panel - Stats & Prizes -->
+        <!-- Left Panel - Stats & Collection -->
         <div class="space-y-8">
           <!-- Player Stats -->
           <div class="sticker">
@@ -341,12 +505,12 @@
               <div class="w-10 h-10 rounded-full bg-gradient-to-r from-pink-400 to-purple-400 flex items-center justify-center mr-3">
                 <i class="fas fa-user text-white text-lg"></i>
               </div>
-              <h3 class="text-2xl font-bold cute-font text-pink-600">Player Stats</h3>
+              <h3 class="text-2xl font-bold cute-font text-pink-600">Your Stats</h3>
             </div>
             
             <div class="grid grid-cols-2 gap-4 mb-6">
               <div class="text-center prize-card">
-                <div class="text-3xl font-bold text-pink-500" id="tokenCount">100</div>
+                <div class="text-3xl font-bold text-pink-500" id="tokenCount">150</div>
                 <div class="text-sm text-gray-600">Tokens</div>
                 <div class="mt-1 text-lg">🪙</div>
               </div>
@@ -371,7 +535,7 @@
               <div>
                 <div class="flex justify-between text-sm mb-2">
                   <span class="font-semibold text-gray-700">Collection</span>
-                  <span class="font-bold text-purple-600" id="collectionProgress">0/12</span>
+                  <span class="font-bold text-purple-600" id="collectionProgress">0/16</span>
                 </div>
                 <div class="kawaii-progress">
                   <div id="collectionBar" class="kawaii-progress-bar" style="width: 0%"></div>
@@ -384,22 +548,37 @@
             </button>
           </div>
           
-          <!-- Prize Collection -->
+          <!-- Your Collection -->
           <div class="sticker">
             <div class="flex items-center mb-4">
               <div class="w-10 h-10 rounded-full bg-gradient-to-r from-purple-400 to-pink-400 flex items-center justify-center mr-3">
-                <i class="fas fa-gift text-white text-lg"></i>
+                <i class="fas fa-trophy text-white text-lg"></i>
               </div>
               <h3 class="text-2xl font-bold cute-font text-purple-600">Your Collection</h3>
             </div>
             
             <div id="prizeCollection" class="grid grid-cols-3 gap-3">
-              <!-- Prizes will be added here dynamically -->
+              <!-- Collection will be populated by JavaScript -->
               <div class="prize-card text-center p-3">
                 <div class="text-3xl mb-1">?</div>
                 <div class="text-xs text-gray-500">Locked</div>
               </div>
-              <!-- Repeat 11 more times -->
+              <div class="prize-card text-center p-3">
+                <div class="text-3xl mb-1">?</div>
+                <div class="text-xs text-gray-500">Locked</div>
+              </div>
+              <div class="prize-card text-center p-3">
+                <div class="text-3xl mb-1">?</div>
+                <div class="text-xs text-gray-500">Locked</div>
+              </div>
+              <div class="prize-card text-center p-3">
+                <div class="text-3xl mb-1">?</div>
+                <div class="text-xs text-gray-500">Locked</div>
+              </div>
+              <div class="prize-card text-center p-3">
+                <div class="text-3xl mb-1">?</div>
+                <div class="text-xs text-gray-500">Locked</div>
+              </div>
               <div class="prize-card text-center p-3">
                 <div class="text-3xl mb-1">?</div>
                 <div class="text-xs text-gray-500">Locked</div>
@@ -448,7 +627,7 @@
             
             <p class="text-center text-sm text-gray-600 mt-4">
               <i class="fas fa-heart text-pink-400 mr-1"></i>
-              Collect all 12 prizes to complete the collection!
+              Collect all 16 prizes to become a Claw Machine Master!
             </p>
           </div>
         </div>
@@ -462,8 +641,17 @@
                 <!-- Machine Top Decoration -->
                 <div class="flex justify-center items-center mb-4">
                   <div class="text-3xl mr-2 bounce-animation" style="animation-delay: 0s;">✨</div>
-                  <h2 class="text-3xl font-bold cute-font text-pink-600">Prize Machine</h2>
+                  <h2 class="text-3xl font-bold cute-font text-pink-600">PLAY NOW!</h2>
                   <div class="text-3xl ml-2 bounce-animation" style="animation-delay: 0.2s;">🎁</div>
+                </div>
+                
+                <!-- Game Info -->
+                <div class="mb-4">
+                  <p class="text-lg text-gray-700">
+                    <span class="font-bold text-pink-500">Look at all the cuties in the machine!</span> 
+                    <br class="sm:hidden">
+                    <span class="text-purple-600">Move the claw and try to grab them! 🎯</span>
+                  </p>
                 </div>
                 
                 <!-- Game Canvas Container -->
@@ -475,6 +663,9 @@
                     <div class="kawaii-modal p-8 text-center max-w-sm">
                       <div class="text-6xl mb-4 bounce-animation">🎉</div>
                       <h3 class="text-3xl font-bold cute-font text-pink-600 mb-2">YOU WON!</h3>
+                      <div class="mb-4">
+                        <img id="wonPrizeImage" src="" alt="Won Prize" class="w-32 h-32 object-cover rounded-xl mx-auto border-4 border-pink-300">
+                      </div>
                       <p class="text-xl text-gray-700" id="prizeName">Cute Plushie</p>
                       <p class="text-lg text-purple-500 mt-1">+<span id="prizePoints">50</span> points!</p>
                       <button id="continueBtn" class="kawaii-btn px-8 py-3 mt-6 text-lg">
@@ -509,7 +700,7 @@
                 </div>
               </div>
               
-              <!-- Game Info -->
+              <!-- Game Cost -->
               <div class="mt-4 text-gray-600">
                 <p class="text-lg">
                   <span class="font-bold text-pink-500">Cost:</span> 
@@ -649,7 +840,7 @@
                     <div class="w-8 h-8 rounded-full bg-pink-400 flex items-center justify-center mr-3 flex-shrink-0">
                       <i class="fas fa-gem text-white text-sm"></i>
                     </div>
-                    <p class="text-gray-700">Collect all prizes to complete your collection!</p>
+                    <p class="text-gray-700">Collect all 16 prizes to complete your collection!</p>
                   </div>
                 </div>
               </div>
@@ -662,8 +853,30 @@
       <div class="text-center mt-12 pt-6 border-t-2 border-pink-200">
         <p class="text-gray-600">
           Made with <i class="fas fa-heart text-pink-400"></i> for all kawaii lovers! 
-          <span class="text-pink-500 font-bold">Good luck winning plushies! ✨</span>
+          <span class="text-pink-500 font-bold">Good luck winning all these cuties! ✨</span>
         </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- All Prizes Modal -->
+  <div id="allPrizesModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden p-4">
+    <div class="kawaii-modal max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+      <div class="flex justify-between items-center mb-6">
+        <h3 class="text-3xl font-bold cute-font text-pink-600">ALL 16 ADORABLE PRIZES! 🎁</h3>
+        <button id="closeModalBtn" class="text-2xl text-gray-500 hover:text-pink-500">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+        <!-- All 16 prizes will be shown here -->
+      </div>
+      
+      <div class="text-center mt-8">
+        <button id="startPlayingBtn" class="kawaii-btn px-8 py-3 text-xl">
+          <i class="fas fa-play mr-2"></i> START PLAYING NOW!
+        </button>
       </div>
     </div>
   </div>
@@ -671,11 +884,11 @@
   <!-- Game JavaScript -->
   <script>
     // Game Variables
-    let tokens = 100;
+    let tokens = 150; // More starting tokens
     let score = 0;
     let wins = 0;
     let collectedPrizes = 0;
-    let totalPrizes = 12;
+    let totalPrizes = 16; // Now 16 prizes!
     let gameActive = true;
     let clawX = 400;
     let clawY = 50;
@@ -689,114 +902,150 @@
     let clawWidth = 40;
     let clawHeight = 40;
     
-    // Prize data with your provided images
+    // ALL 16 PRIZES with your exact links!
     const prizes = [
       { 
         id: 1, 
-        name: "Cute Bunny", 
-        image: "https://i.pinimg.com/1200x/94/b3/0a/94b30afc24a34e2aff6224f677c92e4e.jpg", 
+        name: "Jiji Black Cat", 
+        image: "https://i.pinimg.com/736x/43/28/78/4328785c6b89d4daa0eb985469913126.jpg", 
         points: 50, 
         color: "#FFB3C6", 
-        x: 100, y: 380, width: 70, height: 70, 
+        x: 80, y: 380, width: 65, height: 65, 
         collected: false 
       },
       { 
         id: 2, 
-        name: "Pink Unicorn", 
-        image: "https://i.pinimg.com/736x/58/18/b1/5818b1415ad5aca0b2c43ae449963f00.jpg", 
-        points: 60, 
+        name: "White Plushie", 
+        image: "https://i.pinimg.com/1200x/94/b3/0a/94b30afc24a34e2aff6224f677c92e4e.jpg", 
+        points: 45, 
         color: "#FF9EBD", 
-        x: 200, y: 400, width: 65, height: 65, 
+        x: 160, y: 400, width: 60, height: 60, 
         collected: false 
       },
       { 
         id: 3, 
-        name: "Sleepy Cat", 
-        image: "https://i.pinimg.com/736x/dc/3e/7e/dc3e7e82edccbfa4fd9c1698235f7c5d.jpg", 
-        points: 45, 
+        name: "Molang", 
+        image: "https://i.pinimg.com/736x/58/18/b1/5818b1415ad5aca0b2c43ae449963f00.jpg", 
+        points: 60, 
         color: "#FF6B9D", 
-        x: 300, y: 390, width: 60, height: 60, 
+        x: 240, y: 390, width: 70, height: 70, 
         collected: false 
       },
       { 
         id: 4, 
-        name: "Star Pillow", 
-        image: "https://i.pinimg.com/736x/e7/3e/67/e73e67be321aa34cff5a71ae0d69a4c3.jpg", 
-        points: 35, 
+        name: "Nailong", 
+        image: "https://i.pinimg.com/736x/66/c2/6f/66c26fc7b91b45591e699d597f0dc09a.jpg", 
+        points: 55, 
         color: "#FFD166", 
-        x: 400, y: 410, width: 55, height: 55, 
+        x: 320, y: 410, width: 65, height: 65, 
         collected: false 
       },
       { 
         id: 5, 
-        name: "Rainbow Bear", 
-        image: "https://i.pinimg.com/736x/23/9e/77/239e77469aa4e9d19eef3f9de6349558.jpg", 
-        points: 55, 
+        name: "Mushroom", 
+        image: "https://i.pinimg.com/736x/e7/3e/67/e73e67be321aa34cff5a71ae0d69a4c3.jpg", 
+        points: 40, 
         color: "#C77DFF", 
-        x: 500, y: 380, width: 65, height: 65, 
+        x: 400, y: 380, width: 60, height: 60, 
         collected: false 
       },
       { 
         id: 6, 
-        name: "Donut Plush", 
-        image: "https://i.pinimg.com/736x/67/97/b7/6797b7d17260a61b3a8fb0fe68c68a6b.jpg", 
-        points: 40, 
+        name: "Cow", 
+        image: "https://i.pinimg.com/736x/23/9e/77/239e77469aa4e9d19eef3f9de6349558.jpg", 
+        points: 50, 
         color: "#FF9EBD", 
-        x: 600, y: 400, width: 60, height: 60, 
+        x: 480, y: 400, width: 65, height: 65, 
         collected: false 
       },
       { 
         id: 7, 
-        name: "Heart Plush", 
-        image: "https://i.pinimg.com/736x/22/d5/86/22d586f935cdc754751197229d4f4f3f.jpg", 
-        points: 30, 
+        name: "Axolotl", 
+        image: "https://i.pinimg.com/736x/67/97/b7/6797b7d17260a61b3a8fb0fe68c68a6b.jpg", 
+        points: 45, 
         color: "#FF6B9D", 
-        x: 150, y: 420, width: 55, height: 55, 
+        x: 560, y: 390, width: 60, height: 60, 
         collected: false 
       },
       { 
         id: 8, 
-        name: "Cloud Buddy", 
-        image: "https://i.pinimg.com/736x/cf/5a/b4/cf5ab41c710995c00bd65ff794aa1156.jpg", 
-        points: 25, 
+        name: "Cat in Frog Hat", 
+        image: "https://i.pinimg.com/736x/22/d5/86/22d586f935cdc754751197229d4f4f3f.jpg", 
+        points: 55, 
         color: "#B8F2E6", 
-        x: 250, y: 390, width: 65, height: 55, 
+        x: 640, y: 410, width: 65, height: 65, 
         collected: false 
       },
       { 
         id: 9, 
-        name: "Moon Fairy", 
-        image: "https://i.pinimg.com/1200x/1b/a1/c8/1ba1c8caf32b11664657b8e1e198d050.jpg", 
-        points: 65, 
+        name: "Cat in Shark Hat", 
+        image: "https://i.pinimg.com/736x/cf/5a/b4/cf5ab41c710995c00bd65ff794aa1156.jpg", 
+        points: 60, 
         color: "#C77DFF", 
-        x: 350, y: 410, width: 60, height: 65, 
+        x: 100, y: 430, width: 70, height: 70, 
         collected: false 
       },
       { 
         id: 10, 
-        name: "Apple Plush", 
-        image: "https://i.pinimg.com/736x/27/18/73/271873751cd7b1dd97d08c08537833fa.jpg", 
-        points: 20, 
+        name: "Cinnamoroll", 
+        image: "https://i.pinimg.com/1200x/1b/a1/c8/1ba1c8caf32b11664657b8e1e198d050.jpg", 
+        points: 65, 
         color: "#FF6B6B", 
-        x: 450, y: 380, width: 50, height: 50, 
+        x: 200, y: 420, width: 75, height: 75, 
         collected: false 
       },
       { 
         id: 11, 
-        name: "Butterfly Friend", 
-        image: "https://i.pinimg.com/736x/74/ea/ec/74eaec7c0af8e4150131beb6bc842f29.jpg", 
-        points: 45, 
+        name: "Banana Cat", 
+        image: "https://i.pinimg.com/736x/27/18/73/271873751cd7b1dd97d08c08537833fa.jpg", 
+        points: 40, 
         color: "#A3BFFA", 
-        x: 550, y: 420, width: 60, height: 50, 
+        x: 300, y: 430, width: 65, height: 65, 
         collected: false 
       },
       { 
         id: 12, 
-        name: "Magic Crystal", 
-        image: "https://i.pinimg.com/736x/fc/62/30/fc62301b6c6299a677a1516aaa4c9efb.jpg", 
-        points: 70, 
+        name: "Capybara", 
+        image: "https://i.pinimg.com/736x/74/ea/ec/74eaec7c0af8e4150131beb6bc842f29.jpg", 
+        points: 50, 
         color: "#B8F2E6", 
-        x: 650, y: 390, width: 60, height: 60, 
+        x: 400, y: 420, width: 70, height: 70, 
+        collected: false 
+      },
+      { 
+        id: 13, 
+        name: "Penguin", 
+        image: "https://i.pinimg.com/736x/fc/62/30/fc62301b6c6299a677a1516aaa4c9efb.jpg", 
+        points: 55, 
+        color: "#FFB3C6", 
+        x: 500, y: 430, width: 65, height: 65, 
+        collected: false 
+      },
+      { 
+        id: 14, 
+        name: "Hamster", 
+        image: "https://i.pinimg.com/736x/00/2b/8d/002b8d7ee72c4a05a2e4542e7de220cf.jpg", 
+        points: 45, 
+        color: "#FF9EBD", 
+        x: 600, y: 420, width: 60, height: 60, 
+        collected: false 
+      },
+      { 
+        id: 15, 
+        name: "Hello Kitty Pancakes", 
+        image: "https://i.pinimg.com/736x/b2/ab/e4/b2abe4dd5e3bdcf2f84ac0afc9fd272b.jpg", 
+        points: 70, 
+        color: "#FF6B9D", 
+        x: 350, y: 380, width: 80, height: 80, 
+        collected: false 
+      },
+      { 
+        id: 16, 
+        name: "Oreo Dog", 
+        image: "https://i.pinimg.com/1200x/d4/4c/3d/d44c3d5f192ffe4f5c0f0337cf4add0f.jpg", 
+        points: 75, 
+        color: "#C77DFF", 
+        x: 550, y: 380, width: 75, height: 75, 
         collected: false 
       }
     ];
@@ -819,6 +1068,11 @@
     const noTokensMessageEl = document.getElementById('noTokensMessage');
     const prizeNameEl = document.getElementById('prizeName');
     const prizePointsEl = document.getElementById('prizePoints');
+    const wonPrizeImageEl = document.getElementById('wonPrizeImage');
+    const allPrizesModal = document.getElementById('allPrizesModal');
+    const showAllPrizesBtn = document.getElementById('showAllPrizesBtn');
+    const closeModalBtn = document.getElementById('closeModalBtn');
+    const startPlayingBtn = document.getElementById('startPlayingBtn');
     
     // Button Elements
     const leftBtn = document.getElementById('leftBtn');
@@ -858,6 +1112,7 @@
       await loadPrizeImages();
       setupEventListeners();
       updateUI();
+      populateAllPrizesModal();
       drawGame();
       gameLoop();
     }
@@ -881,6 +1136,33 @@
       });
       
       await Promise.all(loadPromises);
+    }
+    
+    // Populate the "All Prizes" modal
+    function populateAllPrizesModal() {
+      const modalContent = allPrizesModal.querySelector('.grid');
+      modalContent.innerHTML = '';
+      
+      prizes.forEach(prize => {
+        const prizeCard = document.createElement('div');
+        prizeCard.className = 'prize-card';
+        prizeCard.innerHTML = `
+          <div class="prize-image-container h-40">
+            <img src="${prize.image}" alt="${prize.name}" 
+                 class="w-full h-full object-cover">
+          </div>
+          <div class="p-3">
+            <div class="font-bold text-gray-800 text-center">${prize.name}</div>
+            <div class="flex justify-between items-center mt-2">
+              <span class="text-sm text-pink-500 font-bold">${prize.points} pts</span>
+              <span class="text-xs ${prize.points >= 60 ? 'bg-purple-100 text-purple-600' : prize.points >= 50 ? 'bg-pink-100 text-pink-600' : 'bg-gray-100 text-gray-600'} px-2 py-0.5 rounded-full">
+                ${prize.points >= 60 ? 'Super Rare' : prize.points >= 50 ? 'Rare' : 'Common'}
+              </span>
+            </div>
+          </div>
+        `;
+        modalContent.appendChild(prizeCard);
+      });
     }
     
     // Update UI elements
@@ -910,16 +1192,24 @@
           if (prize.collected) {
             // Show the actual prize image
             slot.innerHTML = `
-              <img src="${prize.image}" alt="${prize.name}" 
-                   class="w-full h-20 object-cover rounded-lg mb-2">
+              <div class="prize-image-container h-20 mb-2">
+                <img src="${prize.image}" alt="${prize.name}" 
+                     class="w-full h-full object-cover rounded-lg">
+              </div>
               <div class="text-xs font-bold text-gray-800 truncate px-1">${prize.name}</div>
               <div class="text-xs text-pink-500 font-bold">${prize.points} pts</div>
             `;
             slot.classList.add('collected');
           } else {
             slot.innerHTML = `
-              <div class="text-3xl mb-1 text-gray-400">?</div>
-              <div class="text-xs text-gray-500">Locked</div>
+              <div class="relative">
+                <div class="text-3xl mb-1 text-gray-400">?</div>
+                <div class="text-xs text-gray-500">Locked</div>
+                <div class="lock-overlay">
+                  <div class="text-2xl mb-1">🔒</div>
+                  <div class="text-xs text-gray-600">Win to unlock!</div>
+                </div>
+              </div>
             `;
             slot.classList.remove('collected');
           }
@@ -927,7 +1217,7 @@
       }
     }
     
-    // Draw game elements with proper 3-handle claw
+    // Draw game elements with ALL prizes visible
     function drawGame() {
       // Clear canvas with white background
       ctx.fillStyle = '#FFFFFF';
@@ -954,10 +1244,10 @@
       ctx.stroke();
       ctx.setLineDash([]);
       
-      // Draw prizes
+      // Draw ALL prizes (including collected ones, but marked differently)
       prizes.forEach(prize => {
         if (!prize.collected) {
-          // Draw prize shadow
+          // Draw prize shadow for uncollected
           ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
           ctx.fillRect(prize.x + 3, prize.y + 3, prize.width, prize.height);
           
@@ -971,26 +1261,37 @@
             ctx.drawImage(prizeImages[prize.id], prize.x, prize.y, prize.width, prize.height);
             ctx.restore();
             
-            // Draw border
-            ctx.strokeStyle = prize.color;
-            ctx.lineWidth = 3;
+            // Draw glowing border for uncollected
+            ctx.strokeStyle = prize.points >= 60 ? '#FF6BB5' : prize.points >= 50 ? '#FF9EC0' : '#FFB3C6';
+            ctx.lineWidth = prize.points >= 60 ? 4 : prize.points >= 50 ? 3 : 2;
             ctx.beginPath();
             ctx.roundRect(prize.x, prize.y, prize.width, prize.height, 10);
             ctx.stroke();
-          } else {
-            // Fallback to colored rectangle
-            ctx.fillStyle = prize.color;
+          }
+        } else {
+          // Draw collected prizes with a dimmed effect
+          ctx.globalAlpha = 0.3;
+          if (prizeImages[prize.id]) {
+            ctx.save();
             ctx.beginPath();
             ctx.roundRect(prize.x, prize.y, prize.width, prize.height, 10);
-            ctx.fill();
-            
-            // Draw prize name
-            ctx.font = 'bold 12px Nunito';
-            ctx.fillStyle = '#FFFFFF';
-            ctx.textAlign = 'center';
-            ctx.textBaseline = 'middle';
-            ctx.fillText(prize.name.substring(0, 8), prize.x + prize.width/2, prize.y + prize.height/2);
+            ctx.clip();
+            ctx.drawImage(prizeImages[prize.id], prize.x, prize.y, prize.width, prize.height);
+            ctx.restore();
           }
+          ctx.globalAlpha = 1.0;
+          
+          // Draw checkmark over collected
+          ctx.fillStyle = '#4CAF50';
+          ctx.beginPath();
+          ctx.arc(prize.x + prize.width - 15, prize.y + 15, 12, 0, Math.PI * 2);
+          ctx.fill();
+          
+          ctx.fillStyle = 'white';
+          ctx.font = 'bold 12px Arial';
+          ctx.textAlign = 'center';
+          ctx.textBaseline = 'middle';
+          ctx.fillText('✓', prize.x + prize.width - 15, prize.y + 15);
         }
       });
       
@@ -1183,9 +1484,13 @@
         if (difficulty === 'medium') successChance *= 0.65;
         if (difficulty === 'hard') successChance *= 0.4;
         
-        // Adjust based on prize size
-        const sizeFactor = Math.min(1, (bestPrize.width * bestPrize.height) / 3000);
+        // Adjust based on prize size (smaller = harder)
+        const sizeFactor = Math.min(1, (bestPrize.width * bestPrize.height) / 4000);
         successChance *= sizeFactor;
+        
+        // Adjust based on rarity (higher points = harder)
+        const rarityFactor = 1 - (bestPrize.points - 40) / 70; // 40-75 points range
+        successChance *= rarityFactor;
         
         if (Math.random() < successChance) {
           clawHasPrize = true;
@@ -1198,7 +1503,7 @@
       currentPrize = null;
     }
     
-    // Win game
+    // Win game - SHOW THE ACTUAL PRIZE IMAGE!
     function winGame(prize) {
       gameActive = false;
       
@@ -1212,13 +1517,15 @@
       // Update UI
       updateUI();
       
-      // Show win message
+      // Show win message WITH THE ACTUAL PRIZE IMAGE
       prizeNameEl.textContent = prize.name;
       prizePointsEl.textContent = prize.points;
+      wonPrizeImageEl.src = prize.image;
+      wonPrizeImageEl.alt = prize.name;
       winMessageEl.classList.remove('hidden');
       
       // Play win sound (simulated)
-      console.log('🎉 Yay! You won a ' + prize.name + '!');
+      console.log(`🎉 Yay! You won ${prize.name}! ${prize.points} points!`);
     }
     
     // Lose game
@@ -1296,14 +1603,36 @@
         if (score >= 100) {
           setDifficulty('medium');
         } else {
-          console.log('Need 100+ points for Medium mode!');
+          alert('🌸 You need 100+ points to unlock Medium mode! Keep playing!');
         }
       });
       hardBtn.addEventListener('click', () => {
         if (score >= 300) {
           setDifficulty('hard');
         } else {
-          console.log('Need 300+ points for Hard mode!');
+          alert('🎯 You need 300+ points to unlock Hard mode! You can do it!');
+        }
+      });
+      
+      // Show all prizes modal
+      showAllPrizesBtn.addEventListener('click', () => {
+        allPrizesModal.classList.remove('hidden');
+      });
+      
+      closeModalBtn.addEventListener('click', () => {
+        allPrizesModal.classList.add('hidden');
+      });
+      
+      startPlayingBtn.addEventListener('click', () => {
+        allPrizesModal.classList.add('hidden');
+        // Scroll to game
+        document.querySelector('#gameCanvas').scrollIntoView({ behavior: 'smooth' });
+      });
+      
+      // Close modal when clicking outside
+      allPrizesModal.addEventListener('click', (e) => {
+        if (e.target === allPrizesModal) {
+          allPrizesModal.classList.add('hidden');
         }
       });
       
