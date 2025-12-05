@@ -23,10 +23,9 @@
     
     body {
       font-family: 'Nunito', sans-serif;
-      background: linear-gradient(135deg, #ffe6f2 0%, #fff0f7 50%, #ffd9ec 100%);
+      background: linear-gradient(135deg, #ffebf3 0%, #ffd9ec 100%);
       min-height: 100vh;
       overflow-x: hidden;
-      position: relative;
     }
     
     .cute-font {
@@ -38,17 +37,7 @@
       letter-spacing: 1px;
     }
     
-    /* Sparkle animations */
-    @keyframes sparkle {
-      0%, 100% { opacity: 0; transform: scale(0) rotate(0deg); }
-      50% { opacity: 1; transform: scale(1) rotate(180deg); }
-    }
-    
-    @keyframes float {
-      0%, 100% { transform: translateY(0) rotate(0deg); }
-      50% { transform: translateY(-20px) rotate(5deg); }
-    }
-    
+    /* Animations */
     @keyframes bounce {
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(-15px); }
@@ -74,28 +63,14 @@
       50% { filter: drop-shadow(0 0 15px rgba(255, 107, 181, 0.6)); }
     }
     
-    @keyframes glitter {
-      0% { transform: translateX(-100%) rotate(30deg); }
-      100% { transform: translateX(100%) rotate(30deg); }
-    }
-    
     @keyframes slideIn {
       0% { transform: translateY(-30px); opacity: 0; }
       100% { transform: translateY(0); opacity: 1; }
     }
     
-    .sparkle {
-      position: absolute;
-      width: 8px;
-      height: 8px;
-      background: white;
-      border-radius: 50%;
-      filter: blur(1px);
-      animation: sparkle 3s infinite;
-    }
-    
-    .float-animation {
-      animation: float 6s ease-in-out infinite;
+    @keyframes grab {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(10px) rotate(180deg); }
     }
     
     .bounce-animation {
@@ -122,21 +97,8 @@
       animation: slideIn 0.5s ease-out;
     }
     
-    /* Kawaii heart background */
-    .kawaii-bg::before {
-      content: "";
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-image: 
-        radial-gradient(circle at 10% 20%, rgba(255, 182, 193, 0.15) 0%, transparent 20%),
-        radial-gradient(circle at 90% 80%, rgba(255, 105, 180, 0.15) 0%, transparent 20%),
-        radial-gradient(circle at 30% 60%, rgba(255, 182, 193, 0.15) 0%, transparent 20%),
-        radial-gradient(circle at 70% 40%, rgba(255, 105, 180, 0.15) 0%, transparent 20%);
-      pointer-events: none;
-      z-index: -1;
+    .grab-animation {
+      animation: grab 0.5s ease-in-out;
     }
     
     /* Custom scrollbar */
@@ -317,29 +279,6 @@
       justify-content: center;
     }
     
-    /* Glitter effect */
-    .glitter {
-      position: relative;
-      overflow: hidden;
-    }
-    
-    .glitter::after {
-      content: "";
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: linear-gradient(
-        to right,
-        transparent,
-        rgba(255, 255, 255, 0.3),
-        transparent
-      );
-      transform: rotate(30deg);
-      animation: glitter 3s linear infinite;
-    }
-    
     /* Prize image container */
     .prize-image-container {
       position: relative;
@@ -356,21 +295,6 @@
       bottom: 0;
       background: linear-gradient(to bottom, transparent 70%, rgba(255, 255, 255, 0.3));
       pointer-events: none;
-    }
-    
-    /* Lock overlay for uncollected prizes */
-    .lock-overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(255, 255, 255, 0.9);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      border-radius: 12px;
     }
     
     /* Heart particles */
@@ -404,21 +328,35 @@
       justify-content: center;
       border: 2px solid #ffb3c6;
     }
+    
+    /* Token display styles */
+    .token-display {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      padding: 10px;
+    }
+    
+    .token-image {
+      width: 100px;
+      height: 100px;
+      object-fit: contain;
+      filter: drop-shadow(0 5px 10px rgba(0,0,0,0.1));
+      transition: all 0.3s ease;
+    }
+    
+    .token-image:hover {
+      transform: scale(1.1) rotate(5deg);
+    }
+    
+    .token-image.collected {
+      filter: brightness(1.2) drop-shadow(0 5px 15px rgba(255, 77, 166, 0.5));
+    }
   </style>
 </head>
 
-<body class="kawaii-bg">
-  <!-- Sparkle effects -->
-  <div id="sparkles"></div>
-  
-  <!-- Floating cute elements -->
-  <div class="fixed top-10 left-10 text-4xl float-animation" style="animation-delay: 0s; color: #ff6bb5;">🎀</div>
-  <div class="fixed top-20 right-16 text-5xl float-animation" style="animation-delay: 1s; color: #ff9ec0;">🌸</div>
-  <div class="fixed bottom-20 left-20 text-6xl float-animation" style="animation-delay: 2s; color: #c77dff;">🦄</div>
-  <div class="fixed bottom-10 right-10 text-4xl float-animation" style="animation-delay: 3s; color: #ff6bb5;">💖</div>
-  <div class="fixed top-1/3 left-1/4 text-3xl float-animation" style="animation-delay: 0.5s; color: #ff9ec0;">🍓</div>
-  <div class="fixed bottom-1/3 right-1/4 text-4xl float-animation" style="animation-delay: 1.5s; color: #c77dff;">🎵</div>
-
+<body>
   <!-- Main Container -->
   <div class="min-h-screen py-8 px-4">
     <div class="max-w-6xl mx-auto">
@@ -456,7 +394,7 @@
             
             <div class="grid grid-cols-2 gap-4 mb-6">
               <div class="text-center prize-card">
-                <div class="text-3xl font-bold text-pink-500" id="tokenCount">150</div>
+                <div class="text-3xl font-bold text-pink-500" id="tokenCount">200</div>
                 <div class="text-sm text-gray-600">Tokens</div>
                 <div class="mt-1 text-lg bounce-animation" style="animation-delay: 0s;">🪙</div>
               </div>
@@ -489,7 +427,7 @@
               </div>
             </div>
             
-            <button id="addTokensBtn" class="w-full kawaii-btn py-3 mt-6 text-lg glitter">
+            <button id="addTokensBtn" class="w-full kawaii-btn py-3 mt-6 text-lg">
               <i class="fas fa-plus mr-2"></i> Get More Tokens
             </button>
           </div>
@@ -503,28 +441,9 @@
               <h3 class="text-2xl font-bold kawaii-font text-purple-600">Your Collection</h3>
             </div>
             
-            <div id="prizeCollection" class="grid grid-cols-3 gap-3">
+            <div id="prizeCollection" class="token-display">
               <!-- Collection will be populated by JavaScript -->
-              <div class="prize-card text-center p-3">
-                <div class="text-3xl mb-1 text-gray-300">?</div>
-                <div class="text-xs text-gray-500">Locked</div>
-              </div>
-              <!-- Repeat 15 more times (total 16) -->
-              <div class="prize-card text-center p-3"><div class="text-3xl mb-1 text-gray-300">?</div><div class="text-xs text-gray-500">Locked</div></div>
-              <div class="prize-card text-center p-3"><div class="text-3xl mb-1 text-gray-300">?</div><div class="text-xs text-gray-500">Locked</div></div>
-              <div class="prize-card text-center p-3"><div class="text-3xl mb-1 text-gray-300">?</div><div class="text-xs text-gray-500">Locked</div></div>
-              <div class="prize-card text-center p-3"><div class="text-3xl mb-1 text-gray-300">?</div><div class="text-xs text-gray-500">Locked</div></div>
-              <div class="prize-card text-center p-3"><div class="text-3xl mb-1 text-gray-300">?</div><div class="text-xs text-gray-500">Locked</div></div>
-              <div class="prize-card text-center p-3"><div class="text-3xl mb-1 text-gray-300">?</div><div class="text-xs text-gray-500">Locked</div></div>
-              <div class="prize-card text-center p-3"><div class="text-3xl mb-1 text-gray-300">?</div><div class="text-xs text-gray-500">Locked</div></div>
-              <div class="prize-card text-center p-3"><div class="text-3xl mb-1 text-gray-300">?</div><div class="text-xs text-gray-500">Locked</div></div>
-              <div class="prize-card text-center p-3"><div class="text-3xl mb-1 text-gray-300">?</div><div class="text-xs text-gray-500">Locked</div></div>
-              <div class="prize-card text-center p-3"><div class="text-3xl mb-1 text-gray-300">?</div><div class="text-xs text-gray-500">Locked</div></div>
-              <div class="prize-card text-center p-3"><div class="text-3xl mb-1 text-gray-300">?</div><div class="text-xs text-gray-500">Locked</div></div>
-              <div class="prize-card text-center p-3"><div class="text-3xl mb-1 text-gray-300">?</div><div class="text-xs text-gray-500">Locked</div></div>
-              <div class="prize-card text-center p-3"><div class="text-3xl mb-1 text-gray-300">?</div><div class="text-xs text-gray-500">Locked</div></div>
-              <div class="prize-card text-center p-3"><div class="text-3xl mb-1 text-gray-300">?</div><div class="text-xs text-gray-500">Locked</div></div>
-              <div class="prize-card text-center p-3"><div class="text-3xl mb-1 text-gray-300">?</div><div class="text-xs text-gray-500">Locked</div></div>
+              <!-- Tokens are now just images, spread properly -->
             </div>
             
             <p class="text-center text-sm text-gray-600 mt-4">
@@ -570,7 +489,7 @@
                       </div>
                       <p class="text-xl text-gray-700" id="prizeName">Cute Plushie</p>
                       <p class="text-lg text-purple-500 mt-1">+<span id="prizePoints">50</span> points!</p>
-                      <button id="continueBtn" class="kawaii-btn px-8 py-3 mt-6 text-lg glitter">
+                      <button id="continueBtn" class="kawaii-btn px-8 py-3 mt-6 text-lg">
                         Keep Playing! ✨
                       </button>
                     </div>
@@ -592,9 +511,9 @@
                   <div id="noTokensMessage" class="absolute inset-0 flex items-center justify-center hidden">
                     <div class="kawaii-modal p-8 text-center max-w-sm">
                       <div class="text-6xl mb-4 pulse-animation">🪙</div>
-                      <h3 class="text-3xl font-bold kawaii-font text-yellow-600 mb-2">OUT OF TOKENS!</h3>
+                      <h3 class="text-3xl font-bold kawaii-font text-purple-600 mb-2">OUT OF TOKENS!</h3>
                       <p class="text-xl text-gray-700 mb-4">Get more to keep playing!</p>
-                      <button id="getMoreTokensBtn" class="kawaii-btn px-8 py-3 text-lg glitter">
+                      <button id="getMoreTokensBtn" class="kawaii-btn px-8 py-3 text-lg">
                         Get 20 Tokens ✨
                       </button>
                     </div>
@@ -626,9 +545,7 @@
                 <div class="mb-8">
                   <div class="grid grid-cols-3 gap-4">
                     <div></div>
-                    <button id="upBtn" class="control-btn w-16 h-16 text-2xl">
-                      <i class="fas fa-arrow-up"></i>
-                    </button>
+                    <div class="opacity-30"></div> <!-- Up button removed -->
                     <div></div>
                     
                     <button id="leftBtn" class="control-btn w-16 h-16 text-2xl">
@@ -642,17 +559,15 @@
                     </button>
                     
                     <div></div>
-                    <button id="downBtn" class="control-btn w-16 h-16 text-2xl">
-                      <i class="fas fa-arrow-down"></i>
-                    </button>
+                    <div class="opacity-30"></div> <!-- Down button removed -->
                     <div></div>
                   </div>
                 </div>
                 
                 <!-- Drop Button -->
-                <button id="dropBtn" class="kawaii-btn px-12 py-4 text-2xl relative glitter">
+                <button id="dropBtn" class="kawaii-btn px-12 py-4 text-2xl relative">
                   <i class="fas fa-hand-paper mr-3"></i> DROP THE CLAW!
-                  <div class="absolute -top-3 -right-3 w-8 h-8 bg-yellow-400 rounded-full flex items-center justify-center text-sm bounce-animation">
+                  <div class="absolute -top-3 -right-3 w-8 h-8 bg-purple-400 rounded-full flex items-center justify-center text-sm bounce-animation">
                     👇
                   </div>
                 </button>
@@ -665,85 +580,29 @@
               </div>
             </div>
             
-            <!-- Tips & Difficulty -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <!-- Difficulty -->
-              <div class="sticker slide-in" style="animation-delay: 0.5s;">
-                <h4 class="text-xl font-bold kawaii-font text-pink-600 mb-4">
-                  <i class="fas fa-sliders-h mr-2"></i> Difficulty
-                </h4>
-                <div class="space-y-3">
-                  <button id="easyBtn" class="w-full p-4 rounded-xl text-left flex items-center justify-between
-                            bg-gradient-to-r from-green-100 to-emerald-100 border-2 border-green-300
-                            hover:border-green-400 transition-all">
-                    <div class="flex items-center">
-                      <div class="w-10 h-10 rounded-full bg-green-400 flex items-center justify-center mr-3">
-                        <i class="fas fa-baby text-white"></i>
-                      </div>
-                      <div>
-                        <div class="font-bold text-gray-800">Easy Mode</div>
-                        <div class="text-xs text-gray-600">Perfect for beginners!</div>
-                      </div>
-                    </div>
-                    <div class="text-green-600 font-bold">ACTIVE</div>
-                  </button>
-                  
-                  <button id="mediumBtn" class="w-full p-4 rounded-xl text-left flex items-center justify-between
-                            bg-gradient-to-r from-yellow-100 to-amber-100 border-2 border-yellow-300
-                            hover:border-yellow-400 transition-all">
-                    <div class="flex items-center">
-                      <div class="w-10 h-10 rounded-full bg-yellow-400 flex items-center justify-center mr-3">
-                        <i class="fas fa-user text-white"></i>
-                      </div>
-                      <div>
-                        <div class="font-bold text-gray-800">Medium Mode</div>
-                        <div class="text-xs text-gray-600">A bit challenging!</div>
-                      </div>
-                    </div>
-                    <div class="text-gray-500">LOCKED</div>
-                  </button>
-                  
-                  <button id="hardBtn" class="w-full p-4 rounded-xl text-left flex items-center justify-between
-                            bg-gradient-to-r from-red-100 to-rose-100 border-2 border-red-300
-                            hover:border-red-400 transition-all">
-                    <div class="flex items-center">
-                      <div class="w-10 h-10 rounded-full bg-red-400 flex items-center justify-center mr-3">
-                        <i class="fas fa-fire text-white"></i>
-                      </div>
-                      <div>
-                        <div class="font-bold text-gray-800">Hard Mode</div>
-                        <div class="text-xs text-gray-600">For experts only!</div>
-                      </div>
-                    </div>
-                    <div class="text-gray-500">LOCKED</div>
-                  </button>
+            <!-- Tips Section -->
+            <div class="sticker slide-in" style="animation-delay: 0.6s;">
+              <h4 class="text-xl font-bold kawaii-font text-purple-600 mb-4">
+                <i class="fas fa-lightbulb mr-2"></i> Tips to Win
+              </h4>
+              <div class="space-y-3">
+                <div class="flex items-start">
+                  <div class="w-8 h-8 rounded-full bg-pink-400 flex items-center justify-center mr-3 flex-shrink-0">
+                    <i class="fas fa-bullseye text-white text-sm"></i>
+                  </div>
+                  <p class="text-gray-700">Aim for the center of prizes for best results!</p>
                 </div>
-              </div>
-              
-              <!-- Tips -->
-              <div class="sticker slide-in" style="animation-delay: 0.6s;">
-                <h4 class="text-xl font-bold kawaii-font text-purple-600 mb-4">
-                  <i class="fas fa-lightbulb mr-2"></i> Tips to Win
-                </h4>
-                <div class="space-y-3">
-                  <div class="flex items-start">
-                    <div class="w-8 h-8 rounded-full bg-pink-400 flex items-center justify-center mr-3 flex-shrink-0">
-                      <i class="fas fa-bullseye text-white text-sm"></i>
-                    </div>
-                    <p class="text-gray-700">Aim for the center of prizes for best results!</p>
+                <div class="flex items-start">
+                  <div class="w-8 h-8 rounded-full bg-purple-400 flex items-center justify-center mr-3 flex-shrink-0">
+                    <i class="fas fa-star text-white text-sm"></i>
                   </div>
-                  <div class="flex items-start">
-                    <div class="w-8 h-8 rounded-full bg-purple-400 flex items-center justify-center mr-3 flex-shrink-0">
-                      <i class="fas fa-star text-white text-sm"></i>
-                    </div>
-                    <p class="text-gray-700">Smaller prizes are harder but give more points!</p>
+                  <p class="text-gray-700">Smaller prizes are harder but give more points!</p>
+                </div>
+                <div class="flex items-start">
+                  <div class="w-8 h-8 rounded-full bg-pink-400 flex items-center justify-center mr-3 flex-shrink-0">
+                    <i class="fas fa-gem text-white text-sm"></i>
                   </div>
-                  <div class="flex items-start">
-                    <div class="w-8 h-8 rounded-full bg-pink-400 flex items-center justify-center mr-3 flex-shrink-0">
-                      <i class="fas fa-gem text-white text-sm"></i>
-                    </div>
-                    <p class="text-gray-700">Collect all 16 prizes to complete your collection!</p>
-                  </div>
+                  <p class="text-gray-700">Collect all 16 prizes to complete your collection!</p>
                 </div>
               </div>
             </div>
@@ -764,7 +623,7 @@
   <!-- Game JavaScript -->
   <script>
     // Game Variables
-    let tokens = 200; // More starting tokens
+    let tokens = 200;
     let score = 0;
     let wins = 0;
     let collectedPrizes = 0;
@@ -776,13 +635,14 @@
     let clawDropping = false;
     let clawRaising = false;
     let clawHasPrize = false;
-    let clawOpen = false;
+    let clawOpen = true; // Start with claw open
     let difficulty = 'easy';
     let currentPrize = null;
     let clawWidth = 40;
     let clawHeight = 40;
+    let clawAnimation = false;
     
-    // ALL 16 PRIZES with your exact links!
+    // ALL 16 PRIZES
     const prizes = [
       { 
         id: 1, 
@@ -816,7 +676,7 @@
         name: "Nailong", 
         image: "clawmachine/cat1.png", 
         points: 55, 
-        color: "#FFD166", 
+        color: "#C77DFF", 
         x: 320, y: 410, width: 65, height: 65, 
         collected: false 
       },
@@ -825,7 +685,7 @@
         name: "Mushroom", 
         image: "clawmachine/cat1.png", 
         points: 40, 
-        color: "#C77DFF", 
+        color: "#FFD166", 
         x: 400, y: 380, width: 60, height: 60, 
         collected: false 
       },
@@ -954,34 +814,11 @@
     // Button Elements
     const leftBtn = document.getElementById('leftBtn');
     const rightBtn = document.getElementById('rightBtn');
-    const upBtn = document.getElementById('upBtn');
-    const downBtn = document.getElementById('downBtn');
     const dropBtn = document.getElementById('dropBtn');
     const continueBtn = document.getElementById('continueBtn');
     const tryAgainBtn = document.getElementById('tryAgainBtn');
     const addTokensBtn = document.getElementById('addTokensBtn');
     const getMoreTokensBtn = document.getElementById('getMoreTokensBtn');
-    const easyBtn = document.getElementById('easyBtn');
-    const mediumBtn = document.getElementById('mediumBtn');
-    const hardBtn = document.getElementById('hardBtn');
-    
-    // Create sparkle effects
-    function createSparkles() {
-      const sparkleContainer = document.getElementById('sparkles');
-      const sparkleCount = 50;
-      
-      for (let i = 0; i < sparkleCount; i++) {
-        const sparkle = document.createElement('div');
-        sparkle.className = 'sparkle';
-        sparkle.style.left = `${Math.random() * 100}%`;
-        sparkle.style.top = `${Math.random() * 100}%`;
-        sparkle.style.animationDelay = `${Math.random() * 3}s`;
-        sparkle.style.width = `${Math.random() * 8 + 4}px`;
-        sparkle.style.height = sparkle.style.width;
-        sparkle.style.backgroundColor = i % 3 === 0 ? '#FFB3C6' : i % 3 === 1 ? '#C77DFF' : '#FFD700';
-        sparkleContainer.appendChild(sparkle);
-      }
-    }
     
     // Create heart particles
     function createHeartParticles(x, y, count = 10) {
@@ -1000,7 +837,7 @@
         const angle = Math.random() * Math.PI * 2;
         const speed = Math.random() * 3 + 2;
         const vx = Math.cos(angle) * speed;
-        const vy = Math.sin(angle) * speed - 2;
+        let vy = Math.sin(angle) * speed - 2;
         
         let posX = x;
         let posY = y;
@@ -1009,7 +846,7 @@
         const animateHeart = () => {
           posX += vx;
           posY += vy;
-          vy += 0.1; // gravity
+          vy += 0.1;
           opacity -= 0.02;
           
           heart.style.left = `${posX}px`;
@@ -1029,12 +866,28 @@
     
     // Initialize game
     async function initGame() {
-      createSparkles();
       await loadPrizeImages();
       setupEventListeners();
+      createPrizeCollectionDisplay();
       updateUI();
       drawGame();
       gameLoop();
+    }
+    
+    // Create prize collection display with just images
+    function createPrizeCollectionDisplay() {
+      prizeCollectionEl.innerHTML = '';
+      prizes.forEach(prize => {
+        const img = document.createElement('img');
+        img.src = prize.image;
+        img.alt = prize.name;
+        img.className = 'token-image';
+        img.dataset.id = prize.id;
+        if (prize.collected) {
+          img.classList.add('collected');
+        }
+        prizeCollectionEl.appendChild(img);
+      });
     }
     
     // Load prize images with fallbacks
@@ -1049,7 +902,6 @@
             resolve();
           };
           img.onerror = () => {
-            console.log(`Failed to load image for ${prize.name}, using fallback`);
             // Create a fallback colored rectangle
             const fallbackCanvas = document.createElement('canvas');
             fallbackCanvas.width = 100;
@@ -1108,38 +960,19 @@
     
     // Update prize collection display
     function updatePrizeCollection() {
-      const prizeSlots = prizeCollectionEl.children;
-      
-      for (let i = 0; i < prizeSlots.length; i++) {
-        if (i < prizes.length) {
-          const prize = prizes[i];
-          const slot = prizeSlots[i];
-          
-          if (prize.collected) {
-            // Show the actual prize image
-            slot.innerHTML = `
-              <div class="prize-image-container h-20 mb-2">
-                <img src="${prize.image}" alt="${prize.name}" 
-                     class="w-full h-full object-cover rounded-lg">
-              </div>
-              <div class="text-xs font-bold text-gray-800 truncate px-1">${prize.name}</div>
-              <div class="text-xs text-pink-500 font-bold">${prize.points} pts</div>
-            `;
-            slot.classList.add('collected');
-          } else {
-            slot.innerHTML = `
-              <div class="relative">
-                <div class="text-3xl mb-1 text-gray-300">?</div>
-                <div class="text-xs text-gray-500">Locked</div>
-              </div>
-            `;
-            slot.classList.remove('collected');
-          }
+      const tokenImages = prizeCollectionEl.querySelectorAll('.token-image');
+      tokenImages.forEach(img => {
+        const prizeId = parseInt(img.dataset.id);
+        const prize = prizes.find(p => p.id === prizeId);
+        if (prize && prize.collected) {
+          img.classList.add('collected');
+        } else {
+          img.classList.remove('collected');
         }
-      }
+      });
     }
     
-    // Draw game elements with ALL prizes visible
+    // Draw game elements
     function drawGame() {
       // Clear canvas with gradient background
       const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
@@ -1148,12 +981,12 @@
       ctx.fillStyle = gradient;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
       
-      // Draw machine frame with cute border
+      // Draw machine frame
       ctx.fillStyle = '#FFB3C6';
-      ctx.fillRect(0, 0, canvas.width, 20); // Top
-      ctx.fillRect(0, canvas.height - 20, canvas.width, 20); // Bottom
-      ctx.fillRect(0, 0, 20, canvas.height); // Left
-      ctx.fillRect(canvas.width - 20, 0, 20, canvas.height); // Right
+      ctx.fillRect(0, 0, canvas.width, 20);
+      ctx.fillRect(0, canvas.height - 20, canvas.width, 20);
+      ctx.fillRect(0, 0, 20, canvas.height);
+      ctx.fillRect(canvas.width - 20, 0, 20, canvas.height);
       
       // Decorate machine frame
       ctx.fillStyle = '#FFFFFF';
@@ -1166,7 +999,7 @@
         ctx.fill();
       }
       
-      // Draw prize area floor with pattern
+      // Draw prize area floor
       ctx.fillStyle = '#FFF0F7';
       ctx.fillRect(30, 440, canvas.width - 60, 40);
       
@@ -1180,26 +1013,23 @@
       ctx.stroke();
       ctx.setLineDash([]);
       
-      // Draw ALL prizes (including collected ones, but marked differently)
+      // Draw prizes
       prizes.forEach(prize => {
         if (!prize.collected) {
-          // Draw prize shadow for uncollected
+          // Draw prize shadow
           ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
           ctx.fillRect(prize.x + 3, prize.y + 3, prize.width, prize.height);
           
           // Try to draw prize image
           if (prizeImages[prize.id]) {
-            // Create rounded clipping path for image
             ctx.save();
             ctx.beginPath();
             ctx.roundRect(prize.x, prize.y, prize.width, prize.height, 10);
             ctx.clip();
             
-            // If image loaded successfully
             if (prizeImageLoaded[prize.id]) {
               ctx.drawImage(prizeImages[prize.id], prize.x, prize.y, prize.width, prize.height);
             } else {
-              // Draw fallback image
               const pattern = ctx.createPattern(prizeImages[prize.id], 'no-repeat');
               ctx.fillStyle = pattern || prize.color;
               ctx.fillRect(prize.x, prize.y, prize.width, prize.height);
@@ -1207,21 +1037,15 @@
             
             ctx.restore();
             
-            // Draw glowing border for uncollected
+            // Draw glowing border
             ctx.strokeStyle = prize.points >= 60 ? '#FF6BB5' : prize.points >= 50 ? '#FF9EC0' : '#FFB3C6';
             ctx.lineWidth = prize.points >= 60 ? 4 : prize.points >= 50 ? 3 : 2;
             ctx.beginPath();
             ctx.roundRect(prize.x, prize.y, prize.width, prize.height, 10);
             ctx.stroke();
-            
-            // Draw prize name
-            ctx.fillStyle = '#FFFFFF';
-            ctx.font = 'bold 10px Arial';
-            ctx.textAlign = 'center';
-            ctx.fillText(prize.name, prize.x + prize.width/2, prize.y - 5);
           }
         } else {
-          // Draw collected prizes with a dimmed effect
+          // Draw collected prizes with dimmed effect
           ctx.globalAlpha = 0.4;
           if (prizeImages[prize.id]) {
             ctx.save();
@@ -1255,14 +1079,14 @@
         }
       });
       
-      // Draw claw with 3 handles
+      // Draw claw
       drawClaw();
     }
     
-    // Draw the claw with proper 3-handle design
+    // Draw the claw with 3 handles facing downward
     function drawClaw() {
       // Claw cable/rope
-      ctx.strokeStyle = '#FFD700';
+      ctx.strokeStyle = '#C77DFF';
       ctx.lineWidth = 3;
       ctx.setLineDash([2, 4]);
       ctx.beginPath();
@@ -1271,14 +1095,13 @@
       ctx.stroke();
       ctx.setLineDash([]);
       
-      // Claw top connector (where 3 cables meet)
+      // Claw top connector
       ctx.fillStyle = '#FF6BB5';
       ctx.beginPath();
       ctx.arc(clawX, clawY - 25, 12, 0, Math.PI * 2);
       ctx.fill();
       
-      // Draw 3 cables coming from connector to claw body
-      const cableLength = 20;
+      // Draw 3 cables
       for (let i = 0; i < 3; i++) {
         const angle = (i * 120 * Math.PI) / 180;
         const startX = clawX + Math.sin(angle) * 5;
@@ -1286,7 +1109,7 @@
         const endX = clawX + Math.sin(angle) * 10;
         const endY = clawY + Math.cos(angle) * 10;
         
-        ctx.strokeStyle = '#FFD700';
+        ctx.strokeStyle = '#C77DFF';
         ctx.lineWidth = 2;
         ctx.beginPath();
         ctx.moveTo(startX, startY);
@@ -1294,7 +1117,7 @@
         ctx.stroke();
       }
       
-      // Claw body (main part)
+      // Claw body
       ctx.fillStyle = clawOpen ? '#FF4DA6' : '#FF6BB5';
       ctx.beginPath();
       ctx.arc(clawX, clawY, 25, 0, Math.PI * 2);
@@ -1307,10 +1130,12 @@
       ctx.arc(clawX, clawY, 25, 0, Math.PI * 2);
       ctx.stroke();
       
-      // Draw 3 claw arms/handles
+      // Draw 3 claw arms/handles (always facing downward when open)
+      const baseAngle = clawOpen ? Math.PI : 0; // When open, arms point down
       const armLength = clawOpen ? 25 : 15;
+      
       for (let i = 0; i < 3; i++) {
-        const angle = (i * 120 * Math.PI) / 180;
+        const angle = baseAngle + (i * 120 * Math.PI) / 180;
         const startX = clawX + Math.sin(angle) * 20;
         const startY = clawY + Math.cos(angle) * 20;
         const endX = startX + Math.sin(angle) * armLength;
@@ -1332,7 +1157,7 @@
         ctx.fill();
       }
       
-      // Claw center (where arms meet)
+      // Claw center
       ctx.fillStyle = '#FFFFFF';
       ctx.beginPath();
       ctx.arc(clawX, clawY, 8, 0, Math.PI * 2);
@@ -1361,9 +1186,9 @@
       if (clawDropping) {
         clawY += 8;
         
-        // Open claw when near prizes
-        if (clawY > 300 && !clawOpen) {
-          clawOpen = true;
+        // Trigger grab animation when near bottom
+        if (clawY > 350 && !clawAnimation) {
+          triggerGrabAnimation();
         }
         
         // Check if claw reached bottom
@@ -1400,26 +1225,33 @@
       requestAnimationFrame(gameLoop);
     }
     
-    // Check if claw grabbed a prize - IMPROVED GRABBING MECHANICS
+    // Trigger grab animation
+    function triggerGrabAnimation() {
+      clawAnimation = true;
+      clawOpen = false; // Close claw to grab
+      setTimeout(() => {
+        clawAnimation = false;
+      }, 500);
+    }
+    
+    // Check if claw grabbed a prize
     function checkPrizeGrab() {
       let bestPrize = null;
       let bestDistance = Infinity;
       
       for (const prize of prizes) {
         if (!prize.collected) {
-          // Calculate center positions
           const prizeCenterX = prize.x + prize.width / 2;
           const prizeCenterY = prize.y + prize.height / 2;
           const clawCenterX = clawX;
           const clawCenterY = clawY;
           
-          // Calculate distance
           const distanceX = Math.abs(clawCenterX - prizeCenterX);
           const distanceY = Math.abs(clawCenterY - prizeCenterY);
           
           // Check if claw is over the prize
-          if (distanceX < (clawWidth + prize.width) / 2 && 
-              distanceY < (clawHeight + prize.height) / 2) {
+          if (distanceX < (clawWidth + prize.width) / 3 && 
+              distanceY < (clawHeight + prize.height) / 3) {
             
             const totalDistance = Math.sqrt(distanceX * distanceX + distanceY * distanceY);
             
@@ -1432,22 +1264,10 @@
       }
       
       if (bestPrize) {
-        // Calculate success chance based on alignment
-        let successChance = 0.7; // Base chance
-        
-        // Adjust based on how centered the claw is
-        const centeredFactor = 1 - (bestDistance / 50); // Closer to center = better
+        let successChance = 0.8;
+        const centeredFactor = 1 - (bestDistance / 50);
         successChance *= Math.max(0.3, centeredFactor);
         
-        // Adjust based on difficulty
-        if (difficulty === 'medium') successChance *= 0.65;
-        if (difficulty === 'hard') successChance *= 0.4;
-        
-        // Adjust based on prize rarity
-        const rarityFactor = 1 - (bestPrize.points - 40) / 70;
-        successChance *= rarityFactor;
-        
-        // Random chance with visual feedback
         if (Math.random() < successChance) {
           clawHasPrize = true;
           currentPrize = bestPrize;
@@ -1461,7 +1281,7 @@
       console.log("😢 Claw missed!");
     }
     
-    // Win game - SHOW THE ACTUAL PRIZE IMAGE!
+    // Win game
     function winGame(prize) {
       gameActive = false;
       
@@ -1478,14 +1298,13 @@
       // Update UI
       updateUI();
       
-      // Show win message WITH THE ACTUAL PRIZE IMAGE
+      // Show win message
       prizeNameEl.textContent = prize.name;
       prizePointsEl.textContent = prize.points;
       wonPrizeImageEl.src = prize.image;
       wonPrizeImageEl.alt = prize.name;
       winMessageEl.classList.remove('hidden');
       
-      // Play win sound (simulated)
       console.log(`🎉 Yay! You won ${prize.name}! ${prize.points} points!`);
     }
     
@@ -1510,7 +1329,7 @@
     // Setup event listeners
     function setupEventListeners() {
       // Control buttons
-      const controlButtons = [leftBtn, rightBtn, upBtn, downBtn];
+      const controlButtons = [leftBtn, rightBtn];
       controlButtons.forEach(btn => {
         btn.addEventListener('mousedown', () => btn.classList.add('active'));
         btn.addEventListener('mouseup', () => btn.classList.remove('active'));
@@ -1555,30 +1374,12 @@
         noTokensMessageEl.classList.add('hidden');
         console.log('✨ +20 Tokens added!');
         
-        // Create heart particles
         createHeartParticles(window.innerWidth/2, window.innerHeight/2, 8);
       };
       addTokensBtn.addEventListener('click', addTokensFunc);
       if (getMoreTokensBtn) {
         getMoreTokensBtn.addEventListener('click', addTokensFunc);
       }
-      
-      // Difficulty buttons
-      easyBtn.addEventListener('click', () => setDifficulty('easy'));
-      mediumBtn.addEventListener('click', () => {
-        if (score >= 100) {
-          setDifficulty('medium');
-        } else {
-          alert('🌸 You need 100+ points to unlock Medium mode! Keep playing!');
-        }
-      });
-      hardBtn.addEventListener('click', () => {
-        if (score >= 300) {
-          setDifficulty('hard');
-        } else {
-          alert('🎯 You need 300+ points to unlock Hard mode! You can do it!');
-        }
-      });
       
       // Keyboard controls
       document.addEventListener('keydown', (e) => {
@@ -1591,14 +1392,6 @@
             break;
           case 'ArrowRight':
             rightBtn.classList.add('active');
-            e.preventDefault();
-            break;
-          case 'ArrowUp':
-            upBtn.classList.add('active');
-            e.preventDefault();
-            break;
-          case 'ArrowDown':
-            downBtn.classList.add('active');
             e.preventDefault();
             break;
           case ' ':
@@ -1623,12 +1416,6 @@
           case 'ArrowRight':
             rightBtn.classList.remove('active');
             break;
-          case 'ArrowUp':
-            upBtn.classList.remove('active');
-            break;
-          case 'ArrowDown':
-            downBtn.classList.remove('active');
-            break;
         }
       });
     }
@@ -1638,6 +1425,7 @@
       if (!gameActive || clawDropping || clawRaising || tokens <= 0) return;
       
       clawDropping = true;
+      clawOpen = true; // Open claw when dropping
       console.log('👇 Claw dropping!');
     }
     
@@ -1649,45 +1437,8 @@
       clawRaising = false;
       clawHasPrize = false;
       clawOpen = false;
+      clawAnimation = false;
       currentPrize = null;
-    }
-    
-    // Set difficulty level
-    function setDifficulty(level) {
-      difficulty = level;
-      
-      // Reset all button styles
-      [easyBtn, mediumBtn, hardBtn].forEach(btn => {
-        btn.querySelector('div:last-child').textContent = 'LOCKED';
-      });
-      
-      // Set active difficulty
-      if (level === 'easy') {
-        easyBtn.querySelector('div:last-child').textContent = 'ACTIVE';
-        clawSpeed = 5;
-        clawWidth = 40;
-        clawHeight = 40;
-        document.getElementById('playCost').textContent = '1';
-      } else if (level === 'medium') {
-        mediumBtn.querySelector('div:last-child').textContent = 'ACTIVE';
-        clawSpeed = 7;
-        clawWidth = 35;
-        clawHeight = 35;
-        document.getElementById('playCost').textContent = '2';
-      } else if (level === 'hard') {
-        hardBtn.querySelector('div:last-child').textContent = 'ACTIVE';
-        clawSpeed = 9;
-        clawWidth = 30;
-        clawHeight = 30;
-        document.getElementById('playCost').textContent = '3';
-      }
-      
-      console.log(`🌸 ${level.charAt(0).toUpperCase() + level.slice(1)} Mode activated!`);
-      
-      // Create heart particles
-      const btn = document.getElementById(`${level}Btn`);
-      const rect = btn.getBoundingClientRect();
-      createHeartParticles(rect.left + rect.width/2, rect.top + rect.height/2, 5);
     }
     
     // Initialize game
