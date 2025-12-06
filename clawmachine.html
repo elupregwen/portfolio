@@ -31,10 +31,6 @@
       overflow-x: hidden;
     }
 
-    .cute-font {
-      font-family: 'Comic Neue', cursive;
-    }
-
     .kawaii-font {
       font-family: 'Mochiy Pop P One', sans-serif;
       letter-spacing: 1px;
@@ -77,16 +73,6 @@
       }
     }
 
-    @keyframes rainbow {
-      0% {
-        filter: hue-rotate(0deg);
-      }
-
-      100% {
-        filter: hue-rotate(360deg);
-      }
-    }
-
     @keyframes slideIn {
       0% {
         transform: translateY(-30px);
@@ -109,10 +95,6 @@
 
     .pulse-animation {
       animation: pulse 2s ease-in-out infinite;
-    }
-
-    .rainbow-animation {
-      animation: rainbow 3s linear infinite;
     }
 
     .slide-in {
@@ -148,26 +130,11 @@
       letter-spacing: 0.5px;
     }
 
-    .kawaii-btn::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-      transition: left 0.5s ease;
-    }
-
     .kawaii-btn:hover {
       transform: translateY(-3px);
       box-shadow:
         0 7px 0 #ff3385,
         0 12px 20px rgba(255, 107, 181, 0.4);
-    }
-
-    .kawaii-btn:hover::before {
-      left: 100%;
     }
 
     .kawaii-btn:active {
@@ -265,23 +232,6 @@
       border: 2px dashed #ff9ec0;
       padding: 12px;
       box-shadow: 0 4px 10px rgba(255, 107, 181, 0.1);
-      position: relative;
-    }
-
-    .sticker::before {
-      content: "★";
-      position: absolute;
-      top: -8px;
-      right: 8px;
-      color: #ff6bb5;
-      font-size: 16px;
-      background: white;
-      border-radius: 50%;
-      width: 16px;
-      height: 16px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
     }
 
     /* Heart particles */
@@ -298,25 +248,9 @@
       border-radius: 12px;
       border: 2px solid #ffb3c6;
       padding: 12px;
-      position: relative;
     }
 
-    .instructions::before {
-      content: "💡";
-      position: absolute;
-      top: -12px;
-      left: 15px;
-      background: white;
-      border-radius: 50%;
-      width: 24px;
-      height: 24px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border: 2px solid #ffb3c6;
-    }
-
-    /* Claw Machine Container - SINGLE MACHINE */
+    /* Claw Machine Container */
     .machine-container {
       background: linear-gradient(145deg, #ff3385, #ff6bb5);
       border-radius: 20px;
@@ -325,32 +259,6 @@
         0 15px 30px rgba(0, 0, 0, 0.2),
         inset 0 -5px 15px rgba(0, 0, 0, 0.1);
       border: 5px solid #ff4da6;
-      position: relative;
-    }
-
-    .machine-container::before {
-      content: "";
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      right: 10px;
-      bottom: 10px;
-      border: 2px solid rgba(255, 255, 255, 0.3);
-      border-radius: 10px;
-      pointer-events: none;
-    }
-
-    /* Control Panel - Now part of the same machine */
-    .control-panel {
-      background: linear-gradient(145deg, #444, #222);
-      border-radius: 15px;
-      padding: 15px;
-      box-shadow:
-        0 8px 15px rgba(0, 0, 0, 0.2),
-        inset 0 -3px 8px rgba(0, 0, 0, 0.3),
-        inset 0 0 10px rgba(255, 255, 255, 0.1);
-      border: 4px solid #333;
-      margin-top: 10px;
       position: relative;
     }
 
@@ -368,65 +276,12 @@
       border: 2px solid #ff4da6;
     }
 
-    .prize-image-small {
-      width: 50px;
-      height: 50px;
-      object-fit: contain;
-      border-radius: 6px;
-      background: white;
-      padding: 3px;
-    }
-
-    /* Coin slot */
-    .coin-slot {
-      width: 40px;
-      height: 15px;
-      background: linear-gradient(145deg, #666, #333);
-      border-radius: 4px;
-      border: 2px solid #222;
-      margin: 0 auto 10px;
-      position: relative;
-    }
-
-    .coin-slot::after {
-      content: "";
-      position: absolute;
-      top: 2px;
-      left: 5px;
-      right: 5px;
-      height: 3px;
-      background: linear-gradient(90deg, #888, #aaa);
-      border-radius: 2px;
-    }
-
-    /* Joystick base */
-    .joystick-base {
-      width: 60px;
-      height: 60px;
-      background: linear-gradient(145deg, #ff9ec0, #ff6bb5);
-      border-radius: 50%;
-      border: 3px solid #ff4da6;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow:
-        inset 0 2px 4px rgba(255, 255, 255, 0.2),
-        0 4px 8px rgba(0, 0, 0, 0.3);
-    }
-
-    /* Single machine design */
-    .single-machine {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .machine-glass {
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 12px;
-      padding: 15px;
-      margin-bottom: 15px;
-      border: 3px solid rgba(255, 255, 255, 0.2);
+    /* MAKE TIPS SECTION SAME WIDTH AS MACHINE */
+    .tips-container {
+      width: 100%;
+      max-width: 700px; /* Matches canvas width */
+      margin: 0 auto;
+      margin-top: 1rem;
     }
   </style>
 </head>
@@ -511,7 +366,6 @@
 
             <div id="prizeCollection" class="grid grid-cols-4 gap-2">
               <!-- Collection will be populated by JavaScript -->
-              <!-- Only shows collected prizes -->
             </div>
 
             <p class="text-center text-xs text-gray-600 mt-3">
@@ -520,86 +374,81 @@
           </div>
         </div>
 
-        <!-- Center Panel - SINGLE Claw Machine -->
+        <!-- Center Panel - Claw Machine -->
         <div class="lg:col-span-2">
-          <div class="single-machine">
-            <!-- Main Machine Container -->
-            <div class="machine-container slide-in" style="animation-delay: 0.3s;">
-              <!-- Coin Slot -->
-              <div class="coin-slot mb-3"></div>
+          <!-- Main Machine Container -->
+          <div class="machine-container slide-in" style="animation-delay: 0.3s;">
 
-              <!-- Machine Glass Area -->
-              <div class="machine-glass">
-                <!-- Game Canvas Container -->
-                <div class="text-center">
-                  <canvas id="gameCanvas" width="700" height="450" class="w-full"></canvas>
+            <!-- Game Canvas Container -->
+            <div class="text-center">
+              <canvas id="gameCanvas" width="700" height="450" class="w-full"></canvas>
 
-                  <!-- Win Message -->
-                  <div id="winMessage" class="absolute inset-0 flex items-center justify-center hidden">
-                    <div class="kawaii-modal p-6 text-center max-w-xs">
-                      <div class="text-5xl mb-3 bounce-animation">🎉</div>
-                      <h3 class="text-2xl font-bold kawaii-font text-pink-600 mb-2">YOU WON!</h3>
-                      <div class="mb-3">
-                        <img id="wonPrizeImage" src="" alt="Won Prize"
-                          class="w-24 h-24 object-cover rounded-xl mx-auto border-3 border-pink-300">
-                      </div>
-                      <p class="text-lg text-gray-700" id="prizeName">Cute Plushie</p>
-                      <p class="text-base text-purple-500 mt-1">+<span id="prizePoints">50</span> points!</p>
-                      <button id="continueBtn" class="kawaii-btn px-6 py-2 mt-4 text-base">
-                        Keep Playing! 
-                      </button>
-                    </div>
+              <!-- Win Message -->
+              <div id="winMessage" class="absolute inset-0 flex items-center justify-center hidden">
+                <div class="kawaii-modal p-6 text-center max-w-xs">
+                  <div class="text-5xl mb-3 bounce-animation">🎉</div>
+                  <h3 class="text-2xl font-bold kawaii-font text-pink-600 mb-2">YOU WON!</h3>
+                  <div class="mb-3">
+                    <!-- REMOVED BORDER/BACKGROUND FROM PRIZE IMAGE -->
+                    <img id="wonPrizeImage" src="" alt="Won Prize" class="w-24 h-24 object-contain mx-auto">
                   </div>
-
-                  <!-- Lose Message -->
-                  <div id="loseMessage" class="absolute inset-0 flex items-center justify-center hidden">
-                    <div class="kawaii-modal p-6 text-center max-w-xs">
-                      <div class="text-5xl mb-3 wiggle-animation">😢</div>
-                      <h3 class="text-2xl font-bold kawaii-font text-purple-600 mb-2">OH NO!</h3>
-                      <p class="text-lg text-gray-700">The prize slipped away!</p>
-                      <button id="tryAgainBtn" class="kawaii-btn px-6 py-2 mt-4 text-base">
-                        Try Again! 
-                      </button>
-                    </div>
-                  </div>
-
-                  <!-- No Tokens Message -->
-                  <div id="noTokensMessage" class="absolute inset-0 flex items-center justify-center hidden">
-                    <div class="kawaii-modal p-6 text-center max-w-xs">
-                      <div class="text-5xl mb-3 pulse-animation">🪙</div>
-                      <h3 class="text-2xl font-bold kawaii-font text-purple-600 mb-2">OUT OF TOKENS!</h3>
-                      <p class="text-lg text-gray-700 mb-3">Get more to keep playing!</p>
-                      <button id="getMoreTokensBtn" class="kawaii-btn px-6 py-2 text-base">
-                        Get 20 Tokens ✨
-                      </button>
-                    </div>
-                  </div>
+                  <p class="text-lg text-gray-700" id="prizeName">Cute Plushie</p>
+                  <p class="text-base text-purple-500 mt-1">+<span id="prizePoints">50</span> points!</p>
+                  <button id="continueBtn" class="kawaii-btn px-6 py-2 mt-4 text-base">
+                    Keep Playing!
+                  </button>
                 </div>
               </div>
 
-              <!-- Control Layout -->
-              <div class="flex flex-col items-center">
-                <!-- Arrow Controls -->
-                <div class="mb-3">
-                  <div class="grid grid-cols-3 gap-2 items-center justify-center">
+              <!-- Lose Message -->
+              <div id="loseMessage" class="absolute inset-0 flex items-center justify-center hidden">
+                <div class="kawaii-modal p-6 text-center max-w-xs">
+                  <div class="text-5xl mb-3 wiggle-animation">😢</div>
+                  <h3 class="text-2xl font-bold kawaii-font text-purple-600 mb-2">OH NO!</h3>
+                  <p class="text-lg text-gray-700">The prize slipped away!</p>
+                  <button id="tryAgainBtn" class="kawaii-btn px-6 py-2 mt-4 text-base">
+                    Try Again!
+                  </button>
+                </div>
+              </div>
 
-                    <button id="leftBtn" class="control-btn">
-                      <i class="fas fa-arrow-left"></i>
-                    </button>
-
-                    <button id="dropBtn" class="joystick-base">
-                      <div class="text-xl">🕹️</div>
-                    </button>
-
-                    <button id="rightBtn" class="control-btn">
-                      <i class="fas fa-arrow-right"></i>
-                    </button>
-                  </div>
+              <!-- No Tokens Message -->
+              <div id="noTokensMessage" class="absolute inset-0 flex items-center justify-center hidden">
+                <div class="kawaii-modal p-6 text-center max-w-xs">
+                  <div class="text-5xl mb-3 pulse-animation">🪙</div>
+                  <h3 class="text-2xl font-bold kawaii-font text-purple-600 mb-2">OUT OF TOKENS!</h3>
+                  <p class="text-lg text-gray-700 mb-3">Get more to keep playing!</p>
+                  <button id="getMoreTokensBtn" class="kawaii-btn px-6 py-2 text-base">
+                    Get 20 Tokens ✨
+                  </button>
                 </div>
               </div>
             </div>
 
-            <!-- Tips Section -->
+            <!-- Control Layout -->
+            <div class="flex flex-col items-center mt-4">
+              <!-- Arrow Controls -->
+              <div class="mb-3">
+                <div class="grid grid-cols-3 gap-2 items-center justify-center">
+
+                  <button id="leftBtn" class="control-btn">
+                    <i class="fas fa-arrow-left"></i>
+                  </button>
+
+                  <button id="dropBtn" class="w-16 h-16 rounded-full bg-gradient-to-r from-pink-400 to-purple-400 flex items-center justify-center border-3 border-pink-500 shadow-lg">
+                    <div class="text-2xl">🕹️</div>
+                  </button>
+
+                  <button id="rightBtn" class="control-btn">
+                    <i class="fas fa-arrow-right"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tips Section - NOW SAME WIDTH AS MACHINE -->
+          <div class="tips-container">
             <div class="instructions slide-in mt-4" style="animation-delay: 0.5s;">
               <h4 class="text-lg font-bold kawaii-font text-purple-600 mb-2">
                 <i class="fas fa-lightbulb mr-2"></i> Tips to Win
@@ -622,7 +471,6 @@
           </div>
         </div>
       </div>
-
     </div>
   </div>
 
@@ -649,150 +497,22 @@
 
     // ALL 16 PRIZES
     const prizes = [
-      {
-        id: 1,
-        name: "Jiji Black Cat",
-        image: "clawmachine/cat1.png",
-        points: 50,
-        color: "#FFB3C6",
-        x: 70, y: 350, width: 60, height: 60,
-        collected: false
-      },
-      {
-        id: 2,
-        name: "White Plushie",
-        image: "clawmachine/cat1.png",
-        points: 45,
-        color: "#FF9EBD",
-        x: 140, y: 370, width: 55, height: 55,
-        collected: false
-      },
-      {
-        id: 3,
-        name: "Molang",
-        image: "clawmachine/cat1.png",
-        points: 60,
-        color: "#FF6B9D",
-        x: 210, y: 360, width: 65, height: 65,
-        collected: false
-      },
-      {
-        id: 4,
-        name: "Nailong",
-        image: "clawmachine/cat1.png",
-        points: 55,
-        color: "#C77DFF",
-        x: 280, y: 380, width: 60, height: 60,
-        collected: false
-      },
-      {
-        id: 5,
-        name: "Mushroom",
-        image: "clawmachine/cat1.png",
-        points: 40,
-        color: "#FFD166",
-        x: 350, y: 350, width: 55, height: 55,
-        collected: false
-      },
-      {
-        id: 6,
-        name: "Cow",
-        image: "clawmachine/cat1.png",
-        points: 50,
-        color: "#FF9EBD",
-        x: 420, y: 370, width: 60, height: 60,
-        collected: false
-      },
-      {
-        id: 7,
-        name: "Axolotl",
-        image: "clawmachine/cat1.png",
-        points: 45,
-        color: "#FF6B9D",
-        x: 490, y: 360, width: 55, height: 55,
-        collected: false
-      },
-      {
-        id: 8,
-        name: "Cat in Frog Hat",
-        image: "clawmachine/cat1.png",
-        points: 55,
-        color: "#B8F2E6",
-        x: 560, y: 380, width: 60, height: 60,
-        collected: false
-      },
-      {
-        id: 9,
-        name: "Cat in Shark Hat",
-        image: "clawmachine/cat1.png",
-        points: 60,
-        color: "#C77DFF",
-        x: 90, y: 400, width: 65, height: 65,
-        collected: false
-      },
-      {
-        id: 10,
-        name: "Cinnamoroll",
-        image: "clawmachine/cat1.png",
-        points: 65,
-        color: "#FF6B6B",
-        x: 180, y: 390, width: 70, height: 70,
-        collected: false
-      },
-      {
-        id: 11,
-        name: "Banana Cat",
-        image: "clawmachine/cat1.png",
-        points: 40,
-        color: "#A3BFFA",
-        x: 270, y: 400, width: 60, height: 60,
-        collected: false
-      },
-      {
-        id: 12,
-        name: "Capybara",
-        image: "clawmachine/cat1.png",
-        points: 50,
-        color: "#B8F2E6",
-        x: 360, y: 390, width: 65, height: 65,
-        collected: false
-      },
-      {
-        id: 13,
-        name: "Penguin",
-        image: "clawmachine/cat1.png",
-        points: 55,
-        color: "#FFB3C6",
-        x: 450, y: 400, width: 60, height: 60,
-        collected: false
-      },
-      {
-        id: 14,
-        name: "Hamster",
-        image: "clawmachine/cat1.png",
-        points: 45,
-        color: "#FF9EBD",
-        x: 540, y: 390, width: 55, height: 55,
-        collected: false
-      },
-      {
-        id: 15,
-        name: "Hello Kitty Pancakes",
-        image: "clawmachine/cat1.png",
-        points: 70,
-        color: "#FF6B9D",
-        x: 320, y: 350, width: 75, height: 75,
-        collected: false
-      },
-      {
-        id: 16,
-        name: "Oreo Dog",
-        image: "clawmachine/cat1.png",
-        points: 75,
-        color: "#C77DFF",
-        x: 500, y: 350, width: 70, height: 70,
-        collected: false
-      }
+      { id: 1, name: "Jiji Black Cat", image: "clawmachine/cat1.png", points: 50, color: "#FFB3C6", x: 70, y: 350, width: 60, height: 60, collected: false },
+      { id: 2, name: "White Plushie", image: "clawmachine/cat1.png", points: 45, color: "#FF9EBD", x: 140, y: 370, width: 55, height: 55, collected: false },
+      { id: 3, name: "Molang", image: "clawmachine/cat1.png", points: 60, color: "#FF6B9D", x: 210, y: 360, width: 65, height: 65, collected: false },
+      { id: 4, name: "Nailong", image: "clawmachine/cat1.png", points: 55, color: "#C77DFF", x: 280, y: 380, width: 60, height: 60, collected: false },
+      { id: 5, name: "Mushroom", image: "clawmachine/cat1.png", points: 40, color: "#FFD166", x: 350, y: 350, width: 55, height: 55, collected: false },
+      { id: 6, name: "Cow", image: "clawmachine/cat1.png", points: 50, color: "#FF9EBD", x: 420, y: 370, width: 60, height: 60, collected: false },
+      { id: 7, name: "Axolotl", image: "clawmachine/cat1.png", points: 45, color: "#FF6B9D", x: 490, y: 360, width: 55, height: 55, collected: false },
+      { id: 8, name: "Cat in Frog Hat", image: "clawmachine/cat1.png", points: 55, color: "#B8F2E6", x: 560, y: 380, width: 60, height: 60, collected: false },
+      { id: 9, name: "Cat in Shark Hat", image: "clawmachine/cat1.png", points: 60, color: "#C77DFF", x: 90, y: 400, width: 65, height: 65, collected: false },
+      { id: 10, name: "Cinnamoroll", image: "clawmachine/cat1.png", points: 65, color: "#FF6B6B", x: 180, y: 390, width: 70, height: 70, collected: false },
+      { id: 11, name: "Banana Cat", image: "clawmachine/cat1.png", points: 40, color: "#A3BFFA", x: 270, y: 400, width: 60, height: 60, collected: false },
+      { id: 12, name: "Capybara", image: "clawmachine/cat1.png", points: 50, color: "#B8F2E6", x: 360, y: 390, width: 65, height: 65, collected: false },
+      { id: 13, name: "Penguin", image: "clawmachine/cat1.png", points: 55, color: "#FFB3C6", x: 450, y: 400, width: 60, height: 60, collected: false },
+      { id: 14, name: "Hamster", image: "clawmachine/cat1.png", points: 45, color: "#FF9EBD", x: 540, y: 390, width: 55, height: 55, collected: false },
+      { id: 15, name: "Hello Kitty Pancakes", image: "clawmachine/cat1.png", points: 70, color: "#FF6B9D", x: 320, y: 350, width: 75, height: 75, collected: false },
+      { id: 16, name: "Oreo Dog", image: "clawmachine/cat1.png", points: 75, color: "#C77DFF", x: 500, y: 350, width: 70, height: 70, collected: false }
     ];
 
     // Cache images
@@ -877,29 +597,27 @@
       gameLoop();
     }
 
-    // Load prize images with fallbacks
+    // Load prize images
     async function loadPrizeImages() {
       const loadPromises = prizes.map(prize => {
         return new Promise((resolve) => {
           const img = new Image();
-          img.crossOrigin = "anonymous";
           img.onload = () => {
             prizeImages[prize.id] = img;
             prizeImageLoaded[prize.id] = true;
             resolve();
           };
           img.onerror = () => {
-            // Create a fallback colored rectangle
+            // Create fallback
             const fallbackCanvas = document.createElement('canvas');
             fallbackCanvas.width = 100;
             fallbackCanvas.height = 100;
             const fallbackCtx = fallbackCanvas.getContext('2d');
 
-            // Draw cute fallback pattern
             fallbackCtx.fillStyle = prize.color;
             fallbackCtx.fillRect(0, 0, 100, 100);
 
-            // Draw cute face
+            // Simple face
             fallbackCtx.fillStyle = 'white';
             fallbackCtx.beginPath();
             fallbackCtx.arc(30, 30, 15, 0, Math.PI * 2);
@@ -911,13 +629,6 @@
             fallbackCtx.arc(30, 30, 7, 0, Math.PI * 2);
             fallbackCtx.arc(70, 30, 7, 0, Math.PI * 2);
             fallbackCtx.fill();
-
-            // Smile
-            fallbackCtx.strokeStyle = 'black';
-            fallbackCtx.lineWidth = 3;
-            fallbackCtx.beginPath();
-            fallbackCtx.arc(50, 50, 20, 0.2 * Math.PI, 0.8 * Math.PI);
-            fallbackCtx.stroke();
 
             prizeImages[prize.id] = fallbackCanvas;
             prizeImageLoaded[prize.id] = false;
@@ -941,18 +652,17 @@
       winsBarEl.style.width = `${Math.min(wins * 10, 100)}%`;
       collectionBarEl.style.width = `${(collectedPrizes / totalPrizes) * 100}%`;
 
-      // Update prize collection display (only show collected prizes)
+      // Update prize collection display
       updatePrizeCollection();
     }
 
-    // Update prize collection display - ONLY show collected prizes
+    // Update prize collection display
     function updatePrizeCollection() {
       prizeCollectionEl.innerHTML = '';
 
       const collectedPrizesList = prizes.filter(prize => prize.collected);
 
       if (collectedPrizesList.length === 0) {
-        // Show empty message
         const emptyMessage = document.createElement('div');
         emptyMessage.className = 'col-span-4 text-center py-4';
         emptyMessage.innerHTML = `
@@ -962,7 +672,6 @@
         `;
         prizeCollectionEl.appendChild(emptyMessage);
       } else {
-        // Show collected prizes
         collectedPrizesList.forEach(prize => {
           const prizeElement = document.createElement('div');
           prizeElement.className = 'prize-slot';
@@ -971,13 +680,10 @@
             const img = document.createElement('img');
             img.src = prize.image;
             img.alt = prize.name;
-            img.className = 'prize-image-small';
+            // REMOVED BACKGROUND/BORDER FROM COLLECTION IMAGES
+            img.className = 'w-10 h-10 object-contain';
             prizeElement.appendChild(img);
-
-            // Add tooltip
-            prizeElement.title = `${prize.name} (${prize.points} points)`;
           } else {
-            // Fallback colored square
             const colorBox = document.createElement('div');
             colorBox.className = 'w-10 h-10 rounded';
             colorBox.style.backgroundColor = prize.color;
@@ -1005,77 +711,34 @@
       ctx.fillRect(0, 0, 15, canvas.height);
       ctx.fillRect(canvas.width - 15, 0, 15, canvas.height);
 
-      // Decorate machine frame
-      ctx.fillStyle = '#FFFFFF';
-      for (let i = 30; i < canvas.width - 30; i += 40) {
-        ctx.beginPath();
-        ctx.arc(i, 7, 6, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.beginPath();
-        ctx.arc(i, canvas.height - 7, 6, 0, Math.PI * 2);
-        ctx.fill();
-      }
-
       // Draw prize area floor
       ctx.fillStyle = '#FFF0F7';
       ctx.fillRect(30, 400, canvas.width - 60, 35);
 
-      // Draw floor pattern
-      ctx.strokeStyle = '#FF9EC0';
-      ctx.lineWidth = 2;
-      ctx.setLineDash([4, 4]);
-      ctx.beginPath();
-      ctx.moveTo(30, 420);
-      ctx.lineTo(canvas.width - 30, 420);
-      ctx.stroke();
-      ctx.setLineDash([]);
-
-      // Draw ONLY uncollected prizes
+      // Draw ONLY uncollected prizes - NO BORDERS/BACKGROUNDS
       prizes.forEach(prize => {
-        if (!prize.collected) {
-          // Draw prize shadow
-          ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
-          ctx.fillRect(prize.x + 3, prize.y + 3, prize.width, prize.height);
-
-          // Try to draw prize image
-          if (prizeImages[prize.id]) {
-            ctx.save();
-            ctx.beginPath();
-            ctx.roundRect(prize.x, prize.y, prize.width, prize.height, 8);
-            ctx.clip();
-
-            if (prizeImageLoaded[prize.id]) {
-              ctx.drawImage(prizeImages[prize.id], prize.x, prize.y, prize.width, prize.height);
-            } else {
-              const pattern = ctx.createPattern(prizeImages[prize.id], 'no-repeat');
-              ctx.fillStyle = pattern || prize.color;
-              ctx.fillRect(prize.x, prize.y, prize.width, prize.height);
-            }
-
-            ctx.restore();
-
-            // Draw glowing border
-            ctx.strokeStyle = prize.points >= 60 ? '#FF6BB5' : prize.points >= 50 ? '#FF9EC0' : '#FFB3C6';
-            ctx.lineWidth = prize.points >= 60 ? 3 : prize.points >= 50 ? 2 : 1;
-            ctx.beginPath();
-            ctx.roundRect(prize.x, prize.y, prize.width, prize.height, 8);
-            ctx.stroke();
-
-            // Draw prize name
-            ctx.fillStyle = '#FF4DA6';
-            ctx.font = 'bold 9px Arial';
-            ctx.textAlign = 'center';
-            ctx.fillText(prize.name, prize.x + prize.width / 2, prize.y - 5);
+        if (!prize.collected && prizeImages[prize.id]) {
+          // REMOVED shadow and borders
+          
+          // Draw prize image only (no background/border)
+          if (prizeImageLoaded[prize.id]) {
+            ctx.drawImage(prizeImages[prize.id], prize.x, prize.y, prize.width, prize.height);
+          } else {
+            // Fallback
+            const pattern = ctx.createPattern(prizeImages[prize.id], 'no-repeat');
+            ctx.fillStyle = pattern || prize.color;
+            ctx.fillRect(prize.x, prize.y, prize.width, prize.height);
           }
+          
+          // REMOVED border and text around prizes
         }
-        // Collected prizes are NOT drawn on the game canvas
       });
 
       // Draw claw
       drawClaw();
     }
 
-    // Draw the claw with 3 handles facing downward
+    // Draw the claw
     function drawClaw() {
       // Claw cable/rope
       ctx.strokeStyle = '#C77DFF';
@@ -1093,36 +756,13 @@
       ctx.arc(clawX, clawY - 20, 10, 0, Math.PI * 2);
       ctx.fill();
 
-      // Draw 3 cables
-      for (let i = 0; i < 3; i++) {
-        const angle = (i * 120 * Math.PI) / 180;
-        const startX = clawX + Math.sin(angle) * 4;
-        const startY = clawY - 20 + Math.cos(angle) * 4;
-        const endX = clawX + Math.sin(angle) * 8;
-        const endY = clawY + Math.cos(angle) * 8;
-
-        ctx.strokeStyle = '#C77DFF';
-        ctx.lineWidth = 1.5;
-        ctx.beginPath();
-        ctx.moveTo(startX, startY);
-        ctx.lineTo(endX, endY);
-        ctx.stroke();
-      }
-
       // Claw body
       ctx.fillStyle = clawOpen ? '#FF3385' : '#FF4DA6';
       ctx.beginPath();
       ctx.arc(clawX, clawY, 20, 0, Math.PI * 2);
       ctx.fill();
 
-      // Claw body border
-      ctx.strokeStyle = '#FFFFFF';
-      ctx.lineWidth = 2;
-      ctx.beginPath();
-      ctx.arc(clawX, clawY, 20, 0, Math.PI * 2);
-      ctx.stroke();
-
-      // Draw 3 claw arms/handles (always facing downward when open)
+      // Draw 3 claw arms
       const baseAngle = clawOpen ? Math.PI : 0;
       const armLength = clawOpen ? 20 : 12;
 
@@ -1133,7 +773,6 @@
         const endX = startX + Math.sin(angle) * armLength;
         const endY = startY + Math.cos(angle) * armLength;
 
-        // Claw arm
         ctx.strokeStyle = '#FFFFFF';
         ctx.lineWidth = 4;
         ctx.lineCap = 'round';
@@ -1141,32 +780,14 @@
         ctx.moveTo(startX, startY);
         ctx.lineTo(endX, endY);
         ctx.stroke();
-
-        // Claw tip
-        ctx.fillStyle = '#FFD700';
-        ctx.beginPath();
-        ctx.arc(endX, endY, 5, 0, Math.PI * 2);
-        ctx.fill();
       }
-
-      // Claw center
-      ctx.fillStyle = '#FFFFFF';
-      ctx.beginPath();
-      ctx.arc(clawX, clawY, 6, 0, Math.PI * 2);
-      ctx.fill();
-
-      // Center dot
-      ctx.fillStyle = '#FF3385';
-      ctx.beginPath();
-      ctx.arc(clawX, clawY, 3, 0, Math.PI * 2);
-      ctx.fill();
     }
 
     // Game loop
     function gameLoop() {
       if (!gameActive) return;
 
-      // Move claw based on active buttons
+      // Move claw
       if (leftBtn.classList.contains('active') && clawX > 60) {
         clawX -= clawSpeed;
       }
@@ -1178,12 +799,10 @@
       if (clawDropping) {
         clawY += 8;
 
-        // Trigger grab animation when near bottom
         if (clawY > 300 && !clawAnimation) {
           triggerGrabAnimation();
         }
 
-        // Check if claw reached bottom
         if (clawY > 400) {
           clawDropping = false;
           clawRaising = true;
@@ -1195,12 +814,10 @@
       if (clawRaising) {
         clawY -= 6;
 
-        // Close claw when raising
         if (clawOpen && clawY < 320) {
           clawOpen = false;
         }
 
-        // Check if claw reached top
         if (clawY <= 50) {
           clawRaising = false;
           clawOpen = false;
@@ -1220,7 +837,7 @@
     // Trigger grab animation
     function triggerGrabAnimation() {
       clawAnimation = true;
-      clawOpen = false; // Close claw to grab
+      clawOpen = false;
       setTimeout(() => {
         clawAnimation = false;
       }, 500);
@@ -1235,13 +852,9 @@
         if (!prize.collected) {
           const prizeCenterX = prize.x + prize.width / 2;
           const prizeCenterY = prize.y + prize.height / 2;
-          const clawCenterX = clawX;
-          const clawCenterY = clawY;
+          const distanceX = Math.abs(clawX - prizeCenterX);
+          const distanceY = Math.abs(clawY - prizeCenterY);
 
-          const distanceX = Math.abs(clawCenterX - prizeCenterX);
-          const distanceY = Math.abs(clawCenterY - prizeCenterY);
-
-          // Check if claw is over the prize
           if (distanceX < (clawWidth + prize.width) / 3 &&
             distanceY < (clawHeight + prize.height) / 3) {
 
@@ -1275,20 +888,16 @@
     function winGame(prize) {
       gameActive = false;
 
-      // Update game state
       prize.collected = true;
       score += prize.points;
       wins++;
       collectedPrizes++;
       tokens -= 1;
 
-      // Create heart particles
       createHeartParticles(canvas.offsetLeft + canvas.width / 2, canvas.offsetTop + canvas.height / 2, 10);
 
-      // Update UI
       updateUI();
 
-      // Show win message
       prizeNameEl.textContent = prize.name;
       prizePointsEl.textContent = prize.points;
       wonPrizeImageEl.src = prize.image;
@@ -1301,10 +910,8 @@
       gameActive = false;
       tokens -= 1;
 
-      // Update UI
       updateUI();
 
-      // Check if out of tokens
       if (tokens <= 0) {
         noTokensMessageEl.classList.remove('hidden');
       } else {
@@ -1320,11 +927,6 @@
         btn.addEventListener('mousedown', () => btn.classList.add('active'));
         btn.addEventListener('mouseup', () => btn.classList.remove('active'));
         btn.addEventListener('mouseleave', () => btn.classList.remove('active'));
-        btn.addEventListener('touchstart', (e) => {
-          e.preventDefault();
-          btn.classList.add('active');
-        });
-        btn.addEventListener('touchend', () => btn.classList.remove('active'));
       });
 
       // Drop button
@@ -1426,22 +1028,6 @@
 
     // Initialize game
     document.addEventListener('DOMContentLoaded', initGame);
-
-    // Add roundRect support for older browsers
-    if (!CanvasRenderingContext2D.prototype.roundRect) {
-      CanvasRenderingContext2D.prototype.roundRect = function (x, y, width, height, radius) {
-        if (width < 2 * radius) radius = width / 2;
-        if (height < 2 * radius) radius = height / 2;
-        this.beginPath();
-        this.moveTo(x + radius, y);
-        this.arcTo(x + width, y, x + width, y + height, radius);
-        this.arcTo(x + width, y + height, x, y + height, radius);
-        this.arcTo(x, y + height, x, y, radius);
-        this.arcTo(x, y, x + width, y, radius);
-        this.closePath();
-        return this;
-      }
-    }
   </script>
 </body>
 
