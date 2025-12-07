@@ -22,6 +22,7 @@
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
     }
 
     body {
@@ -29,6 +30,7 @@
       background: linear-gradient(135deg, #f8c8dc 0%, #f5b4d0 100%);
       min-height: 100vh;
       overflow-x: hidden;
+      touch-action: manipulation;
     }
 
     .kawaii-font {
@@ -85,28 +87,22 @@
       }
     }
 
-    @keyframes grabOpen {
+    @keyframes prizeDrop {
       0% {
-        transform: scaleY(1);
-      }
-
-      50% {
-        transform: scaleY(0.8);
+        transform: translateY(-100px);
+        opacity: 0;
       }
 
       100% {
-        transform: scaleY(1);
+        transform: translateY(0);
+        opacity: 1;
       }
     }
 
-    @keyframes grabClose {
-      0% {
-        transform: scaleY(1);
-      }
-
-      100% {
-        transform: scaleY(0.4);
-      }
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-5px); }
+      75% { transform: translateX(5px); }
     }
 
     .bounce-animation {
@@ -125,6 +121,14 @@
       animation: slideIn 0.5s ease-out;
     }
 
+    .prize-drop {
+      animation: prizeDrop 0.5s ease-out;
+    }
+
+    .shake {
+      animation: shake 0.3s ease-in-out;
+    }
+
     /* Game canvas styling */
     #gameCanvas {
       border-radius: 15px;
@@ -135,6 +139,8 @@
         inset 0 0 20px rgba(255, 255, 255, 0.8);
       background: linear-gradient(180deg, #fff0f7 0%, #ffebf3 100%);
       border: 5px solid #ff4da6;
+      max-width: 100%;
+      height: auto;
     }
 
     /* Kawaii button styles */
@@ -152,6 +158,9 @@
       overflow: hidden;
       font-family: 'Mochiy Pop P One', sans-serif;
       letter-spacing: 0.5px;
+      padding: 12px 24px;
+      font-size: 16px;
+      cursor: pointer;
     }
 
     .kawaii-btn:hover {
@@ -177,12 +186,23 @@
         0 4px 0 #ff6bb5,
         0 6px 10px rgba(255, 107, 181, 0.2);
       transition: all 0.2s ease;
-      width: 50px;
-      height: 50px;
+      width: 60px;
+      height: 60px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.2rem;
+      font-size: 1.5rem;
+      cursor: pointer;
+      touch-action: manipulation;
+      user-select: none;
+    }
+
+    @media (min-width: 768px) {
+      .control-btn {
+        width: 50px;
+        height: 50px;
+        font-size: 1.2rem;
+      }
     }
 
     .control-btn:hover {
@@ -192,11 +212,12 @@
         0 8px 15px rgba(255, 107, 181, 0.3);
     }
 
-    .control-btn:active {
+    .control-btn:active, .control-btn.active {
       transform: translateY(1px);
       box-shadow:
         0 3px 0 #ff6bb5,
         0 4px 8px rgba(255, 107, 181, 0.2);
+      background: linear-gradient(145deg, #ff9ec0, #ffb3c6);
     }
 
     /* Prize card styles */
@@ -299,6 +320,81 @@
       justify-content: center;
       border: 2px solid #ff4da6;
     }
+
+    /* Mobile optimizations */
+    @media (max-width: 768px) {
+      .mobile-order-1 {
+        order: 1;
+      }
+      
+      .mobile-order-2 {
+        order: 2;
+      }
+      
+      .mobile-order-3 {
+        order: 3;
+      }
+      
+      .machine-container {
+        padding: 15px;
+      }
+      
+      #gameCanvas {
+        max-height: 350px;
+        object-fit: contain;
+      }
+      
+      .control-btn {
+        width: 70px;
+        height: 70px;
+        font-size: 1.8rem;
+      }
+      
+      .drop-btn {
+        width: 80px;
+        height: 80px;
+      }
+    }
+
+    /* Reset button */
+    .reset-btn {
+      background: linear-gradient(145deg, #ffb3c6, #ff9ec0);
+      border: 3px solid #ff6bb5;
+      border-radius: 12px;
+      color: #ff4da6;
+      box-shadow:
+        0 4px 0 #ff6bb5,
+        0 6px 10px rgba(255, 107, 181, 0.2);
+      transition: all 0.2s ease;
+      padding: 10px 20px;
+      font-weight: bold;
+      font-family: 'Mochiy Pop P One', sans-serif;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      margin-top: 15px;
+      font-size: 14px;
+    }
+
+    @media (min-width: 768px) {
+      .reset-btn {
+        font-size: 16px;
+        padding: 12px 24px;
+      }
+    }
+
+    .reset-btn:hover {
+      transform: translateY(-2px);
+      box-shadow:
+        0 6px 0 #ff6bb5,
+        0 8px 15px rgba(255, 107, 181, 0.3);
+    }
+
+    .reset-btn:active {
+      transform: translateY(1px);
+      box-shadow:
+        0 3px 0 #ff6bb5,
+        0 4px 8px rgba(255, 107, 181, 0.2);
+    }
   </style>
 </head>
 
@@ -318,10 +414,90 @@
         <p class="text-lg text-pink-600 mb-2">Win ADORABLE plushies! Collect them all!</p>
       </div>
 
-      <!-- Game Container -->
+      <!-- Game Container - Mobile Reorder -->
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <!-- Left Panel - Stats & Collection -->
-        <div class="space-y-6">
+        <!-- Center Panel - Claw Machine (First on Mobile) -->
+        <div class="lg:col-span-2 mobile-order-1">
+          <!-- Main Machine Container -->
+          <div class="machine-container slide-in" style="animation-delay: 0.3s;">
+
+            <!-- Game Canvas Container -->
+            <div class="text-center">
+              <canvas id="gameCanvas" width="700" height="450" class="w-full"></canvas>
+
+              <!-- Win Message -->
+              <div id="winMessage" class="absolute inset-0 flex items-center justify-center hidden">
+                <div class="kawaii-modal p-6 text-center max-w-xs">
+                  <div class="text-5xl mb-3 bounce-animation">🎉</div>
+                  <h3 class="text-2xl font-bold kawaii-font text-pink-600 mb-2">YOU WON!</h3>
+                  <div class="mb-3">
+                    <!-- REMOVED BORDER/BACKGROUND FROM PRIZE IMAGE -->
+                    <img id="wonPrizeImage" src="" alt="Won Prize" class="w-24 h-24 object-contain mx-auto prize-drop">
+                  </div>
+                  <p class="text-lg text-gray-700" id="prizeName">Cute Plushie</p>
+                  <p class="text-base text-purple-500 mt-1">+<span id="prizePoints">50</span> points!</p>
+                  <button id="continueBtn" class="kawaii-btn px-6 py-2 mt-4 text-base">
+                    Keep Playing!
+                  </button>
+                </div>
+              </div>
+
+              <!-- Lose Message -->
+              <div id="loseMessage" class="absolute inset-0 flex items-center justify-center hidden">
+                <div class="kawaii-modal p-6 text-center max-w-xs">
+                  <div class="text-5xl mb-3 wiggle-animation">😢</div>
+                  <h3 class="text-2xl font-bold kawaii-font text-purple-600 mb-2">OH NO!</h3>
+                  <p class="text-lg text-gray-700">The prize slipped away!</p>
+                  <button id="tryAgainBtn" class="kawaii-btn px-6 py-2 mt-4 text-base">
+                    Try Again!
+                  </button>
+                </div>
+              </div>
+
+              <!-- No Tokens Message -->
+              <div id="noTokensMessage" class="absolute inset-0 flex items-center justify-center hidden">
+                <div class="kawaii-modal p-6 text-center max-w-xs">
+                  <div class="text-5xl mb-3 pulse-animation">🪙</div>
+                  <h3 class="text-2xl font-bold kawaii-font text-purple-600 mb-2">OUT OF TOKENS!</h3>
+                  <p class="text-lg text-gray-700 mb-3">Get more to keep playing!</p>
+                  <button id="getMoreTokensBtn" class="kawaii-btn px-6 py-2 text-base">
+                    Get 20 Tokens ✨
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Control Layout -->
+            <div class="flex flex-col items-center mt-4">
+              <!-- Arrow Controls -->
+              <div class="mb-3">
+                <div class="grid grid-cols-3 gap-2 items-center justify-center">
+
+                  <button id="leftBtn" class="control-btn">
+                    <i class="fas fa-arrow-left"></i>
+                  </button>
+
+                  <button id="dropBtn"
+                    class="control-btn drop-btn w-16 h-16 md:w-16 md:h-16">
+                    <div class="text-2xl">🕹️</div>
+                  </button>
+
+                  <button id="rightBtn" class="control-btn">
+                    <i class="fas fa-arrow-right"></i>
+                  </button>
+                </div>
+              </div>
+              
+              <!-- Reset Button -->
+              <button id="resetBtn" class="reset-btn">
+                <i class="fas fa-redo mr-2"></i> Reset Game
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Left Panel - Stats & Collection (Second on Mobile) -->
+        <div class="space-y-6 mobile-order-2">
           <!-- Player Stats -->
           <div class="sticker slide-in" style="animation-delay: 0.1s;">
             <div class="flex items-center mb-3">
@@ -387,81 +563,6 @@
             <p class="text-center text-xs text-gray-600 mt-3">
               Collect all 16 prizes!
             </p>
-          </div>
-        </div>
-
-        <!-- Center Panel - Claw Machine -->
-        <div class="lg:col-span-2">
-          <!-- Main Machine Container -->
-          <div class="machine-container slide-in" style="animation-delay: 0.3s;">
-
-            <!-- Game Canvas Container -->
-            <div class="text-center">
-              <canvas id="gameCanvas" width="700" height="450" class="w-full"></canvas>
-
-              <!-- Win Message -->
-              <div id="winMessage" class="absolute inset-0 flex items-center justify-center hidden">
-                <div class="kawaii-modal p-6 text-center max-w-xs">
-                  <div class="text-5xl mb-3 bounce-animation">🎉</div>
-                  <h3 class="text-2xl font-bold kawaii-font text-pink-600 mb-2">YOU WON!</h3>
-                  <div class="mb-3">
-                    <!-- REMOVED BORDER/BACKGROUND FROM PRIZE IMAGE -->
-                    <img id="wonPrizeImage" src="" alt="Won Prize" class="w-24 h-24 object-contain mx-auto">
-                  </div>
-                  <p class="text-lg text-gray-700" id="prizeName">Cute Plushie</p>
-                  <p class="text-base text-purple-500 mt-1">+<span id="prizePoints">50</span> points!</p>
-                  <button id="continueBtn" class="kawaii-btn px-6 py-2 mt-4 text-base">
-                    Keep Playing!
-                  </button>
-                </div>
-              </div>
-
-              <!-- Lose Message -->
-              <div id="loseMessage" class="absolute inset-0 flex items-center justify-center hidden">
-                <div class="kawaii-modal p-6 text-center max-w-xs">
-                  <div class="text-5xl mb-3 wiggle-animation">😢</div>
-                  <h3 class="text-2xl font-bold kawaii-font text-purple-600 mb-2">OH NO!</h3>
-                  <p class="text-lg text-gray-700">The prize slipped away!</p>
-                  <button id="tryAgainBtn" class="kawaii-btn px-6 py-2 mt-4 text-base">
-                    Try Again!
-                  </button>
-                </div>
-              </div>
-
-              <!-- No Tokens Message -->
-              <div id="noTokensMessage" class="absolute inset-0 flex items-center justify-center hidden">
-                <div class="kawaii-modal p-6 text-center max-w-xs">
-                  <div class="text-5xl mb-3 pulse-animation">🪙</div>
-                  <h3 class="text-2xl font-bold kawaii-font text-purple-600 mb-2">OUT OF TOKENS!</h3>
-                  <p class="text-lg text-gray-700 mb-3">Get more to keep playing!</p>
-                  <button id="getMoreTokensBtn" class="kawaii-btn px-6 py-2 text-base">
-                    Get 20 Tokens ✨
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            <!-- Control Layout -->
-            <div class="flex flex-col items-center mt-4">
-              <!-- Arrow Controls -->
-              <div class="mb-3">
-                <div class="grid grid-cols-3 gap-2 items-center justify-center">
-
-                  <button id="leftBtn" class="control-btn">
-                    <i class="fas fa-arrow-left"></i>
-                  </button>
-
-                  <button id="dropBtn"
-                    class="w-16 h-16 rounded-full bg-gradient-to-r from-pink-400 to-purple-400 flex items-center justify-center border-3 border-pink-500 shadow-lg">
-                    <div class="text-2xl">🕹️</div>
-                  </button>
-
-                  <button id="rightBtn" class="control-btn">
-                    <i class="fas fa-arrow-right"></i>
-                  </button>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </div>
@@ -540,6 +641,7 @@
     const leftBtn = document.getElementById('leftBtn');
     const rightBtn = document.getElementById('rightBtn');
     const dropBtn = document.getElementById('dropBtn');
+    const resetBtn = document.getElementById('resetBtn');
     const continueBtn = document.getElementById('continueBtn');
     const tryAgainBtn = document.getElementById('tryAgainBtn');
     const addTokensBtn = document.getElementById('addTokensBtn');
@@ -1045,6 +1147,10 @@
         prizePointsEl.textContent = prize.points;
         wonPrizeImageEl.src = prize.image;
         wonPrizeImageEl.alt = prize.name;
+        
+        // Add prize drop animation to the won prize image
+        wonPrizeImageEl.classList.add('prize-drop');
+        
         winMessageEl.classList.remove('hidden');
       }
     }
@@ -1070,14 +1176,82 @@
       }
     }
 
+    // Reset the entire game
+    function resetGame() {
+      // Reset game variables
+      tokens = 200;
+      score = 0;
+      wins = 0;
+      collectedPrizes = 0;
+      gameActive = true;
+      clawX = 350;
+      clawY = 50;
+      clawDropping = false;
+      clawRaising = false;
+      clawHasPrize = false;
+      clawOpen = true;
+      clawGrabbing = false;
+      currentPrize = null;
+      prizeBeingLifted = null;
+      prizeLiftedY = 0;
+      
+      // Reset all prizes
+      prizes.forEach(prize => {
+        prize.collected = false;
+        prize.beingCarried = false;
+        prize.lifted = false;
+      });
+      
+      // Hide all messages
+      winMessageEl.classList.add('hidden');
+      loseMessageEl.classList.add('hidden');
+      noTokensMessageEl.classList.add('hidden');
+      
+      // Update UI
+      updateUI();
+      
+      // Add shake animation to reset button
+      resetBtn.classList.add('shake');
+      setTimeout(() => {
+        resetBtn.classList.remove('shake');
+      }, 300);
+      
+      // Create celebration particles
+      createHeartParticles(window.innerWidth / 2, window.innerHeight / 2, 15);
+    }
+
     // Setup event listeners
     function setupEventListeners() {
-      // Control buttons
+      // Control buttons - Mobile touch support
       const controlButtons = [leftBtn, rightBtn];
       controlButtons.forEach(btn => {
-        btn.addEventListener('mousedown', () => btn.classList.add('active'));
-        btn.addEventListener('mouseup', () => btn.classList.remove('active'));
-        btn.addEventListener('mouseleave', () => btn.classList.remove('active'));
+        // Mouse events
+        btn.addEventListener('mousedown', () => {
+          btn.classList.add('active');
+          event.preventDefault();
+        });
+        btn.addEventListener('mouseup', () => {
+          btn.classList.remove('active');
+          event.preventDefault();
+        });
+        btn.addEventListener('mouseleave', () => {
+          btn.classList.remove('active');
+        });
+        
+        // Touch events for mobile
+        btn.addEventListener('touchstart', (event) => {
+          btn.classList.add('active');
+          event.preventDefault();
+        }, { passive: false });
+        
+        btn.addEventListener('touchend', (event) => {
+          btn.classList.remove('active');
+          event.preventDefault();
+        }, { passive: false });
+        
+        btn.addEventListener('touchcancel', () => {
+          btn.classList.remove('active');
+        });
       });
 
       // Drop button
@@ -1090,6 +1264,9 @@
           dropClaw();
         }
       });
+
+      // Reset button
+      resetBtn.addEventListener('click', resetGame);
 
       // Continue and try again buttons
       continueBtn.addEventListener('click', () => {
@@ -1154,6 +1331,14 @@
             rightBtn.classList.remove('active');
             break;
         }
+      });
+      
+      // Prevent context menu on buttons
+      controlButtons.forEach(btn => {
+        btn.addEventListener('contextmenu', (e) => {
+          e.preventDefault();
+          return false;
+        });
       });
     }
 
