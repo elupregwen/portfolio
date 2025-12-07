@@ -1229,17 +1229,17 @@
       drawGame();
     }
 
-    // Setup event listeners
+    // Setup event listeners - FIXED FOR MOBILE
     function setupEventListeners() {
-      // Control buttons - Mobile touch support
-      const controlButtons = [leftBtn, rightBtn, dropBtn];
-      controlButtons.forEach(btn => {
+      // Arrow buttons - Mobile touch support (continuous movement)
+      const arrowButtons = [leftBtn, rightBtn];
+      arrowButtons.forEach(btn => {
         // Mouse events
-        btn.addEventListener('mousedown', () => {
+        btn.addEventListener('mousedown', (event) => {
           btn.classList.add('active');
           event.preventDefault();
         });
-        btn.addEventListener('mouseup', () => {
+        btn.addEventListener('mouseup', (event) => {
           btn.classList.remove('active');
           event.preventDefault();
         });
@@ -1263,16 +1263,15 @@
         });
       });
 
-      // Drop button
-      dropBtn.addEventListener('click', () => {
-        if (tokens <= 0) {
-          showModal(noTokensMessageEl);
-          return;
-        }
-        if (!clawDropping && !clawRaising && gameActive) {
-          dropClaw();
-        }
-      });
+      // Drop button - SIMPLE CLICK/TAP (not hold)
+      dropBtn.addEventListener('click', handleDrop);
+      
+      // Mobile touch for drop button
+      dropBtn.addEventListener('touchstart', (event) => {
+        // Just trigger the drop, don't hold
+        handleDrop();
+        event.preventDefault();
+      }, { passive: false });
 
       // Reset button
       resetBtn.addEventListener('click', resetGame);
@@ -1319,13 +1318,7 @@
             break;
           case ' ':
           case 'Spacebar':
-            if (tokens <= 0) {
-              showModal(noTokensMessageEl);
-              return;
-            }
-            if (!clawDropping && !clawRaising) {
-              dropClaw();
-            }
+            handleDrop();
             e.preventDefault();
             break;
         }
@@ -1343,12 +1336,23 @@
       });
       
       // Prevent context menu on buttons
-      controlButtons.forEach(btn => {
+      arrowButtons.forEach(btn => {
         btn.addEventListener('contextmenu', (e) => {
           e.preventDefault();
           return false;
         });
       });
+    }
+
+    // Handle drop button click
+    function handleDrop() {
+      if (tokens <= 0) {
+        showModal(noTokensMessageEl);
+        return;
+      }
+      if (!clawDropping && !clawRaising && gameActive) {
+        dropClaw();
+      }
     }
 
     // Drop the claw
