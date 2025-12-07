@@ -87,24 +87,6 @@
       }
     }
 
-    @keyframes prizeDrop {
-      0% {
-        transform: translateY(-100px);
-        opacity: 0;
-      }
-
-      100% {
-        transform: translateY(0);
-        opacity: 1;
-      }
-    }
-
-    @keyframes shake {
-      0%, 100% { transform: translateX(0); }
-      25% { transform: translateX(-5px); }
-      75% { transform: translateX(5px); }
-    }
-
     .bounce-animation {
       animation: bounce 2s ease-in-out infinite;
     }
@@ -119,14 +101,6 @@
 
     .slide-in {
       animation: slideIn 0.5s ease-out;
-    }
-
-    .prize-drop {
-      animation: prizeDrop 0.5s ease-out;
-    }
-
-    .shake {
-      animation: shake 0.3s ease-in-out;
     }
 
     /* Game canvas styling */
@@ -186,12 +160,12 @@
         0 4px 0 #ff6bb5,
         0 6px 10px rgba(255, 107, 181, 0.2);
       transition: all 0.2s ease;
-      width: 60px;
-      height: 60px;
+      width: 55px;
+      height: 55px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.5rem;
+      font-size: 1.3rem;
       cursor: pointer;
       touch-action: manipulation;
       user-select: none;
@@ -252,6 +226,25 @@
       box-shadow:
         0 10px 25px rgba(255, 107, 181, 0.3),
         inset 0 0 0 4px white;
+      z-index: 1000;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    /* Modal overlay */
+    .modal-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     /* Progress bar */
@@ -345,14 +338,14 @@
       }
       
       .control-btn {
-        width: 70px;
-        height: 70px;
-        font-size: 1.8rem;
+        width: 55px;
+        height: 55px;
+        font-size: 1.3rem;
       }
       
       .drop-btn {
-        width: 80px;
-        height: 80px;
+        width: 60px;
+        height: 60px;
       }
     }
 
@@ -395,6 +388,11 @@
         0 3px 0 #ff6bb5,
         0 4px 8px rgba(255, 107, 181, 0.2);
     }
+
+    /* Hide scrollbar for game messages */
+    .no-scroll {
+      overflow: hidden;
+    }
   </style>
 </head>
 
@@ -422,47 +420,53 @@
           <div class="machine-container slide-in" style="animation-delay: 0.3s;">
 
             <!-- Game Canvas Container -->
-            <div class="text-center">
+            <div class="text-center relative">
               <canvas id="gameCanvas" width="700" height="450" class="w-full"></canvas>
 
               <!-- Win Message -->
-              <div id="winMessage" class="absolute inset-0 flex items-center justify-center hidden">
-                <div class="kawaii-modal p-6 text-center max-w-xs">
-                  <div class="text-5xl mb-3 bounce-animation">🎉</div>
-                  <h3 class="text-2xl font-bold kawaii-font text-pink-600 mb-2">YOU WON!</h3>
-                  <div class="mb-3">
-                    <!-- REMOVED BORDER/BACKGROUND FROM PRIZE IMAGE -->
-                    <img id="wonPrizeImage" src="" alt="Won Prize" class="w-24 h-24 object-contain mx-auto prize-drop">
+              <div id="winMessage" class="hidden">
+                <div class="modal-overlay">
+                  <div class="kawaii-modal p-6 text-center max-w-xs w-11/12">
+                    <div class="text-5xl mb-3 bounce-animation">🎉</div>
+                    <h3 class="text-2xl font-bold kawaii-font text-pink-600 mb-2">YOU WON!</h3>
+                    <div class="mb-3">
+                      <!-- REMOVED BORDER/BACKGROUND FROM PRIZE IMAGE -->
+                      <img id="wonPrizeImage" src="" alt="Won Prize" class="w-24 h-24 object-contain mx-auto">
+                    </div>
+                    <p class="text-lg text-gray-700" id="prizeName">Cute Plushie</p>
+                    <p class="text-base text-purple-500 mt-1">+<span id="prizePoints">50</span> points!</p>
+                    <button id="continueBtn" class="kawaii-btn px-6 py-2 mt-4 text-base">
+                      Keep Playing!
+                    </button>
                   </div>
-                  <p class="text-lg text-gray-700" id="prizeName">Cute Plushie</p>
-                  <p class="text-base text-purple-500 mt-1">+<span id="prizePoints">50</span> points!</p>
-                  <button id="continueBtn" class="kawaii-btn px-6 py-2 mt-4 text-base">
-                    Keep Playing!
-                  </button>
                 </div>
               </div>
 
               <!-- Lose Message -->
-              <div id="loseMessage" class="absolute inset-0 flex items-center justify-center hidden">
-                <div class="kawaii-modal p-6 text-center max-w-xs">
-                  <div class="text-5xl mb-3 wiggle-animation">😢</div>
-                  <h3 class="text-2xl font-bold kawaii-font text-purple-600 mb-2">OH NO!</h3>
-                  <p class="text-lg text-gray-700">The prize slipped away!</p>
-                  <button id="tryAgainBtn" class="kawaii-btn px-6 py-2 mt-4 text-base">
-                    Try Again!
-                  </button>
+              <div id="loseMessage" class="hidden">
+                <div class="modal-overlay">
+                  <div class="kawaii-modal p-6 text-center max-w-xs w-11/12">
+                    <div class="text-5xl mb-3 wiggle-animation">😢</div>
+                    <h3 class="text-2xl font-bold kawaii-font text-purple-600 mb-2">OH NO!</h3>
+                    <p class="text-lg text-gray-700">The prize slipped away!</p>
+                    <button id="tryAgainBtn" class="kawaii-btn px-6 py-2 mt-4 text-base">
+                      Try Again!
+                    </button>
+                  </div>
                 </div>
               </div>
 
               <!-- No Tokens Message -->
-              <div id="noTokensMessage" class="absolute inset-0 flex items-center justify-center hidden">
-                <div class="kawaii-modal p-6 text-center max-w-xs">
-                  <div class="text-5xl mb-3 pulse-animation">🪙</div>
-                  <h3 class="text-2xl font-bold kawaii-font text-purple-600 mb-2">OUT OF TOKENS!</h3>
-                  <p class="text-lg text-gray-700 mb-3">Get more to keep playing!</p>
-                  <button id="getMoreTokensBtn" class="kawaii-btn px-6 py-2 text-base">
-                    Get 20 Tokens ✨
-                  </button>
+              <div id="noTokensMessage" class="hidden">
+                <div class="modal-overlay">
+                  <div class="kawaii-modal p-6 text-center max-w-xs w-11/12">
+                    <div class="text-5xl mb-3 pulse-animation">🪙</div>
+                    <h3 class="text-2xl font-bold kawaii-font text-purple-600 mb-2">OUT OF TOKENS!</h3>
+                    <p class="text-lg text-gray-700 mb-3">Get more to keep playing!</p>
+                    <button id="getMoreTokensBtn" class="kawaii-btn px-6 py-2 text-base">
+                      Get 20 Tokens ✨
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -471,14 +475,14 @@
             <div class="flex flex-col items-center mt-4">
               <!-- Arrow Controls -->
               <div class="mb-3">
-                <div class="grid grid-cols-3 gap-2 items-center justify-center">
+                <div class="grid grid-cols-3 gap-3 items-center justify-center">
 
                   <button id="leftBtn" class="control-btn">
                     <i class="fas fa-arrow-left"></i>
                   </button>
 
                   <button id="dropBtn"
-                    class="control-btn drop-btn w-16 h-16 md:w-16 md:h-16">
+                    class="control-btn drop-btn">
                     <div class="text-2xl">🕹️</div>
                   </button>
 
@@ -596,8 +600,8 @@
     let clawDropSpeed = 8;
     let clawRiseSpeed = 6;
 
-    // ALL 16 PRIZES
-    const prizes = [
+    // ALL 16 PRIZES with original positions
+    const originalPrizes = [
       { id: 1, name: "Cat in Tiger Hat", image: "clawmachine/cat1.png", points: 55, color: "#FFB3C6", x: 80, y: 375, width: 70, height: 70, collected: false, weight: 0.3, lifted: false, beingCarried: false },
       { id: 2, name: "Ginger", image: "clawmachine/cat2.png", points: 60, color: "#FF9EBD", x: 150, y: 372, width: 68, height: 68, collected: false, weight: 0.4, lifted: false, beingCarried: false },
       { id: 3, name: "Cat in a Coffee Cup", image: "clawmachine/cat3.png", points: 65, color: "#FF6B9D", x: 220, y: 378, width: 72, height: 72, collected: false, weight: 0.2, lifted: false, beingCarried: false },
@@ -615,6 +619,9 @@
       { id: 15, name: "Laying Cat", image: "clawmachine/cat15.png", points: 90, color: "#FF6B9D", x: 520, y: 375, width: 75, height: 75, collected: false, weight: 0.3, lifted: false, beingCarried: false },
       { id: 16, name: "Cat eating Watermelon", image: "clawmachine/cat16.png", points: 95, color: "#C77DFF", x: 590, y: 377, width: 74, height: 74, collected: false, weight: 0.2, lifted: false, beingCarried: false }
     ];
+
+    // Current prizes array (will be reset to original)
+    let prizes = JSON.parse(JSON.stringify(originalPrizes));
 
     // Cache images
     const prizeImages = {};
@@ -688,6 +695,18 @@
 
         requestAnimationFrame(animateHeart);
       }
+    }
+
+    // Show modal and disable background
+    function showModal(modalElement) {
+      modalElement.classList.remove('hidden');
+      document.body.classList.add('no-scroll');
+    }
+
+    // Hide modal and enable background
+    function hideModal(modalElement) {
+      modalElement.classList.add('hidden');
+      document.body.classList.remove('no-scroll');
     }
 
     // Initialize game
@@ -1148,10 +1167,7 @@
         wonPrizeImageEl.src = prize.image;
         wonPrizeImageEl.alt = prize.name;
         
-        // Add prize drop animation to the won prize image
-        wonPrizeImageEl.classList.add('prize-drop');
-        
-        winMessageEl.classList.remove('hidden');
+        showModal(winMessageEl);
       }
     }
 
@@ -1170,9 +1186,9 @@
       updateUI();
 
       if (tokens <= 0) {
-        noTokensMessageEl.classList.remove('hidden');
+        showModal(noTokensMessageEl);
       } else {
-        loseMessageEl.classList.remove('hidden');
+        showModal(loseMessageEl);
       }
     }
 
@@ -1195,35 +1211,28 @@
       prizeBeingLifted = null;
       prizeLiftedY = 0;
       
-      // Reset all prizes
-      prizes.forEach(prize => {
-        prize.collected = false;
-        prize.beingCarried = false;
-        prize.lifted = false;
-      });
+      // Reset prizes to original positions
+      prizes = JSON.parse(JSON.stringify(originalPrizes));
       
       // Hide all messages
-      winMessageEl.classList.add('hidden');
-      loseMessageEl.classList.add('hidden');
-      noTokensMessageEl.classList.add('hidden');
+      hideModal(winMessageEl);
+      hideModal(loseMessageEl);
+      hideModal(noTokensMessageEl);
       
       // Update UI
       updateUI();
       
-      // Add shake animation to reset button
-      resetBtn.classList.add('shake');
-      setTimeout(() => {
-        resetBtn.classList.remove('shake');
-      }, 300);
-      
       // Create celebration particles
-      createHeartParticles(window.innerWidth / 2, window.innerHeight / 2, 15);
+      createHeartParticles(window.innerWidth / 2, window.innerHeight / 2, 10);
+      
+      // Redraw immediately
+      drawGame();
     }
 
     // Setup event listeners
     function setupEventListeners() {
       // Control buttons - Mobile touch support
-      const controlButtons = [leftBtn, rightBtn];
+      const controlButtons = [leftBtn, rightBtn, dropBtn];
       controlButtons.forEach(btn => {
         // Mouse events
         btn.addEventListener('mousedown', () => {
@@ -1257,7 +1266,7 @@
       // Drop button
       dropBtn.addEventListener('click', () => {
         if (tokens <= 0) {
-          noTokensMessageEl.classList.remove('hidden');
+          showModal(noTokensMessageEl);
           return;
         }
         if (!clawDropping && !clawRaising && gameActive) {
@@ -1270,14 +1279,14 @@
 
       // Continue and try again buttons
       continueBtn.addEventListener('click', () => {
-        winMessageEl.classList.add('hidden');
+        hideModal(winMessageEl);
         resetClaw();
         gameActive = true;
         gameLoop();
       });
 
       tryAgainBtn.addEventListener('click', () => {
-        loseMessageEl.classList.add('hidden');
+        hideModal(loseMessageEl);
         resetClaw();
         gameActive = true;
         gameLoop();
@@ -1287,7 +1296,7 @@
       const addTokensFunc = () => {
         tokens += 20;
         updateUI();
-        noTokensMessageEl.classList.add('hidden');
+        hideModal(noTokensMessageEl);
         createHeartParticles(window.innerWidth / 2, window.innerHeight / 2, 5);
       };
       addTokensBtn.addEventListener('click', addTokensFunc);
@@ -1311,7 +1320,7 @@
           case ' ':
           case 'Spacebar':
             if (tokens <= 0) {
-              noTokensMessageEl.classList.remove('hidden');
+              showModal(noTokensMessageEl);
               return;
             }
             if (!clawDropping && !clawRaising) {
