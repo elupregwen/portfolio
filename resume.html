@@ -3,109 +3,374 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shanica Gwen Elupre Resume</title>
+    <title>Shanica Gwen Elupre | Resume</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#00BFFF',
+                        secondary: '#7C3AED',
+                        accent: '#2dd4bf',
+                        dark: '#0f172a',
+                        light: '#f8fafc'
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0f172a;
+            color: #e2e8f0;
+            min-height: 100vh;
+        }
+        
+        .glass-card {
+            background: rgba(15, 23, 42, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        
+        .gradient-text {
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .resume-container {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+        
+        .skill-badge {
+            background: rgba(0, 191, 255, 0.1);
+            border: 1px solid rgba(0, 191, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .skill-badge:hover {
+            background: rgba(0, 191, 255, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(to bottom, #00BFFF, #7C3AED);
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(to bottom, #00BFFF, #2dd4bf);
+        }
+        
+        @media print {
+            body {
+                background: white !important;
+                color: black !important;
+            }
+            
+            .resume-container {
+                background: white !important;
+                box-shadow: none !important;
+                border: 1px solid #ddd !important;
+            }
+            
+            .glass-card {
+                background: white !important;
+                backdrop-filter: none !important;
+            }
+            
+            .gradient-text {
+                -webkit-text-fill-color: #00BFFF !important;
+            }
+        }
+    </style>
 </head>
-<body class="min-h-screen bg-gray-100">
-    <div class="flex flex-col md:flex-row min-h-screen">
-        <!-- Left Sidebar (Dark) -->
-        <div class="w-full md:w-1/3 bg-gray-900 text-white p-6 flex flex-col">
-            <!-- Profile Picture -->
-            <div class="flex justify-center mb-6">
-                <img src="https://lh3.googleusercontent.com/a/ACg8ocJ9EeTSFYhBbDxHU85Dn9U-Gkc3zxBpnK_TyVexWF_m0JbA65bq=s288-c-no" 
-                     alt="Profile Picture" 
-                     class="rounded-full w-36 h-36 object-cover border-4 border-gray-700">
-            </div>
-
-            <!-- Contact Information -->
-            <div class="mb-8">
-                <h2 class="text-xl font-bold border-b border-gray-700 pb-2 mb-3">Contact Information</h2>
-                <div class="space-y-2">
-                    <p><span class="font-semibold">Phone:</span> 09974461580</p>
-                    <p><span class="font-semibold">Email:</span> elupreshanicagwen@gmail.com</p>
-                    <p><span class="font-semibold">Location:</span> Iloilo, Philippines</p>
-                </div>
-            </div>
-
-            <!-- Skills -->
-            <div class="mb-8">
-                <h2 class="text-xl font-bold border-b border-gray-700 pb-2 mb-3">Skills</h2>
-                <div class="space-y-4">
-                    <div>
-                        <h3 class="font-semibold text-gray-300">Technical Skills</h3>
-                        <p><span class="font-medium">Programming Languages:</span> Python, JavaScript, C#(.NET), Dart</p>
-                        <p><span class="font-medium">Front-end Development:</span> HTML, CSS, JavaScript</p>
-                        <p><span class="font-medium">Query Language:</span> Microsoft SQL</p>
-                        <p><span class="font-medium">Frameworks:</span> Flutter</p>
-                        <p><span class="font-medium">IDEs:</span> Android Studio, Visual Studio</p>
-                    </div>
-                    <div>
-                        <h3 class="font-semibold text-gray-300">Soft Skills</h3>
-                        <p>Communication, Problem-solving, Team collaboration, Time management</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Education -->
-            <div>
-                <h2 class="text-xl font-bold border-b border-gray-700 pb-2 mb-3">Education</h2>
-                <p><span class="font-medium">Bachelor of Science in Information Technology</span></p>
-                <p>Central Philippine University</p>
+<body class="antialiased">
+    <!-- Navigation -->
+    <nav class="glass-card fixed w-full z-50">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <a href="index.html" class="inline-flex items-center px-6 py-2.5 rounded-lg font-medium text-sm 
+                          bg-gradient-to-r from-primary to-secondary text-white
+                          hover:shadow-lg hover:shadow-primary/30 transition-all duration-300
+                          transform hover:-translate-y-0.5">
+                    <i class="fas fa-arrow-left mr-2"></i> Back to Portfolio
+                </a>
+                <button onclick="window.print()" class="inline-flex items-center px-6 py-2.5 rounded-lg font-medium text-sm 
+                          border border-accent text-accent
+                          hover:bg-gradient-to-r hover:from-accent hover:to-accent-dark
+                          hover:text-white hover:shadow-md transition-all duration-300">
+                    <i class="fas fa-print mr-2"></i> Print Resume
+                </button>
             </div>
         </div>
+    </nav>
 
-        <!-- Right Content (Light) -->
-        <div class="w-full md:w-2/3 bg-white p-6 flex flex-col">
-            <!-- Header -->
-            <div class="text-center mb-8">
-                <h1 class="text-3xl font-bold text-gray-800 mb-2">Shanica Gwen Elupre</h1>
-                <h3 class="text-xl text-gray-500">IT Student</h3>
+    <main class="pt-24 pb-16">
+        <div class="container mx-auto px-6 max-w-6xl">
+            <!-- Resume Container -->
+            <div class="resume-container rounded-2xl overflow-hidden">
+                <div class="flex flex-col lg:flex-row">
+                    <!-- Left Sidebar -->
+                    <div class="lg:w-1/3 bg-gradient-to-b from-gray-900 to-gray-800 p-8">
+                        <!-- Profile -->
+                        <div class="text-center mb-8">
+                            <div class="relative inline-block mb-4">
+                                <div class="absolute inset-0 bg-gradient-to-r from-primary to-secondary rounded-full blur-md opacity-30"></div>
+                                <img src="https://lh3.googleusercontent.com/a/ACg8ocJ9EeTSFYhBbDxHU85Dn9U-Gkc3zxBpnK_TyVexWF_m0JbA65bq=s288-c-no" 
+                                     alt="Shanica Gwen Elupre" 
+                                     class="relative rounded-full w-36 h-36 object-cover border-4 border-gray-800">
+                            </div>
+                            <h1 class="text-2xl font-bold text-white mb-1">Shanica Gwen Elupre</h1>
+                            <p class="text-primary font-medium">IT Student & Developer</p>
+                            <div class="flex justify-center space-x-3 mt-3 text-lg">
+                                <a href="https://github.com/elupregwen" target="_blank" class="text-gray-400 hover:text-primary transition">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                                <a href="https://www.linkedin.com/in/shanicagwen" target="_blank" class="text-gray-400 hover:text-primary transition">
+                                    <i class="fab fa-linkedin"></i>
+                                </a>
+                                <a href="https://www.credly.com/users/shanica-gwen-elupre" target="_blank" class="text-gray-400 hover:text-primary transition">
+                                    <i class="fas fa-medal"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Contact -->
+                        <div class="mb-8">
+                            <h2 class="text-lg font-bold text-white mb-4 flex items-center">
+                                <i class="fas fa-address-card text-primary mr-2"></i>
+                                Contact
+                            </h2>
+                            <div class="space-y-3">
+                                <div class="flex items-start">
+                                    <i class="fas fa-envelope text-primary mt-1 mr-3"></i>
+                                    <div>
+                                        <p class="text-sm font-medium text-gray-300">Email</p>
+                                        <p class="text-gray-400">elupreshanicagwen@gmail.com</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <i class="fas fa-phone text-primary mt-1 mr-3"></i>
+                                    <div>
+                                        <p class="text-sm font-medium text-gray-300">Phone</p>
+                                        <p class="text-gray-400">09974461580</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <i class="fas fa-map-marker-alt text-primary mt-1 mr-3"></i>
+                                    <div>
+                                        <p class="text-sm font-medium text-gray-300">Location</p>
+                                        <p class="text-gray-400">Iloilo, Philippines</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Education -->
+                        <div class="mb-8">
+                            <h2 class="text-lg font-bold text-white mb-4 flex items-center">
+                                <i class="fas fa-graduation-cap text-primary mr-2"></i>
+                                Education
+                            </h2>
+                            <div class="space-y-2">
+                                <div>
+                                    <h3 class="font-semibold text-white">BS Information Technology</h3>
+                                    <p class="text-gray-400 text-sm">Central Philippine University</p>
+                                    <p class="text-gray-500 text-xs">Expected 2025</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Skills -->
+                        <div>
+                            <h2 class="text-lg font-bold text-white mb-4 flex items-center">
+                                <i class="fas fa-code text-primary mr-2"></i>
+                                Technical Skills
+                            </h2>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="skill-badge px-3 py-1 rounded-full text-xs font-medium">Python</span>
+                                <span class="skill-badge px-3 py-1 rounded-full text-xs font-medium">JavaScript</span>
+                                <span class="skill-badge px-3 py-1 rounded-full text-xs font-medium">C# / .NET</span>
+                                <span class="skill-badge px-3 py-1 rounded-full text-xs font-medium">Dart</span>
+                                <span class="skill-badge px-3 py-1 rounded-full text-xs font-medium">Flutter</span>
+                                <span class="skill-badge px-3 py-1 rounded-full text-xs font-medium">HTML/CSS</span>
+                                <span class="skill-badge px-3 py-1 rounded-full text-xs font-medium">SQL</span>
+                                <span class="skill-badge px-3 py-1 rounded-full text-xs font-medium">Git</span>
+                                <span class="skill-badge px-3 py-1 rounded-full text-xs font-medium">Arduino</span>
+                                <span class="skill-badge px-3 py-1 rounded-full text-xs font-medium">Raspberry Pi</span>
+                                <span class="skill-badge px-3 py-1 rounded-full text-xs font-medium">Figma</span>
+                                <span class="skill-badge px-3 py-1 rounded-full text-xs font-medium">Excel</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Content -->
+                    <div class="lg:w-2/3 p-8">
+                        <!-- About -->
+                        <div class="mb-10">
+                            <h2 class="text-2xl font-bold text-white mb-6 flex items-center">
+                                <span class="gradient-text bg-gradient-to-r from-primary to-accent">About Me</span>
+                            </h2>
+                            <p class="text-gray-300 leading-relaxed">
+                                IT student specializing in the Internet of Things, with hands-on experience in building smart systems using Python, Flutter, Arduino, and Raspberry Pi. I enjoy blending creativity and technology to design practical solutions and intuitive digital experiences.
+                            </p>
+                        </div>
+
+                        <!-- Work Experience -->
+                        <div class="mb-10">
+                            <h2 class="text-2xl font-bold text-white mb-6 flex items-center">
+                                <span class="gradient-text bg-gradient-to-r from-primary to-secondary">Work Experience</span>
+                            </h2>
+                            
+                            <!-- Freelancer -->
+                            <div class="mb-8">
+                                <div class="flex items-start mb-3">
+                                    <div class="w-12 h-12 rounded-full bg-gradient-to-br from-primary/10 to-secondary/10 flex items-center justify-center mr-4 flex-shrink-0">
+                                        <i class="fas fa-laptop-code text-primary text-xl"></i>
+                                    </div>
+                                    <div>
+                                        <h3 class="text-xl font-bold text-white">Freelance IT Specialist</h3>
+                                        <p class="text-primary font-medium">December 2022 - Present</p>
+                                    </div>
+                                </div>
+                                <p class="text-gray-300 mb-4">
+                                    As an IT student, I've built practical experience through freelance work, developing solutions that bridge technical skills with real-world applications. I create custom websites, data systems, and digital content tailored to client needs.
+                                </p>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                                    <div>
+                                        <h4 class="font-semibold text-white mb-2">Technical Services:</h4>
+                                        <ul class="space-y-1 text-gray-300 text-sm">
+                                            <li class="flex items-start">
+                                                <i class="fas fa-circle text-primary text-xs mt-1 mr-2"></i>
+                                                <span>Website Development - Custom responsive websites and web applications</span>
+                                            </li>
+                                            <li class="flex items-start">
+                                                <i class="fas fa-circle text-primary text-xs mt-1 mr-2"></i>
+                                                <span>Data Systems - Excel automation, data analysis, and custom reporting</span>
+                                            </li>
+                                            <li class="flex items-start">
+                                                <i class="fas fa-circle text-primary text-xs mt-1 mr-2"></i>
+                                                <span>Digital Content Creation - Video editing, graphics, and visual storytelling</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-semibold text-white mb-2">Recent Projects:</h4>
+                                        <ul class="space-y-1 text-gray-300 text-sm">
+                                            <li class="flex items-start">
+                                                <i class="fas fa-circle text-secondary text-xs mt-1 mr-2"></i>
+                                                <span>Developed interactive web applications for local businesses</span>
+                                            </li>
+                                            <li class="flex items-start">
+                                                <i class="fas fa-circle text-secondary text-xs mt-1 mr-2"></i>
+                                                <span>Created automated Excel systems for data management</span>
+                                            </li>
+                                            <li class="flex items-start">
+                                                <i class="fas fa-circle text-secondary text-xs mt-1 mr-2"></i>
+                                                <span>Produced engaging video content for student projects</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Clerical Assistant -->
+                            <div>
+                                <div class="flex items-start mb-3">
+                                    <div class="w-12 h-12 rounded-full bg-gradient-to-br from-accent/10 to-primary/10 flex items-center justify-center mr-4 flex-shrink-0">
+                                        <i class="fas fa-briefcase text-accent text-xl"></i>
+                                    </div>
+                                    <div>
+                                        <h3 class="text-xl font-bold text-white">Clerical Student Assistant</h3>
+                                        <p class="text-accent font-medium">July 2023 - Present</p>
+                                    </div>
+                                </div>
+                                <p class="text-gray-300 mb-4">
+                                    I assist individuals with inquiries, troubleshoot technical issues, and manage Microsoft Word and Excel documents. My role involves interacting with various people and addressing their needs efficiently.
+                                </p>
+                                <div>
+                                    <h4 class="font-semibold text-white mb-2">Key Responsibilities:</h4>
+                                    <ul class="grid grid-cols-1 md:grid-cols-2 gap-2 text-gray-300 text-sm">
+                                        <li class="flex items-start">
+                                            <i class="fas fa-check-circle text-accent text-xs mt-1 mr-2"></i>
+                                            <span>Assisting with inquiries and providing support</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <i class="fas fa-check-circle text-accent text-xs mt-1 mr-2"></i>
+                                            <span>Troubleshooting technical issues</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <i class="fas fa-check-circle text-accent text-xs mt-1 mr-2"></i>
+                                            <span>Managing Microsoft Office documents</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <i class="fas fa-check-circle text-accent text-xs mt-1 mr-2"></i>
+                                            <span>Maintaining organized records</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Certifications Note -->
+                        <div class="mt-12 pt-6 border-t border-gray-700">
+                            <div class="flex items-center">
+                                <i class="fas fa-medal text-primary text-xl mr-3"></i>
+                                <div>
+                                    <p class="text-gray-300 text-sm">
+                                        <span class="font-medium text-white">View my certifications on Credly:</span>
+                                        <a href="https://www.credly.com/users/shanica-gwen-elupre" target="_blank" class="text-primary hover:underline ml-1">
+                                            credly.com/users/shanica-gwen-elupre
+                                        </a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <!-- About Me -->
-            <div class="mb-8">
-                <h2 class="text-2xl font-bold border-b border-gray-300 pb-2 mb-4 text-gray-800">About Me</h2>
-                <p class="text-gray-700">
-                    I am a dedicated IT student with hands-on experience in various technical and clerical roles. 
-                    My passion lies in leveraging my technical skills to assist others, improve processes, 
-                    and solve problems effectively.
-                </p>
-            </div>
-
-            <!-- Work Experience -->
-            <div class="mb-8">
-                <h2 class="text-2xl font-bold border-b border-gray-300 pb-2 mb-4 text-gray-800">Work Experience</h2>
-                
-                <div class="mb-6">
-                    <h3 class="text-xl font-semibold text-gray-800">Clerical Student Assistant</h3>
-                    <h4 class="text-gray-500 italic">July 2023 - Present</h4>
-                    <p class="text-gray-700 mt-2">
-                        I assist individuals with inquiries, troubleshoot technical issues, and manage Microsoft Word 
-                        and Excel documents. My role involves interacting with various people and addressing their 
-                        needs efficiently.
-                    </p>
-                </div>
-                
-                <div>
-                    <h3 class="text-xl font-semibold text-gray-800">Freelancer</h3>
-                    <h4 class="text-gray-500 italic">December 2022 - Present</h4>
-                    <p class="text-gray-700 mt-2">
-                        Specializing in Excel, I have provided freelance services that include data management, 
-                        analysis, and reporting. My work focuses on delivering precise and efficient solutions 
-                        tailored to client requirements.
-                    </p>
-                </div>
-            </div>
-
-            <!-- Certificates -->
-            <div>
-                <h2 class="text-2xl font-bold border-b border-gray-300 pb-2 mb-4 text-gray-800">Certificates</h2>
-                <div class="space-y-2">
-                    <p><span class="font-medium">Cisco Certificate:</span> CompTIA A+ (ITE v8.0)</p>
-                    <p><span class="font-medium">Cisco Certificate:</span> Cisco Certified Network Associate (CCNA) (CCNA 1 v7)</p>
-                </div>
+            <!-- Footer Note -->
+            <div class="text-center mt-8 text-gray-500 text-sm">
+                <p>This resume matches my portfolio website design. Last updated: May 2025</p>
+                <p class="mt-1">View my complete portfolio: <a href="index.html" class="text-primary hover:underline">shanica-portfolio.com</a></p>
             </div>
         </div>
-    </div>
+    </main>
+
+    <script>
+        // Add smooth animations
+        document.addEventListener('DOMContentLoaded', function() {
+            const resumeContainer = document.querySelector('.resume-container');
+            resumeContainer.style.opacity = '0';
+            resumeContainer.style.transform = 'translateY(20px)';
+            
+            setTimeout(() => {
+                resumeContainer.style.transition = 'all 0.8s ease-out';
+                resumeContainer.style.opacity = '1';
+                resumeContainer.style.transform = 'translateY(0)';
+            }, 300);
+        });
+    </script>
 </body>
 </html>
