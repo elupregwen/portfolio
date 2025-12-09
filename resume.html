@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,82 +24,206 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #0f172a;
-            color: #e2e8f0;
-            min-height: 100vh;
-        }
-
-        .glass-card {
-            background: rgba(15, 23, 42, 0.7);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-        }
-
-        .gradient-text {
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .resume-container {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-        }
-
-        .skill-badge {
-            background: rgba(0, 191, 255, 0.1);
-            border: 1px solid rgba(0, 191, 255, 0.3);
-            transition: all 0.3s ease;
-        }
-
-        .skill-badge:hover {
-            background: rgba(0, 191, 255, 0.2);
-            transform: translateY(-2px);
-        }
-
-        /* Custom scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: #0f172a;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: linear-gradient(to bottom, #00BFFF, #7C3AED);
-            border-radius: 4px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: linear-gradient(to bottom, #00BFFF, #2dd4bf);
-        }
-
+        /* PRINT-OPTIMIZED STYLES */
         @media print {
+            /* Hide navigation when printing */
+            nav, 
+            button,
+            .no-print {
+                display: none !important;
+            }
+            
+            /* Reset body for printing */
             body {
                 background: white !important;
                 color: black !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                font-size: 12px !important;
+                min-height: auto !important;
             }
-
+            
+            /* Resume container - full page */
             .resume-container {
                 background: white !important;
                 box-shadow: none !important;
+                border: none !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                width: 100% !important;
+                max-width: 100% !important;
+                page-break-inside: avoid;
+            }
+            
+            /* Ensure content fits on one page */
+            .resume-container > div {
+                display: flex !important;
+                min-height: 99vh; /* Slightly less than full page */
+            }
+            
+            /* Text colors for print */
+            .text-white,
+            .text-gray-300,
+            .text-gray-400 {
+                color: #333 !important;
+            }
+            
+            .text-primary {
+                color: #00BFFF !important;
+            }
+            
+            .text-secondary {
+                color: #7C3AED !important;
+            }
+            
+            .text-accent {
+                color: #2dd4bf !important;
+            }
+            
+            /* Gradient text fix */
+            .gradient-text {
+                -webkit-text-fill-color: #00BFFF !important;
+                background: none !important;
+                color: #00BFFF !important;
+            }
+            
+            /* Remove backgrounds and effects */
+            .bg-gradient-to-b,
+            .bg-gradient-to-br,
+            .glass-card,
+            .bg-gray-800,
+            .bg-gray-900 {
+                background: #f8f8f8 !important;
+                backdrop-filter: none !important;
+                -webkit-backdrop-filter: none !important;
+            }
+            
+            /* Skill badges - simple borders */
+            .skill-badge {
+                background: #f0f0f0 !important;
+                border: 1px solid #00BFFF !important;
+                color: #333 !important;
+            }
+            
+            /* Force single page */
+            .page-break {
+                page-break-before: always;
+            }
+            
+            /* Remove animations and transitions */
+            * {
+                transition: none !important;
+                animation: none !important;
+            }
+            
+            /* Fix images */
+            img {
+                filter: none !important;
                 border: 1px solid #ddd !important;
+            }
+            
+            /* Ensure proper spacing for print */
+            .p-8 {
+                padding: 16px !important;
+            }
+            
+            .mb-8 {
+                margin-bottom: 16px !important;
+            }
+            
+            .mb-10 {
+                margin-bottom: 20px !important;
+            }
+            
+            /* Remove flex-grow and other layout constraints */
+            .flex-col {
+                flex-direction: column !important;
+            }
+            
+            .lg\:flex-row {
+                flex-direction: row !important;
+            }
+        }
+
+        /* SCREEN STYLES */
+        @media screen {
+            body {
+                font-family: 'Inter', sans-serif;
+                background-color: #0f172a;
+                color: #e2e8f0;
+                min-height: 100vh;
             }
 
             .glass-card {
-                background: white !important;
-                backdrop-filter: none !important;
+                background: rgba(15, 23, 42, 0.7);
+                backdrop-filter: blur(12px);
+                -webkit-backdrop-filter: blur(12px);
+                border: 1px solid rgba(255, 255, 255, 0.08);
             }
 
             .gradient-text {
-                -webkit-text-fill-color: #00BFFF !important;
+                background-clip: text;
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+
+            .resume-container {
+                background: rgba(255, 255, 255, 0.05);
+                backdrop-filter: blur(20px);
+                -webkit-backdrop-filter: blur(20px);
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            }
+
+            .skill-badge {
+                background: rgba(0, 191, 255, 0.1);
+                border: 1px solid rgba(0, 191, 255, 0.3);
+                transition: all 0.3s ease;
+            }
+
+            .skill-badge:hover {
+                background: rgba(0, 191, 255, 0.2);
+                transform: translateY(-2px);
+            }
+
+            /* Custom scrollbar */
+            ::-webkit-scrollbar {
+                width: 8px;
+            }
+
+            ::-webkit-scrollbar-track {
+                background: #0f172a;
+            }
+
+            ::-webkit-scrollbar-thumb {
+                background: linear-gradient(to bottom, #00BFFF, #7C3AED);
+                border-radius: 4px;
+            }
+
+            ::-webkit-scrollbar-thumb:hover {
+                background: linear-gradient(to bottom, #00BFFF, #2dd4bf);
+            }
+        }
+
+        /* COMMON STYLES */
+        * {
+            box-sizing: border-box;
+        }
+        
+        /* Print warning message */
+        .print-warning {
+            display: none;
+        }
+        
+        @media print {
+            .print-warning {
+                display: block;
+                text-align: center;
+                font-size: 10px;
+                color: #666;
+                margin-top: 10px;
+                border-top: 1px solid #eee;
+                padding-top: 5px;
             }
         }
     </style>
@@ -108,7 +231,7 @@
 
 <body class="antialiased">
     <!-- Navigation -->
-    <nav class="glass-card fixed w-full z-50">
+    <nav class="glass-card fixed w-full z-50 no-print">
         <div class="container mx-auto px-6 py-4">
             <div class="flex justify-between items-center">
                 <a href="index.html" class="inline-flex items-center px-6 py-2.5 rounded-lg font-medium text-sm 
@@ -127,7 +250,7 @@
         </div>
     </nav>
 
-    <main class="pt-24 pb-16">
+    <main class="pt-24 pb-16 no-print">
         <div class="container mx-auto px-6 max-w-6xl">
             <!-- Resume Container -->
             <div class="resume-container rounded-2xl overflow-hidden">
@@ -137,12 +260,10 @@
                         <!-- Profile -->
                         <div class="text-center mb-8">
                             <div class="relative inline-block mb-4">
-                                <div
-                                    class="absolute inset-0 bg-gradient-to-r from-primary to-secondary rounded-full blur-md opacity-30">
-                                </div>
+                                <div class="absolute inset-0 bg-gradient-to-r from-primary to-secondary rounded-full blur-md opacity-30"></div>
                                 <img src="https://lh3.googleusercontent.com/a/ACg8ocJ9EeTSFYhBbDxHU85Dn9U-Gkc3zxBpnK_TyVexWF_m0JbA65bq=s288-c-no"
                                     alt="Shanica Gwen Elupre"
-                                    class="relative rounded-full w-36 h-36 object-cover border-4 border-gray-800">
+                                    class="relative rounded-full w-32 h-32 object-cover border-4 border-gray-800">
                             </div>
                             <h1 class="text-2xl font-bold text-white mb-1">Shanica Gwen Elupre</h1>
                             <p class="text-primary font-medium">IT Student & Developer</p>
@@ -208,83 +329,28 @@
                             </div>
                         </div>
                         
-                        <!-- Skills -->
+                        <!-- Skills - Compact for printing -->
                         <div>
                             <h2 class="text-lg font-bold text-white mb-4 flex items-center">
                                 <i class="fas fa-code text-primary mr-2"></i>
                                 Technical Skills
                             </h2>
-
-                            <!-- Languages -->
-                            <div class="mb-4">
-                                <h3 class="text-sm font-semibold text-gray-300 mb-2 flex items-center">
-                                    <i class="fas fa-code text-xs mr-1 text-primary"></i>
-                                    Programming Languages
-                                </h3>
-                                <div class="flex flex-wrap gap-2">
-                                    <span class="skill-badge px-3 py-1 rounded-full text-xs font-medium">Python</span>
-                                    <span
-                                        class="skill-badge px-3 py-1 rounded-full text-xs font-medium">JavaScript</span>
-                                    <span class="skill-badge px-3 py-1 rounded-full text-xs font-medium">C# /
-                                        .NET</span>
-                                    <span class="skill-badge px-3 py-1 rounded-full text-xs font-medium">SQL</span>
-                                    <span class="skill-badge px-3 py-1 rounded-full text-xs font-medium">HTML5</span>
-                                    <span class="skill-badge px-3 py-1 rounded-full text-xs font-medium">CSS3</span>
-                                    <span class="skill-badge px-3 py-1 rounded-full text-xs font-medium">Dart</span>
-                                </div>
-                            </div>
-
-                            <!-- Frameworks & Libraries -->
-                            <div class="mb-4">
-                                <h3 class="text-sm font-semibold text-gray-300 mb-2 flex items-center">
-                                    <i class="fas fa-cubes text-xs mr-1 text-secondary"></i>
-                                    Frameworks & Libraries
-                                </h3>
-                                <div class="flex flex-wrap gap-2">
-                                    <span class="skill-badge px-3 py-1 rounded-full text-xs font-medium">Flutter</span>
-                                    <span class="skill-badge px-3 py-1 rounded-full text-xs font-medium">Quasar</span>
-                                    <span class="skill-badge px-3 py-1 rounded-full text-xs font-medium">React</span>
-                                    <span class="skill-badge px-3 py-1 rounded-full text-xs font-medium">.NET
-                                        Framework</span>
-                                    <span
-                                        class="skill-badge px-3 py-1 rounded-full text-xs font-medium">Bootstrap</span>
-                                    <span class="skill-badge px-3 py-1 rounded-full text-xs font-medium">Tailwind
-                                        CSS</span>
-                                </div>
-                            </div>
-
-                            <!-- Tools & Platforms -->
-                            <div class="mb-4">
-                                <h3 class="text-sm font-semibold text-gray-300 mb-2 flex items-center">
-                                    <i class="fas fa-tools text-xs mr-1 text-accent"></i>
-                                    Tools & Platforms
-                                </h3>
-                                <div class="flex flex-wrap gap-2">
-                                    <span class="skill-badge px-3 py-1 rounded-full text-xs font-medium">Git</span>
-                                    <span class="skill-badge px-3 py-1 rounded-full text-xs font-medium">VS Code</span>
-                                    <span class="skill-badge px-3 py-1 rounded-full text-xs font-medium">Android
-                                        Studio</span>
-                                    <span class="skill-badge px-3 py-1 rounded-full text-xs font-medium">Visual
-                                        Studio</span>
-                                    <span class="skill-badge px-3 py-1 rounded-full text-xs font-medium">Figma</span>
-                                    <span class="skill-badge px-3 py-1 rounded-full text-xs font-medium">Excel</span>
-                                </div>
-                            </div>
-
-                            <!-- Hardware & IoT -->
-                            <div>
-                                <h3 class="text-sm font-semibold text-gray-300 mb-2 flex items-center">
-                                    <i class="fas fa-microchip text-xs mr-1 text-primary"></i>
-                                    Hardware & IoT
-                                </h3>
-                                <div class="flex flex-wrap gap-2">
-                                    <span class="skill-badge px-3 py-1 rounded-full text-xs font-medium">Arduino</span>
-                                    <span class="skill-badge px-3 py-1 rounded-full text-xs font-medium">Raspberry
-                                        Pi</span>
-                                    <span class="skill-badge px-3 py-1 rounded-full text-xs font-medium">ESP32</span>
-                                    <span class="skill-badge px-3 py-1 rounded-full text-xs font-medium">Basic
-                                        Electronics</span>
-                                </div>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="skill-badge px-2 py-1 rounded-full text-xs font-medium">Python</span>
+                                <span class="skill-badge px-2 py-1 rounded-full text-xs font-medium">JavaScript</span>
+                                <span class="skill-badge px-2 py-1 rounded-full text-xs font-medium">C#/.NET</span>
+                                <span class="skill-badge px-2 py-1 rounded-full text-xs font-medium">SQL</span>
+                                <span class="skill-badge px-2 py-1 rounded-full text-xs font-medium">HTML5/CSS3</span>
+                                <span class="skill-badge px-2 py-1 rounded-full text-xs font-medium">Dart</span>
+                                <span class="skill-badge px-2 py-1 rounded-full text-xs font-medium">Flutter</span>
+                                <span class="skill-badge px-2 py-1 rounded-full text-xs font-medium">React</span>
+                                <span class="skill-badge px-2 py-1 rounded-full text-xs font-medium">Tailwind</span>
+                                <span class="skill-badge px-2 py-1 rounded-full text-xs font-medium">Git</span>
+                                <span class="skill-badge px-2 py-1 rounded-full text-xs font-medium">VS Code</span>
+                                <span class="skill-badge px-2 py-1 rounded-full text-xs font-medium">Figma</span>
+                                <span class="skill-badge px-2 py-1 rounded-full text-xs font-medium">Arduino</span>
+                                <span class="skill-badge px-2 py-1 rounded-full text-xs font-medium">Raspberry Pi</span>
+                                <span class="skill-badge px-2 py-1 rounded-full text-xs font-medium">Excel</span>
                             </div>
                         </div>
                     </div>
@@ -292,77 +358,67 @@
                     <!-- Right Content -->
                     <div class="lg:w-2/3 p-8">
                         <!-- About -->
-                        <div class="mb-10">
-                            <h2 class="text-2xl font-bold text-white mb-6 flex items-center">
+                        <div class="mb-6">
+                            <h2 class="text-xl font-bold text-white mb-4 flex items-center">
                                 <span class="gradient-text bg-gradient-to-r from-primary to-accent">About Me</span>
                             </h2>
-                            <p class="text-gray-300 leading-relaxed">
-                                IT student specializing in the Internet of Things, with hands-on experience in building
-                                smart systems using Python, Flutter, Arduino, and Raspberry Pi. I enjoy blending
-                                creativity and technology to design practical solutions and intuitive digital
-                                experiences.
+                            <p class="text-gray-300 leading-relaxed text-sm">
+                                IT student specializing in the Internet of Things, with hands-on experience in building smart systems using Python, Flutter, Arduino, and Raspberry Pi. I enjoy blending creativity and technology to design practical solutions and intuitive digital experiences.
                             </p>
                         </div>
 
                         <!-- Work Experience -->
-                        <div class="mb-10">
-                            <h2 class="text-2xl font-bold text-white mb-6 flex items-center">
-                                <span class="gradient-text bg-gradient-to-r from-primary to-secondary">Work
-                                    Experience</span>
+                        <div class="mb-6">
+                            <h2 class="text-xl font-bold text-white mb-4 flex items-center">
+                                <span class="gradient-text bg-gradient-to-r from-primary to-secondary">Work Experience</span>
                             </h2>
 
                             <!-- Freelancer -->
-                            <div class="mb-8">
-                                <div class="flex items-start mb-3">
-                                    <div
-                                        class="w-12 h-12 rounded-full bg-gradient-to-br from-primary/10 to-secondary/10 flex items-center justify-center mr-4 flex-shrink-0">
-                                        <i class="fas fa-laptop-code text-primary text-xl"></i>
+                            <div class="mb-6">
+                                <div class="flex items-start mb-2">
+                                    <div class="w-10 h-10 rounded-full bg-gradient-to-br from-primary/10 to-secondary/10 flex items-center justify-center mr-3 flex-shrink-0">
+                                        <i class="fas fa-laptop-code text-primary"></i>
                                     </div>
                                     <div>
-                                        <h3 class="text-xl font-bold text-white">Freelance IT Specialist</h3>
-                                        <p class="text-primary font-medium">December 2022 - Present</p>
+                                        <h3 class="text-lg font-bold text-white">Freelancer</h3>
+                                        <p class="text-primary font-medium text-sm">December 2022 - Present</p>
                                     </div>
                                 </div>
-                                <p class="text-gray-300 mb-4">
-                                    As an IT student, I've built practical experience through freelance work, developing
-                                    solutions that bridge technical skills with real-world applications. I create custom
-                                    websites, data systems, and digital content tailored to client needs.
+                                <p class="text-gray-300 text-sm mb-3">
+                                    As an IT student, I've built practical experience through freelance work, developing solutions that bridge technical skills with real-world applications.
                                 </p>
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-3">
                                     <div>
-                                        <h4 class="font-semibold text-white mb-2">Technical Services:</h4>
-                                        <ul class="space-y-1 text-gray-300 text-sm">
+                                        <h4 class="font-semibold text-white text-sm mb-1">Technical Services:</h4>
+                                        <ul class="space-y-1 text-gray-300 text-xs">
                                             <li class="flex items-start">
-                                                <i class="fas fa-circle text-primary text-xs mt-1 mr-2"></i>
-                                                <span>Website Development - Custom responsive websites and web
-                                                    applications</span>
+                                                <i class="fas fa-circle text-primary text-xs mt-1 mr-1"></i>
+                                                <span>Website Development</span>
                                             </li>
                                             <li class="flex items-start">
-                                                <i class="fas fa-circle text-primary text-xs mt-1 mr-2"></i>
-                                                <span>Data Systems - Excel automation, data analysis, and custom
-                                                    reporting</span>
+                                                <i class="fas fa-circle text-primary text-xs mt-1 mr-1"></i>
+                                                <span>Data Systems & Excel Automation</span>
                                             </li>
                                             <li class="flex items-start">
-                                                <i class="fas fa-circle text-primary text-xs mt-1 mr-2"></i>
-                                                <span>Digital Content Creation - Video editing, graphics, and visual
-                                                    storytelling</span>
+                                                <i class="fas fa-circle text-primary text-xs mt-1 mr-1"></i>
+                                                <span>Digital Content Creation</span>
                                             </li>
                                         </ul>
                                     </div>
                                     <div>
-                                        <h4 class="font-semibold text-white mb-2">Recent Projects:</h4>
-                                        <ul class="space-y-1 text-gray-300 text-sm">
+                                        <h4 class="font-semibold text-white text-sm mb-1">Projects:</h4>
+                                        <ul class="space-y-1 text-gray-300 text-xs">
                                             <li class="flex items-start">
-                                                <i class="fas fa-circle text-secondary text-xs mt-1 mr-2"></i>
-                                                <span>Developed interactive web applications for local businesses</span>
+                                                <i class="fas fa-circle text-secondary text-xs mt-1 mr-1"></i>
+                                                <span>Interactive Web Applications</span>
                                             </li>
                                             <li class="flex items-start">
-                                                <i class="fas fa-circle text-secondary text-xs mt-1 mr-2"></i>
-                                                <span>Created automated Excel systems for data management</span>
+                                                <i class="fas fa-circle text-secondary text-xs mt-1 mr-1"></i>
+                                                <span>Automated Excel Systems</span>
                                             </li>
                                             <li class="flex items-start">
-                                                <i class="fas fa-circle text-secondary text-xs mt-1 mr-2"></i>
-                                                <span>Produced engaging video content for student projects</span>
+                                                <i class="fas fa-circle text-secondary text-xs mt-1 mr-1"></i>
+                                                <span>Video Content Production</span>
                                             </li>
                                         </ul>
                                     </div>
@@ -371,45 +427,60 @@
 
                             <!-- Clerical Assistant -->
                             <div>
-                                <div class="flex items-start mb-3">
-                                    <div
-                                        class="w-12 h-12 rounded-full bg-gradient-to-br from-accent/10 to-primary/10 flex items-center justify-center mr-4 flex-shrink-0">
-                                        <i class="fas fa-briefcase text-accent text-xl"></i>
+                                <div class="flex items-start mb-2">
+                                    <div class="w-10 h-10 rounded-full bg-gradient-to-br from-accent/10 to-primary/10 flex items-center justify-center mr-3 flex-shrink-0">
+                                        <i class="fas fa-briefcase text-accent"></i>
                                     </div>
                                     <div>
-                                        <h3 class="text-xl font-bold text-white">Clerical Student Assistant</h3>
-                                        <p class="text-accent font-medium">July 2023 - Present</p>
+                                        <h3 class="text-lg font-bold text-white">Clerical Student Assistant</h3>
+                                        <p class="text-accent font-medium text-sm">July 2023 - Present</p>
                                     </div>
                                 </div>
-                                <p class="text-gray-300 mb-4">
-                                    I assist individuals with inquiries, troubleshoot technical issues, and manage
-                                    Microsoft Word and Excel documents. My role involves interacting with various people
-                                    and addressing their needs efficiently.
+                                <p class="text-gray-300 text-sm mb-3">
+                                    I assist individuals with inquiries, troubleshoot technical issues, and manage Microsoft Word and Excel documents.
                                 </p>
                                 <div>
-                                    <h4 class="font-semibold text-white mb-2">Key Responsibilities:</h4>
-                                    <ul class="grid grid-cols-1 md:grid-cols-2 gap-2 text-gray-300 text-sm">
+                                    <h4 class="font-semibold text-white text-sm mb-1">Key Responsibilities:</h4>
+                                    <ul class="grid grid-cols-1 md:grid-cols-2 gap-2 text-gray-300 text-xs">
                                         <li class="flex items-start">
-                                            <i class="fas fa-check-circle text-accent text-xs mt-1 mr-2"></i>
-                                            <span>Assisting with inquiries and providing support</span>
+                                            <i class="fas fa-check-circle text-accent text-xs mt-0.5 mr-1"></i>
+                                            <span>Assisting with inquiries and support</span>
                                         </li>
                                         <li class="flex items-start">
-                                            <i class="fas fa-check-circle text-accent text-xs mt-1 mr-2"></i>
+                                            <i class="fas fa-check-circle text-accent text-xs mt-0.5 mr-1"></i>
                                             <span>Troubleshooting technical issues</span>
                                         </li>
                                         <li class="flex items-start">
-                                            <i class="fas fa-check-circle text-accent text-xs mt-1 mr-2"></i>
+                                            <i class="fas fa-check-circle text-accent text-xs mt-0.5 mr-1"></i>
                                             <span>Managing Microsoft Office documents</span>
                                         </li>
                                         <li class="flex items-start">
-                                            <i class="fas fa-check-circle text-accent text-xs mt-1 mr-2"></i>
+                                            <i class="fas fa-check-circle text-accent text-xs mt-0.5 mr-1"></i>
                                             <span>Maintaining organized records</span>
                                         </li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
+                        
+                        <!-- Certifications Note -->
+                        <div class="mt-8 pt-4 border-t border-gray-700">
+                            <div class="flex items-center">
+                                <i class="fas fa-medal text-primary mr-2"></i>
+                                <div>
+                                    <p class="text-gray-300 text-xs">
+                                        <span class="font-medium text-white">Certifications:</span>
+                                        View on Credly: <span class="text-primary">credly.com/users/shanica-gwen-elupre</span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+                </div>
+                
+                <!-- Print Warning -->
+                <div class="print-warning">
+                    Resume of Shanica Gwen Elupre | Updated: May 2025 | Portfolio: [Your Portfolio URL]
                 </div>
             </div>
         </div>
@@ -427,8 +498,18 @@
                 resumeContainer.style.opacity = '1';
                 resumeContainer.style.transform = 'translateY(0)';
             }, 300);
+            
+            // Print optimization
+            window.onbeforeprint = function() {
+                // Add print-friendly class
+                document.body.classList.add('printing');
+            };
+            
+            window.onafterprint = function() {
+                // Remove print-friendly class
+                document.body.classList.remove('printing');
+            };
         });
     </script>
 </body>
-
 </html>
