@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Kawaii Claw Machine | Shanica Gwen Elupre</title>
-  <meta name="description" content="A cute, girly-themed claw machine arcade game">
+  <meta name="description" content="A cute, girly-themed claw machine arcade game with real grabbing mechanics">
   
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -157,7 +157,7 @@
       <div class="lg:hidden space-y-8">
         <!-- Project Title -->
         <div class="text-center">
-          <span class="text-sm font-semibold text-pink-350 tracking-wider">Arcade Game (Personal Project)</span>
+          <span class="text-sm font-semibold text-pink-350 tracking-wider">HTML5 Canvas Game (Personal Project)</span>
           <h1 class="text-4xl md:text-5xl font-bold mt-2 mb-4 leading-tight">
             <span class="gradient-text bg-gradient-to-r from-pink-450 to-accent">Kawaii</span><br>
             Claw Machine
@@ -175,7 +175,7 @@
         <!-- Project Image (Mobile Only) -->
         <div class="rounded-2xl overflow-hidden">
           <img src="projects/clawmachine.png" 
-               alt="Kawaii Claw Machine - Arcade Game" 
+               alt="Kawaii Claw Machine - HTML5 Canvas Game" 
                class="project-image w-full"
                loading="lazy">
         </div>
@@ -187,7 +187,7 @@
           <div class="space-y-8">
             <!-- Desktop: Project Title (Hidden on mobile) -->
             <div class="hidden lg:block text-center">
-              <span class="text-sm font-semibold text-pink-350 tracking-wider">Arcade Game (Personal Project)</span>
+              <span class="text-sm font-semibold text-pink-350 tracking-wider">HTML5 Canvas Game (Personal Project)</span>
               <h1 class="text-4xl md:text-5xl font-bold mt-2 mb-4 leading-tight">
                 <span class="gradient-text bg-gradient-to-r from-pink-450 to-accent">Kawaii</span>
                 Claw Machine
@@ -205,10 +205,10 @@
             <!-- Project Description -->
             <div class="space-y-4">
               <p class="text-lg text-gray-300 leading-relaxed">
-                A super cute, girly-themed claw machine arcade game where you can try to win adorable plushies, unicorns, and magical creatures! Experience the fun of arcade gaming with a kawaii aesthetic.
+                A fully interactive claw machine game built with HTML5 Canvas and JavaScript, featuring realistic 2-prong mechanical claw physics, adorable cat plushies, and a kawaii aesthetic design. Experience authentic arcade gameplay right in your browser!
               </p>
               <p class="text-lg text-gray-300 leading-relaxed">
-                With smooth animations, delightful sound effects, and charming graphics, this game brings the joy of winning plushies right to your browser. Perfect for when you need a dose of cuteness!
+                With advanced grabbing mechanics, weight-based physics, and mobile touch support, this game brings the thrill of winning plushies with realistic claw movements and prize-lifting animations.
               </p>
             </div>
             
@@ -236,17 +236,27 @@
                 <span class="inline-flex items-center px-5 py-2.5 rounded-full text-sm font-medium
                           bg-gray-800 text-purple-300 border border-gray-700
                           hover:bg-gray-700/50 hover:border-purple-450/30 transition-all">
-                  <i class="fa-brands fa-js text-yellow-400 mr-2"></i> JavaScript
+                  <i class="fa-brands fa-js text-yellow-400 mr-2"></i> JavaScript (ES6+)
                 </span>
                 <span class="inline-flex items-center px-5 py-2.5 rounded-full text-sm font-medium
                           bg-gray-800 text-accent border border-gray-700
                           hover:bg-gray-700/50 hover:border-accent/30 transition-all">
-                  <i class="fa-solid fa-palette text-green-400 mr-2"></i> Custom Graphics
+                  <i class="fa-brands fa-css3-alt text-blue-400 mr-2"></i> Tailwind CSS
                 </span>
                 <span class="inline-flex items-center px-5 py-2.5 rounded-full text-sm font-medium
                           bg-gray-800 text-pink-300 border border-gray-700
                           hover:bg-gray-700/50 hover:border-pink-450/30 transition-all">
-                  <i class="fas fa-volume-up text-blue-400 mr-2"></i> Sound Effects
+                  <i class="fas fa-mobile-alt text-green-400 mr-2"></i> Responsive Design
+                </span>
+                <span class="inline-flex items-center px-5 py-2.5 rounded-full text-sm font-medium
+                          bg-gray-800 text-purple-300 border border-gray-700
+                          hover:bg-gray-700/50 hover:border-purple-450/30 transition-all">
+                  <i class="fas fa-rocket text-orange-400 mr-2"></i> Physics Engine
+                </span>
+                <span class="inline-flex items-center px-5 py-2.5 rounded-full text-sm font-medium
+                          bg-gray-800 text-pink-300 border border-gray-700
+                          hover:bg-gray-700/50 hover:border-pink-450/30 transition-all">
+                  <i class="fas fa-touchpad text-indigo-400 mr-2"></i> Touch Controls
                 </span>
               </div>
             </div>
@@ -255,19 +265,19 @@
             <div class="grid grid-cols-2 gap-4 pt-4">
               <div class="glass-card rounded-xl p-4 text-center">
                 <div class="text-2xl font-bold text-pink-350">16</div>
-                <div class="text-sm text-gray-300">Cute Prizes</div>
+                <div class="text-sm text-gray-300">Cat Plushies</div>
               </div>
               <div class="glass-card rounded-xl p-4 text-center">
-                <div class="text-2xl font-bold text-purple-450">∞</div>
-                <div class="text-sm text-gray-300">Play Attempts</div>
+                <div class="text-2xl font-bold text-purple-450">2-Prong</div>
+                <div class="text-sm text-gray-300">Mechanical Claw</div>
               </div>
               <div class="glass-card rounded-xl p-4 text-center">
-                <div class="text-2xl font-bold text-accent">Easy</div>
-                <div class="text-sm text-gray-300">Difficulty Level</div>
-              </div>
-              <div class="glass-card rounded-xl p-4 text-center">
-                <div class="text-2xl font-bold text-yellow-400">200</div>
+                <div class="text-2xl font-bold text-accent">200</div>
                 <div class="text-sm text-gray-300">Starting Tokens</div>
+              </div>
+              <div class="glass-card rounded-xl p-4 text-center">
+                <div class="text-2xl font-bold text-yellow-400">45-95</div>
+                <div class="text-sm text-gray-300">Points Range</div>
               </div>
             </div>
           </div>
@@ -278,7 +288,7 @@
           <!-- Project Image (Desktop Only) -->
           <div class="rounded-2xl overflow-hidden hidden lg:block">
             <img src="projects/clawmachine.png"
-                 alt="Kawaii Claw Machine - Arcade Game" 
+                 alt="Kawaii Claw Machine - HTML5 Canvas Game" 
                  class="project-image w-full"
                  loading="lazy">
           </div>
@@ -287,7 +297,7 @@
           <div class="glass-card rounded-2xl p-8 space-y-6">
             <div class="space-y-2">
               <h3 class="text-2xl font-bold text-white flex items-center">
-                <i class="fas fa-sparkles text-yellow-400 mr-2"></i> Game Features
+                <i class="fas fa-sparkles text-yellow-400 mr-2"></i> Technical Features
               </h3>
               <div class="w-12 h-1 bg-gradient-to-r from-pink-450 to-purple-450 rounded-full"></div>
             </div>
@@ -295,31 +305,21 @@
             <ul class="space-y-4">
               <li class="flex items-start space-x-4">
                 <div class="feature-bullet rounded-full flex-shrink-0 flex items-center justify-center mt-0.5">
-                  <i class="fas fa-heart text-white text-xs"></i>
+                  <i class="fas fa-cogs text-white text-xs"></i>
                 </div>
                 <div>
-                  <h4 class="font-semibold text-white">Adorable Prizes</h4>
-                  <p class="text-gray-300 mt-1">Win kawaii cats</p>
+                  <h4 class="font-semibold text-white">Realistic Claw Physics</h4>
+                  <p class="text-gray-300 mt-1">2-prong mechanical claw with weight-based grabbing, drop/rise speeds, and slip mechanics</p>
                 </div>
               </li>
               
               <li class="flex items-start space-x-4">
                 <div class="feature-bullet rounded-full flex-shrink-0 flex items-center justify-center mt-0.5">
-                  <i class="fas fa-trophy text-white text-xs"></i>
+                  <i class="fas fa-mobile text-white text-xs"></i>
                 </div>
                 <div>
-                  <h4 class="font-semibold text-white">Prize Collection</h4>
-                  <p class="text-gray-300 mt-1">Collect all prizes in your virtual cabinet</p>
-                </div>
-              </li>
-              
-              <li class="flex items-start space-x-4">
-                <div class="feature-bullet rounded-full flex-shrink-0 flex items-center justify-center mt-0.5">
-                  <i class="fas fa-music text-white text-xs"></i>
-                </div>
-                <div>
-                  <h4 class="font-semibold text-white">Cute Sound Effects</h4>
-                  <p class="text-gray-300 mt-1">Delightful sounds for wins, moves, and background</p>
+                  <h4 class="font-semibold text-white">Mobile Optimized</h4>
+                  <p class="text-gray-300 mt-1">Full touch support with responsive controls, modal system, and mobile-first layout</p>
                 </div>
               </li>
               
@@ -328,8 +328,28 @@
                   <i class="fas fa-gamepad text-white text-xs"></i>
                 </div>
                 <div>
-                  <h4 class="font-semibold text-white">Simple Controls</h4>
-                  <p class="text-gray-300 mt-1">Arrow keys or on-screen buttons for easy gameplay</p>
+                  <h4 class="font-semibold text-white">Dual Controls</h4>
+                  <p class="text-gray-300 mt-1">Keyboard (arrows + space) and touch controls (buttons + joystick)</p>
+                </div>
+              </li>
+              
+              <li class="flex items-start space-x-4">
+                <div class="feature-bullet rounded-full flex-shrink-0 flex items-center justify-center mt-0.5">
+                  <i class="fas fa-chart-line text-white text-xs"></i>
+                </div>
+                <div>
+                  <h4 class="font-semibold text-white">Game State Management</h4>
+                  <p class="text-gray-300 mt-1">Token system, score tracking, prize collection, and progress bars</p>
+                </div>
+              </li>
+              
+              <li class="flex items-start space-x-4">
+                <div class="feature-bullet rounded-full flex-shrink-0 flex items-center justify-center mt-0.5">
+                  <i class="fas fa-paint-brush text-white text-xs"></i>
+                </div>
+                <div>
+                  <h4 class="font-semibold text-white">Kawaii Aesthetic</h4>
+                  <p class="text-gray-300 mt-1">Custom cat plushie graphics, gradient backgrounds, heart particles, and animations</p>
                 </div>
               </li>
             </ul>
@@ -339,7 +359,7 @@
           <div class="glass-card rounded-2xl p-8 space-y-6">
             <div class="space-y-2">
               <h3 class="text-2xl font-bold text-white flex items-center">
-                <i class="fas fa-info-circle text-accent mr-2"></i> How to Play
+                <i class="fas fa-info-circle text-accent mr-2"></i> Game Details
               </h3>
               <div class="w-12 h-1 bg-gradient-to-r from-accent to-pink-350 rounded-full"></div>
             </div>
@@ -347,41 +367,41 @@
             <div class="space-y-4">
               <div class="flex items-start space-x-3">
                 <div class="cute-bullet flex-shrink-0">
-                  <span class="text-xs font-bold text-white">1</span>
+                  <span class="text-xs font-bold text-white">🎯</span>
                 </div>
                 <div>
-                  <h4 class="font-semibold text-white">Move the Claw</h4>
-                  <p class="text-gray-300 mt-1">Use arrow keys or buttons to position the claw above a prize</p>
+                  <h4 class="font-semibold text-white">Real Grab Mechanics</h4>
+                  <p class="text-gray-300 mt-1">Claw actually lifts prizes with physics - heavier prizes may slip!</p>
                 </div>
               </div>
               
               <div class="flex items-start space-x-3">
                 <div class="cute-bullet flex-shrink-0">
-                  <span class="text-xs font-bold text-white">2</span>
+                  <span class="text-xs font-bold text-white">🐱</span>
                 </div>
                 <div>
-                  <h4 class="font-semibold text-white">Lower the Claw</h4>
-                  <p class="text-gray-300 mt-1">Press SPACE or the "Claw" button to lower it</p>
+                  <h4 class="font-semibold text-white">16 Unique Cat Prizes</h4>
+                  <p class="text-gray-300 mt-1">Different cats with varying weights (0.2-0.4) and points (45-95)</p>
                 </div>
               </div>
               
               <div class="flex items-start space-x-3">
                 <div class="cute-bullet flex-shrink-0">
-                  <span class="text-xs font-bold text-white">3</span>
+                  <span class="text-xs font-bold text-white">🔄</span>
                 </div>
                 <div>
-                  <h4 class="font-semibold text-white">Grab & Win</h4>
-                  <p class="text-gray-300 mt-1">If successful, the claw grabs the prize and brings it to you!</p>
+                  <h4 class="font-semibold text-white">Full Reset System</h4>
+                  <p class="text-gray-300 mt-1">Reset button to restart game with all prizes in original positions</p>
                 </div>
               </div>
               
               <div class="flex items-start space-x-3">
                 <div class="cute-bullet flex-shrink-0">
-                  <span class="text-xs font-bold text-white">4</span>
+                  <span class="text-xs font-bold text-white">📱</span>
                 </div>
                 <div>
-                  <h4 class="font-semibold text-white">Collect Prizes</h4>
-                  <p class="text-gray-300 mt-1">Won prizes appear in your collection cabinet</p>
+                  <h4 class="font-semibold text-white">Mobile-First Design</h4>
+                  <p class="text-gray-300 mt-1">Claw machine appears first on mobile, optimized touch controls</p>
                 </div>
               </div>
             </div>
@@ -391,7 +411,7 @@
                 <div class="flex items-center">
                   <i class="fas fa-lightbulb text-yellow-400 mr-3 text-xl"></i>
                   <p class="text-sm text-gray-300">
-                    <span class="font-bold text-white">Pro Tip:</span> Smaller prizes are harder to grab but worth more points! Try to aim for the edges of prizes.
+                    <span class="font-bold text-white">Pro Tip:</span> Aim for lighter prizes (0.2 weight) first - they're easier to grab! Each prize lifts visibly with realistic physics.
                   </p>
                 </div>
               </div>
@@ -434,7 +454,7 @@
       });
       
       // Add subtle animation to demo button
-      const demoButton = document.querySelector('a[href="clawmachine.html"]');
+      const demoButton = document.querySelector('a[href="projects/clawmachine.html"]');
       if (demoButton) {
         setInterval(() => {
           demoButton.classList.toggle('shadow-lg');
