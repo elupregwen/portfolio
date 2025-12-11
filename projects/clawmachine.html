@@ -1034,14 +1034,14 @@
         clawY += clawDropSpeed;
 
         // When claw reaches near bottom, close it and grab
-        if (clawY > 380 && clawOpen) {
+        if (clawY > 390 && clawOpen) {
           clawOpen = false;
           clawGrabbing = true;
           attemptGrabPrize();
         }
 
         // If claw reaches bottom, start raising
-        if (clawY >= 400) {
+        if (clawY >= 415) {
           clawDropping = false;
           clawRaising = true;
         }
