@@ -186,7 +186,8 @@
         0 8px 15px rgba(255, 107, 181, 0.3);
     }
 
-    .control-btn:active, .control-btn.active {
+    .control-btn:active,
+    .control-btn.active {
       transform: translateY(1px);
       box-shadow:
         0 3px 0 #ff6bb5,
@@ -319,30 +320,30 @@
       .mobile-order-1 {
         order: 1;
       }
-      
+
       .mobile-order-2 {
         order: 2;
       }
-      
+
       .mobile-order-3 {
         order: 3;
       }
-      
+
       .machine-container {
         padding: 15px;
       }
-      
+
       #gameCanvas {
         max-height: 350px;
         object-fit: contain;
       }
-      
+
       .control-btn {
         width: 55px;
         height: 55px;
         font-size: 1.3rem;
       }
-      
+
       .drop-btn {
         width: 60px;
         height: 60px;
@@ -481,8 +482,7 @@
                     <i class="fas fa-arrow-left"></i>
                   </button>
 
-                  <button id="dropBtn"
-                    class="control-btn drop-btn">
+                  <button id="dropBtn" class="control-btn drop-btn">
                     <div class="text-2xl">🕹️</div>
                   </button>
 
@@ -491,7 +491,7 @@
                   </button>
                 </div>
               </div>
-              
+
               <!-- Reset Button -->
               <button id="resetBtn" class="reset-btn">
                 <i class="fas fa-redo mr-2"></i> Reset Game
@@ -607,7 +607,7 @@
       { id: 2, name: "Ginger", image: "/clawmachine/cat2.png", points: 60, color: "#FF9EBD", x: 150, y: 372, width: 68, height: 68, collected: false, weight: 0.4, lifted: false, beingCarried: false },
       { id: 3, name: "Cat in a Coffee Cup", image: "/clawmachine/cat3.png", points: 65, color: "#FF6B9D", x: 220, y: 378, width: 72, height: 72, collected: false, weight: 0.2, lifted: false, beingCarried: false },
       { id: 4, name: "Happy Cat", image: "/clawmachine/cat6.png", points: 70, color: "#C77DFF", x: 280, y: 358, width: 75, height: 85, collected: false, weight: 0.3, lifted: false, beingCarried: false },
-      { id: 5, name: "Chill Cat", image: "/clawmachine/cat5.png", points: 50, color: "#FFD166", x: 340, y: 360, width: 74, height: 74, collected: false, weight: 0.4, lifted: false, beingCarried: false },
+      { id: 5, name: "Chill Cat", image: "/clawmachine/cat5.png", points: 50, color: "#FFD166", x: 540, y: 360, width: 74, height: 74, collected: false, weight: 0.4, lifted: false, beingCarried: false },
       { id: 6, name: "Cat with Cookie", image: "/clawmachine/cat4.png", points: 75, color: "#FF9EBD", x: 410, y: 370, width: 71, height: 71, collected: false, weight: 0.3, lifted: false, beingCarried: false },
       { id: 7, name: "Cat in Tiger Hat", image: "/clawmachine/cat1.png", points: 65, color: "#FF6B9D", x: 480, y: 370, width: 73, height: 73, collected: false, weight: 0.4, lifted: false, beingCarried: false },
       { id: 8, name: "Sad Cat", image: "/clawmachine/cat8.png", points: 55, color: "#B8F2E6", x: 545, y: 370, width: 100, height: 78, collected: false, weight: 0.3, lifted: false, beingCarried: false },
@@ -1167,7 +1167,7 @@
         prizePointsEl.textContent = prize.points;
         wonPrizeImageEl.src = prize.image;
         wonPrizeImageEl.alt = prize.name;
-        
+
         showModal(winMessageEl);
       }
     }
@@ -1211,21 +1211,21 @@
       currentPrize = null;
       prizeBeingLifted = null;
       prizeLiftedY = 0;
-      
+
       // Reset prizes to original positions
       prizes = JSON.parse(JSON.stringify(originalPrizes));
-      
+
       // Hide all messages
       hideModal(winMessageEl);
       hideModal(loseMessageEl);
       hideModal(noTokensMessageEl);
-      
+
       // Update UI
       updateUI();
-      
+
       // Create celebration particles
       createHeartParticles(window.innerWidth / 2, window.innerHeight / 2, 10);
-      
+
       // Redraw immediately
       drawGame();
     }
@@ -1247,18 +1247,18 @@
         btn.addEventListener('mouseleave', () => {
           btn.classList.remove('active');
         });
-        
+
         // Touch events for mobile
         btn.addEventListener('touchstart', (event) => {
           btn.classList.add('active');
           event.preventDefault();
         }, { passive: false });
-        
+
         btn.addEventListener('touchend', (event) => {
           btn.classList.remove('active');
           event.preventDefault();
         }, { passive: false });
-        
+
         btn.addEventListener('touchcancel', () => {
           btn.classList.remove('active');
         });
@@ -1266,7 +1266,7 @@
 
       // Drop button - SIMPLE CLICK/TAP (not hold)
       dropBtn.addEventListener('click', handleDrop);
-      
+
       // Mobile touch for drop button
       dropBtn.addEventListener('touchstart', (event) => {
         // Just trigger the drop, don't hold
@@ -1335,7 +1335,7 @@
             break;
         }
       });
-      
+
       // Prevent context menu on buttons
       arrowButtons.forEach(btn => {
         btn.addEventListener('contextmenu', (e) => {
