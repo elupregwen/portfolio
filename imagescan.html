@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Image Text Scanner | Shanica Gwen Elupre</title>
   <meta name="description" content="A Google Lens-style image text scanner using OCR technology">
-  
+
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -26,13 +27,13 @@
       }
     }
   </script>
-  
+
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  
+
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-    
+
     body {
       font-family: 'Inter', sans-serif;
       background-color: #0f172a;
@@ -40,20 +41,20 @@
       min-height: 100vh;
       overflow-x: hidden;
     }
-    
+
     .gradient-text {
       background-clip: text;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
-    
+
     .glass-card {
       background: rgba(15, 23, 42, 0.7);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       border: 1px solid rgba(255, 255, 255, 0.08);
     }
-    
+
     .project-image {
       max-height: 50vh;
       object-fit: contain;
@@ -61,38 +62,38 @@
       box-shadow: 0 25px 50px -12px rgba(0, 191, 255, 0.15);
       transition: all 0.3s ease;
     }
-    
+
     .project-image:hover {
       transform: translateY(-4px);
       box-shadow: 0 25px 50px -12px rgba(0, 191, 255, 0.25);
     }
-    
+
     .feature-bullet {
       width: 24px;
       height: 24px;
       background: linear-gradient(135deg, #00BFFF 0%, #7C3AED 100%);
     }
-    
+
     @media (max-width: 1023px) {
       .project-image {
         max-height: 40vh;
       }
     }
-    
+
     /* Custom scrollbar */
     ::-webkit-scrollbar {
       width: 8px;
     }
-    
+
     ::-webkit-scrollbar-track {
       background: #0f172a;
     }
-    
+
     ::-webkit-scrollbar-thumb {
       background: linear-gradient(to bottom, #00BFFF, #7C3AED);
       border-radius: 4px;
     }
-    
+
     ::-webkit-scrollbar-thumb:hover {
       background: linear-gradient(to bottom, #00BFFF, #2dd4bf);
     }
@@ -121,18 +122,16 @@
         <div>
           <span class="text-sm font-semibold text-primary tracking-wider">Web Application (Personal Project)</span>
           <h1 class="text-4xl md:text-5xl font-bold mt-2 mb-4 leading-tight">
-            Image Text 
+            Image Text
             <span class="gradient-text bg-gradient-to-r from-primary to-accent">Scanner</span>
           </h1>
           <div class="w-16 h-1 bg-gradient-to-r from-primary to-secondary rounded-full my-6"></div>
         </div>
-        
+
         <!-- Project Image (Mobile Only) -->
         <div class="rounded-2xl overflow-hidden">
-          <img src="projects/imagetextscanner.png" 
-               alt="Image Text Scanner - OCR Web Application" 
-               class="project-image w-full"
-               loading="lazy">
+          <img src="projects/imagetextscanner.png" alt="Image Text Scanner - OCR Web Application"
+            class="project-image w-full" loading="lazy">
         </div>
       </div>
 
@@ -144,22 +143,26 @@
             <div class="hidden lg:block">
               <span class="text-sm font-semibold text-primary tracking-wider">Web Application (Personal Project)</span>
               <h1 class="text-4xl md:text-5xl font-bold mt-2 mb-4 leading-tight">
-                Image Text 
+                Image Text
                 <span class="gradient-text bg-gradient-to-r from-primary to-accent">Scanner</span>
               </h1>
               <div class="w-16 h-1 bg-gradient-to-r from-primary to-secondary rounded-full my-6"></div>
             </div>
-            
+
             <!-- Project Description -->
             <div class="space-y-4">
               <p class="text-lg text-gray-300 leading-relaxed">
-                A Google Lens-inspired web application that extracts text from images using Optical Character Recognition (OCR) technology. The tool allows users to upload images and instantly extract readable text, similar to popular mobile scanning apps.
+                A Google Lens-inspired web application that extracts text from images using Optical Character
+                Recognition (OCR) technology. The tool allows users to upload images and instantly extract readable
+                text, similar to popular mobile scanning apps.
               </p>
               <p class="text-lg text-gray-300 leading-relaxed">
-                Designed with a focus on user experience, the application features a clean dual-panel interface, real-time processing feedback, and multiple text management options. All processing happens client-side for enhanced privacy and speed.
+                Designed with a focus on user experience, the application features a clean dual-panel interface,
+                real-time processing feedback, and multiple text management options. All processing happens client-side
+                for enhanced privacy and speed.
               </p>
             </div>
-            
+
             <!-- Demo Button -->
             <div>
               <a href="projects/imagescanlive.html" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center px-8 py-3.5 rounded-lg font-semibold
@@ -169,7 +172,7 @@
                 Live Demo <i class="fas fa-external-link-alt ml-1 text-xs opacity-70"></i>
               </a>
             </div>
-            
+
             <!-- Technologies -->
             <div class="space-y-4">
               <h3 class="text-xl font-bold text-white">Built With</h3>
@@ -203,12 +206,10 @@
         <div class="lg:w-1/2 space-y-8">
           <!-- Project Image (Desktop Only) -->
           <div class="rounded-2xl overflow-hidden hidden lg:block">
-            <img src="projects/imagetextscanner.png" 
-               alt="Image Text Scanner - OCR Web Application" 
-               class="project-image w-full"
-               loading="lazy">
+            <img src="projects/imagetextscanner.png" alt="Image Text Scanner - OCR Web Application"
+              class="project-image w-full" loading="lazy">
           </div>
-          
+
           <!-- Key Features Section -->
           <div class="glass-card rounded-2xl p-8 space-y-6">
             <div class="space-y-2">
@@ -217,7 +218,7 @@
               </h3>
               <div class="w-12 h-1 bg-gradient-to-r from-primary to-secondary rounded-full"></div>
             </div>
-            
+
             <ul class="space-y-4">
               <li class="flex items-start space-x-4">
                 <div class="feature-bullet rounded-full flex-shrink-0 flex items-center justify-center mt-0.5">
@@ -228,17 +229,18 @@
                   <p class="text-gray-300 mt-1">Drag & drop, file browser, or click to upload images</p>
                 </div>
               </li>
-              
+
               <li class="flex items-start space-x-4">
                 <div class="feature-bullet rounded-full flex-shrink-0 flex items-center justify-center mt-0.5">
                   <i class="fas fa-language text-white text-xs"></i>
                 </div>
                 <div>
                   <h4 class="font-semibold text-white">Multi-language OCR</h4>
-                  <p class="text-gray-300 mt-1">Supports English, Spanish, French, German, Japanese, Korean, and Chinese</p>
+                  <p class="text-gray-300 mt-1">Supports English, Spanish, French, German, Japanese, Korean, and Chinese
+                  </p>
                 </div>
               </li>
-              
+
               <li class="flex items-start space-x-4">
                 <div class="feature-bullet rounded-full flex-shrink-0 flex items-center justify-center mt-0.5">
                   <i class="fas fa-eye text-white text-xs"></i>
@@ -248,7 +250,7 @@
                   <p class="text-gray-300 mt-1">See uploaded image and extracted text side-by-side</p>
                 </div>
               </li>
-              
+
               <li class="flex items-start space-x-4">
                 <div class="feature-bullet rounded-full flex-shrink-0 flex items-center justify-center mt-0.5">
                   <i class="fas fa-copy text-white text-xs"></i>
@@ -258,7 +260,7 @@
                   <p class="text-gray-300 mt-1">Copy, download, or clear extracted text with one click</p>
                 </div>
               </li>
-              
+
               <li class="flex items-start space-x-4">
                 <div class="feature-bullet rounded-full flex-shrink-0 flex items-center justify-center mt-0.5">
                   <i class="fas fa-bolt text-white text-xs"></i>
@@ -270,7 +272,7 @@
               </li>
             </ul>
           </div>
-          
+
           <!-- Use Cases Section -->
           <div class="glass-card rounded-2xl p-8 space-y-6">
             <div class="space-y-2">
@@ -279,7 +281,7 @@
               </h3>
               <div class="w-12 h-1 bg-gradient-to-r from-accent to-primary rounded-full"></div>
             </div>
-            
+
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div class="bg-gray-800/50 p-4 rounded-lg">
                 <div class="flex items-center mb-2">
@@ -288,9 +290,10 @@
                   </div>
                   <h4 class="font-semibold text-white">Document Digitization</h4>
                 </div>
-                <p class="text-sm text-gray-300">Convert printed documents, receipts, or business cards into editable text</p>
+                <p class="text-sm text-gray-300">Convert printed documents, receipts, or business cards into editable
+                  text</p>
               </div>
-              
+
               <div class="bg-gray-800/50 p-4 rounded-lg">
                 <div class="flex items-center mb-2">
                   <div class="w-8 h-8 rounded-full bg-secondary/20 flex items-center justify-center mr-3">
@@ -298,9 +301,10 @@
                   </div>
                   <h4 class="font-semibold text-white">Screenshot Extraction</h4>
                 </div>
-                <p class="text-sm text-gray-300">Extract text from screenshots for notes, quotes, or information sharing</p>
+                <p class="text-sm text-gray-300">Extract text from screenshots for notes, quotes, or information sharing
+                </p>
               </div>
-              
+
               <div class="bg-gray-800/50 p-4 rounded-lg">
                 <div class="flex items-center mb-2">
                   <div class="w-8 h-8 rounded-full bg-accent/20 flex items-center justify-center mr-3">
@@ -310,7 +314,7 @@
                 </div>
                 <p class="text-sm text-gray-300">Extract text from book pages, research papers, or study materials</p>
               </div>
-              
+
               <div class="bg-gray-800/50 p-4 rounded-lg">
                 <div class="flex items-center mb-2">
                   <div class="w-8 h-8 rounded-full bg-purple-500/20 flex items-center justify-center mr-3">
@@ -326,18 +330,19 @@
       </div>
     </div>
   </main>
-  
+
   <script>
     // Simple animation for feature bullets on hover
     document.querySelectorAll('.feature-bullet').forEach(bullet => {
-      bullet.addEventListener('mouseenter', function() {
+      bullet.addEventListener('mouseenter', function () {
         this.style.transform = 'scale(1.1)';
       });
-      
-      bullet.addEventListener('mouseleave', function() {
+
+      bullet.addEventListener('mouseleave', function () {
         this.style.transform = 'scale(1)';
       });
     });
   </script>
 </body>
+
 </html>
