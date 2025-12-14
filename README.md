@@ -7,8 +7,8 @@ Here's a professional README.md file for your project:
 
 A modern, responsive portfolio website showcasing my skills, projects, and experience as an IT student specializing in IoT development.
 
-## Features
 
+## Features
 - **Responsive Design**: Fully responsive layout that works on all devices
 - **Modern UI**: Clean, dark-themed interface with smooth animations
 - **Interactive Elements**:
@@ -20,11 +20,12 @@ A modern, responsive portfolio website showcasing my skills, projects, and exper
   - Home/About
   - Projects showcase
   - Work experience
+  - Tech Stack
   - Blog/articles
   - Contact form
 
-## Technologies Used
 
+## Technologies Used
 - **Frontend**:
   - HTML, CSS, JavaScript
   - Tailwind CSS for styling
@@ -37,16 +38,12 @@ A modern, responsive portfolio website showcasing my skills, projects, and exper
 
 
 ## Live Demo
-
-The portfolio is hosted at 
+The portfolio is hosted at:
 https://elupreshanicagwenportfolio.vercel.app/
 https://elupreshanicagwenportfolio-shans-projects-e87334aa.vercel.app/
 https://elupreshanicagwenportfolio-git-main-shans-projects-e87334aa.vercel.app/
 
-## Contact
 
+## Contact
 - Email: elupreshanicagwen@gmail.com
 - Phone: 09974461580
-- GitHub: [github.com/elupregwen](https://github.com/elupregwen)
-- Facebook: [facebook.com/shanicagwen123](https://www.facebook.com/shanicagwen123)
-- Instagram: [@shanicaforsure](https://www.instagram.com/shanica_forsure/)
