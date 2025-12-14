@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>From 'Nope' to IoT Hope</title>
   <meta name="description" content="Personal insights and reflections">
-  
+
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -26,13 +27,13 @@
       }
     }
   </script>
-  
+
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  
+
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-    
+
     body {
       font-family: 'Inter', sans-serif;
       background-color: #0f172a;
@@ -40,20 +41,20 @@
       min-height: 100vh;
       overflow-x: hidden;
     }
-    
+
     .gradient-text {
       background-clip: text;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
-    
+
     .glass-card {
       background: rgba(15, 23, 42, 0.7);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       border: 1px solid rgba(255, 255, 255, 0.08);
     }
-    
+
     .blog-image {
       max-height: 50vh;
       object-fit: cover;
@@ -61,18 +62,18 @@
       box-shadow: 0 25px 50px -12px rgba(0, 191, 255, 0.15);
       transition: all 0.3s ease;
     }
-    
+
     .blog-image:hover {
       transform: translateY(-4px);
       box-shadow: 0 25px 50px -12px rgba(0, 191, 255, 0.25);
     }
-    
+
     .highlight-bullet {
       width: 24px;
       height: 24px;
       background: linear-gradient(135deg, #00BFFF 0%, #7C3AED 100%);
     }
-    
+
     .content-block {
       background: rgba(15, 23, 42, 0.5);
       border-left: 3px solid #00BFFF;
@@ -80,27 +81,27 @@
       margin: 1.5rem 0;
       border-radius: 0 8px 8px 0;
     }
-    
+
     @media (max-width: 1023px) {
       .blog-image {
         max-height: 40vh;
       }
     }
-    
+
     /* Custom scrollbar */
     ::-webkit-scrollbar {
       width: 8px;
     }
-    
+
     ::-webkit-scrollbar-track {
       background: #0f172a;
     }
-    
+
     ::-webkit-scrollbar-thumb {
       background: linear-gradient(to bottom, #00BFFF, #7C3AED);
       border-radius: 4px;
     }
-    
+
     ::-webkit-scrollbar-thumb:hover {
       background: linear-gradient(to bottom, #00BFFF, #2dd4bf);
     }
@@ -126,71 +127,90 @@
       <!-- Article Header -->
       <div class="text-center mb-16">
         <span class="text-sm font-semibold text-primary tracking-wider">PERSONAL REFLECTION</span>
-        <h1 class="text-4xl md:text-5xl font-bold mt-2 mb-6 leading-tight">From ‘Nope’ 
+        <h1 class="text-4xl md:text-5xl font-bold mt-2 mb-6 leading-tight">From ‘Nope’
           <span class="gradient-text bg-gradient-to-r from-primary to-accent">to IoT Hope</span>
         </h1>
         <div class="flex justify-center">
           <div class="w-16 h-1 bg-gradient-to-r from-primary to-secondary rounded-full"></div>
         </div>
       </div>
-      
+
       <!-- Featured Image -->
       <div class="rounded-2xl overflow-hidden mb-12">
         <img src="https://minipctech.com/wp-content/uploads/2025/01/programming_raspberry_pi_leds.jpg"
-             alt="Raspberry Pi and Arduino" 
-             class="blog-image w-full"
-             loading="lazy">
+          alt="Raspberry Pi and Arduino" class="blog-image w-full" loading="lazy">
       </div>
-      
+
       <!-- Article Content -->
       <article class="prose prose-invert max-w-none">
         <div class="glass-card rounded-2xl p-8 mb-12">
           <p class="text-xl italic text-gray-300 mb-0">
-            "I used to panic at the sight of wires and resistors. Now I get excited connecting a Raspberry Pi to an Arduino and accessing it through the web—who would've thought?"
+            "I used to panic at the sight of wires and resistors. Now I get excited connecting a Raspberry Pi to an
+            Arduino and accessing it through the web—who would've thought?"
           </p>
         </div>
-        
+
         <p class="text-lg leading-relaxed mb-6">
-         To be honest, IT wasn’t even my first choice. I don’t really know how I ended up here—one day I just woke up and I was in this course. Most of the time I’m just figuring things out as I go, but hey, I’m passing my subjects, so that’s a win! And little by little, I started falling in love with the challenge.
+          To be honest, IT wasn’t even my first choice. I don’t really know how I ended up here—one day I just woke up
+          and I was in this course. Most of the time I’m just figuring things out as I go, but hey, I’m passing my
+          subjects, so that’s a win! And little by little, I started falling in love with the challenge.
         </p>
-        
+
         <p class="text-lg leading-relaxed mb-6">
-         Now let me tell you what I really hated at first: <strong>hardware.</strong> Yep. If there’s one thing I was sure about in the beginning, it’s that hardware and I were never meant to be. I’m clumsy. Give me a bunch of wires and components, and I’ll probably break something before I can fix anything. Ask anyone who knows me—I complained constantly during our hardware labs.
+          Now let me tell you what I really hated at first: <strong>hardware.</strong> Yep. If there’s one thing I was
+          sure about in the beginning, it’s that hardware and I were never meant to be. I’m clumsy. Give me a bunch of
+          wires and components, and I’ll probably break something before I can fix anything. Ask anyone who knows me—I
+          complained constantly during our hardware labs.
         </p>
-        
+
         <p class="text-lg leading-relaxed mb-6">
-         Back in second year, we had to choose a specialization: <strong>database or Internet of Things (IoT). </strong> They said, "If you love SQL, choose Database. If you enjoy Flutter, choose IoT." I found myself stuck in between the two options, but to be honest? Database intimidated me. One wrong query, and you're doomed—like, delete-the-whole-table kind of doomed. So, I took a deep breath and chose IoT instead. Why not? I love a good challenge and was curious about what else IoT could offer.
+          Back in second year, we had to choose a specialization: <strong>database or Internet of Things (IoT).
+          </strong> They said, "If you love SQL, choose Database. If you enjoy Flutter, choose IoT." I found myself
+          stuck in between the two options, but to be honest? Database intimidated me. One wrong query, and you're
+          doomed—like, delete-the-whole-table kind of doomed. So, I took a deep breath and chose IoT instead. Why not? I
+          love a good challenge and was curious about what else IoT could offer.
         </p>
-        
+
         <p class="text-lg leading-relaxed mb-6">
-         IoT 1 was mostly Python and some Packet Tracer simulations. It wasn’t bad. But IoT 2? I thought I wouldn't enjoy it... And wow, I was so wrong. I loved working with Arduino. Suddenly, I wasn’t dreading the labs—I was actually excited for them.
+          IoT 1 was mostly Python and some Packet Tracer simulations. It wasn’t bad. But IoT 2? I thought I wouldn't
+          enjoy it... And wow, I was so wrong. I loved working with Arduino. Suddenly, I wasn’t dreading the labs—I was
+          actually excited for them.
         </p>
-        
+
         <p class="text-lg leading-relaxed mb-6">
-         Now I’m in IoT 3, and let me tell you—I’ve never been this hyped for class. It doesn’t feel like studying at all. We’re in the lab, tinkering with components and writing code, and it honestly feels like playtime for techies. There are moments I don’t even want to go home because time flies so fast.
+          Now I’m in IoT 3, and let me tell you—I’ve never been this hyped for class. It doesn’t feel like studying at
+          all. We’re in the lab, tinkering with components and writing code, and it honestly feels like playtime for
+          techies. There are moments I don’t even want to go home because time flies so fast.
         </p>
-        
+
         <p class="text-lg leading-relaxed mb-6">
-         The most exciting part? We're now using Raspberry Pi connected to Arduino, and we can access everything through the web. LIKE—WHAT?! Mind. Blown. 🤯 Seeing my own progress is surreal. I went from hating hardware to feeling so proud every time I make something work.
+          The most exciting part? We're now using Raspberry Pi connected to Arduino, and we can access everything
+          through the web. LIKE—WHAT?! Mind. Blown. 🤯 Seeing my own progress is surreal. I went from hating hardware to
+          feeling so proud every time I make something work.
         </p>
-        
+
         <p class="text-lg leading-relaxed mb-6">
-         Who knew the clumsy girl who once dreaded circuits would end up falling in love with IoT?
+          Who knew the clumsy girl who once dreaded circuits would end up falling in love with IoT?
         </p>
-        
+
         <h2 class="text-2xl font-bold mt-12 mb-6 flex items-center">
           <span class="highlight-bullet rounded-full flex-shrink-0 mr-3 flex items-center justify-center">
             <i class="fas fa-lightbulb text-white text-xs"></i>
           </span>
           Final Thoughts
         </h2>
-        
+
         <p class="text-lg leading-relaxed">
-          If there’s one thing I’ve learned from this journey, it’s this: don’t pressure yourself when things don’t work right away. It’s okay to make mistakes, get confused, or even start over multiple times. What matters most is that you’re learning and finding joy in the process. Take your time, enjoy the ride, and don’t lose hope—because sometimes, the things that once scared you end up becoming the things you’re most passionate about.
+          If there’s one thing I’ve learned from this journey, it’s this: don’t pressure yourself when things don’t work
+          right away. It’s okay to make mistakes, get confused, or even start over multiple times. What matters most is
+          that you’re learning and finding joy in the process. Take your time, enjoy the ride, and don’t lose
+          hope—because sometimes, the things that once scared you end up becoming the things you’re most passionate
+          about.
         </p>
       </article>
-      
+
     </div>
   </main>
 </body>
+
 </html>
