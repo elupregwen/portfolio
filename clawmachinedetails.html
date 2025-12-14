@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Kawaii Claw Machine | Shanica Gwen Elupre</title>
   <meta name="description" content="A cute, girly-themed claw machine arcade game with real grabbing mechanics">
-  
+
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -35,14 +36,14 @@
       }
     }
   </script>
-  
+
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  
+
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-    
+
     body {
       font-family: 'Poppins', sans-serif;
       background-color: #0f172a;
@@ -50,20 +51,20 @@
       min-height: 100vh;
       overflow-x: hidden;
     }
-    
+
     .gradient-text {
       background-clip: text;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
-    
+
     .glass-card {
       background: rgba(15, 23, 42, 0.7);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       border: 1px solid rgba(255, 255, 255, 0.08);
     }
-    
+
     .project-image {
       max-height: 50vh;
       object-fit: contain;
@@ -71,19 +72,19 @@
       box-shadow: 0 25px 50px -12px rgba(255, 107, 157, 0.25);
       transition: all 0.3s ease;
     }
-    
+
     .project-image:hover {
       transform: translateY(-4px);
       box-shadow: 0 25px 50px -12px rgba(255, 107, 157, 0.35);
     }
-    
+
     .feature-bullet {
       width: 28px;
       height: 28px;
       background: linear-gradient(135deg, #FF6B9D 0%, #C77DFF 100%);
       border-radius: 50%;
     }
-    
+
     .cute-bullet {
       width: 24px;
       height: 24px;
@@ -93,7 +94,7 @@
       align-items: center;
       justify-content: center;
     }
-    
+
     .sparkle {
       position: absolute;
       width: 6px;
@@ -103,31 +104,40 @@
       filter: blur(1px);
       animation: sparkle 2s infinite;
     }
-    
+
     @keyframes sparkle {
-      0%, 100% { opacity: 0; transform: scale(0); }
-      50% { opacity: 1; transform: scale(1); }
+
+      0%,
+      100% {
+        opacity: 0;
+        transform: scale(0);
+      }
+
+      50% {
+        opacity: 1;
+        transform: scale(1);
+      }
     }
-    
+
     .hearts-bg {
       background-image: radial-gradient(circle at 10% 20%, rgba(255, 107, 157, 0.1) 0%, transparent 20%),
-                        radial-gradient(circle at 90% 80%, rgba(199, 125, 255, 0.1) 0%, transparent 20%);
+        radial-gradient(circle at 90% 80%, rgba(199, 125, 255, 0.1) 0%, transparent 20%);
     }
-    
+
     /* Custom scrollbar */
     ::-webkit-scrollbar {
       width: 8px;
     }
-    
+
     ::-webkit-scrollbar-track {
       background: #0f172a;
     }
-    
+
     ::-webkit-scrollbar-thumb {
       background: linear-gradient(to bottom, #FF6B9D, #C77DFF);
       border-radius: 4px;
     }
-    
+
     ::-webkit-scrollbar-thumb:hover {
       background: linear-gradient(to bottom, #FF6B9D, #FFB3C6);
     }
@@ -171,13 +181,11 @@
           </div>
           <div class="w-16 h-1 bg-gradient-to-r from-pink-450 to-purple-450 rounded-full my-6 mx-auto"></div>
         </div>
-        
+
         <!-- Project Image (Mobile Only) -->
         <div class="rounded-2xl overflow-hidden">
-          <img src="projects/clawmachine.png" 
-               alt="Kawaii Claw Machine - HTML5 Canvas Game" 
-               class="project-image w-full"
-               loading="lazy">
+          <img src="projects/clawmachine.png" alt="Kawaii Claw Machine - HTML5 Canvas Game" class="project-image w-full"
+            loading="lazy">
         </div>
       </div>
 
@@ -201,27 +209,31 @@
               </div>
               <div class="w-16 h-1 bg-gradient-to-r from-pink-450 to-purple-450 rounded-full my-6 mx-auto"></div>
             </div>
-            
+
             <!-- Project Description -->
             <div class="space-y-4">
               <p class="text-lg text-gray-300 leading-relaxed">
-                A fully interactive claw machine game built with HTML5 Canvas and JavaScript, featuring realistic 2-prong mechanical claw physics, adorable cat plushies, and a kawaii aesthetic design. Experience authentic arcade gameplay right in your browser!
+                A fully interactive claw machine game built with HTML5 Canvas and JavaScript, featuring realistic
+                2-prong mechanical claw physics, adorable cat plushies, and a kawaii aesthetic design. Experience
+                authentic arcade gameplay right in your browser!
               </p>
               <p class="text-lg text-gray-300 leading-relaxed">
-                With advanced grabbing mechanics, weight-based physics, and mobile touch support, this game brings the thrill of winning plushies with realistic claw movements and prize-lifting animations.
+                With advanced grabbing mechanics, weight-based physics, and mobile touch support, this game brings the
+                thrill of winning plushies with realistic claw movements and prize-lifting animations.
               </p>
             </div>
-            
+
             <!-- Demo Button -->
             <div class="text-center">
               <a href="projects/clawmachine.html" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center px-8 py-3.5 rounded-lg font-semibold
                         bg-gradient-to-r from-pink-450 to-purple-450 text-white
                         hover:shadow-lg hover:shadow-pink-450/30 transition-all duration-300
                         transform hover:-translate-y-0.5 hover:scale-[1.02]">
-                <i class="fas fa-gamepad mr-2"></i> Play Game Now <i class="fas fa-external-link-alt ml-1 text-xs opacity-70"></i>
+                <i class="fas fa-gamepad mr-2"></i> Play Game Now <i
+                  class="fas fa-external-link-alt ml-1 text-xs opacity-70"></i>
               </a>
             </div>
-            
+
             <!-- Technologies -->
             <div class="space-y-4">
               <h3 class="text-xl font-bold text-white flex items-center">
@@ -260,7 +272,7 @@
                 </span>
               </div>
             </div>
-            
+
             <!-- Stats -->
             <div class="grid grid-cols-2 gap-4 pt-4">
               <div class="glass-card rounded-xl p-4 text-center">
@@ -287,12 +299,10 @@
         <div class="lg:w-1/2 space-y-8">
           <!-- Project Image (Desktop Only) -->
           <div class="rounded-2xl overflow-hidden hidden lg:block">
-            <img src="projects/clawmachine.png"
-                 alt="Kawaii Claw Machine - HTML5 Canvas Game" 
-                 class="project-image w-full"
-                 loading="lazy">
+            <img src="projects/clawmachine.png" alt="Kawaii Claw Machine - HTML5 Canvas Game"
+              class="project-image w-full" loading="lazy">
           </div>
-          
+
           <!-- Key Features Section -->
           <div class="glass-card rounded-2xl p-8 space-y-6">
             <div class="space-y-2">
@@ -301,7 +311,7 @@
               </h3>
               <div class="w-12 h-1 bg-gradient-to-r from-pink-450 to-purple-450 rounded-full"></div>
             </div>
-            
+
             <ul class="space-y-4">
               <li class="flex items-start space-x-4">
                 <div class="feature-bullet rounded-full flex-shrink-0 flex items-center justify-center mt-0.5">
@@ -309,20 +319,22 @@
                 </div>
                 <div>
                   <h4 class="font-semibold text-white">Realistic Claw Physics</h4>
-                  <p class="text-gray-300 mt-1">2-prong mechanical claw with weight-based grabbing, drop/rise speeds, and slip mechanics</p>
+                  <p class="text-gray-300 mt-1">2-prong mechanical claw with weight-based grabbing, drop/rise speeds,
+                    and slip mechanics</p>
                 </div>
               </li>
-              
+
               <li class="flex items-start space-x-4">
                 <div class="feature-bullet rounded-full flex-shrink-0 flex items-center justify-center mt-0.5">
                   <i class="fas fa-mobile text-white text-xs"></i>
                 </div>
                 <div>
                   <h4 class="font-semibold text-white">Mobile Optimized</h4>
-                  <p class="text-gray-300 mt-1">Full touch support with responsive controls, modal system, and mobile-first layout</p>
+                  <p class="text-gray-300 mt-1">Full touch support with responsive controls, modal system, and
+                    mobile-first layout</p>
                 </div>
               </li>
-              
+
               <li class="flex items-start space-x-4">
                 <div class="feature-bullet rounded-full flex-shrink-0 flex items-center justify-center mt-0.5">
                   <i class="fas fa-gamepad text-white text-xs"></i>
@@ -332,7 +344,7 @@
                   <p class="text-gray-300 mt-1">Keyboard (arrows + space) and touch controls (buttons + joystick)</p>
                 </div>
               </li>
-              
+
               <li class="flex items-start space-x-4">
                 <div class="feature-bullet rounded-full flex-shrink-0 flex items-center justify-center mt-0.5">
                   <i class="fas fa-chart-line text-white text-xs"></i>
@@ -342,19 +354,20 @@
                   <p class="text-gray-300 mt-1">Token system, score tracking, prize collection, and progress bars</p>
                 </div>
               </li>
-              
+
               <li class="flex items-start space-x-4">
                 <div class="feature-bullet rounded-full flex-shrink-0 flex items-center justify-center mt-0.5">
                   <i class="fas fa-paint-brush text-white text-xs"></i>
                 </div>
                 <div>
                   <h4 class="font-semibold text-white">Kawaii Aesthetic</h4>
-                  <p class="text-gray-300 mt-1">Custom cat plushie graphics, gradient backgrounds, heart particles, and animations</p>
+                  <p class="text-gray-300 mt-1">Custom cat plushie graphics, gradient backgrounds, heart particles, and
+                    animations</p>
                 </div>
               </li>
             </ul>
           </div>
-          
+
           <!-- How to Play Section -->
           <div class="glass-card rounded-2xl p-8 space-y-6">
             <div class="space-y-2">
@@ -363,7 +376,7 @@
               </h3>
               <div class="w-12 h-1 bg-gradient-to-r from-accent to-pink-350 rounded-full"></div>
             </div>
-            
+
             <div class="space-y-4">
               <div class="flex items-start space-x-3">
                 <div class="cute-bullet flex-shrink-0">
@@ -374,7 +387,7 @@
                   <p class="text-gray-300 mt-1">Claw actually lifts prizes with physics - heavier prizes may slip!</p>
                 </div>
               </div>
-              
+
               <div class="flex items-start space-x-3">
                 <div class="cute-bullet flex-shrink-0">
                   <span class="text-xs font-bold text-white">🐱</span>
@@ -384,7 +397,7 @@
                   <p class="text-gray-300 mt-1">Different cats with varying weights (0.2-0.4) and points (45-95)</p>
                 </div>
               </div>
-              
+
               <div class="flex items-start space-x-3">
                 <div class="cute-bullet flex-shrink-0">
                   <span class="text-xs font-bold text-white">🔄</span>
@@ -394,7 +407,7 @@
                   <p class="text-gray-300 mt-1">Reset button to restart game with all prizes in original positions</p>
                 </div>
               </div>
-              
+
               <div class="flex items-start space-x-3">
                 <div class="cute-bullet flex-shrink-0">
                   <span class="text-xs font-bold text-white">📱</span>
@@ -405,13 +418,14 @@
                 </div>
               </div>
             </div>
-            
+
             <div class="pt-4">
               <div class="bg-gradient-to-r from-pink-450/20 to-purple-450/20 border border-pink-450/30 rounded-xl p-4">
                 <div class="flex items-center">
                   <i class="fas fa-lightbulb text-yellow-400 mr-3 text-xl"></i>
                   <p class="text-sm text-gray-300">
-                    <span class="font-bold text-white">Pro Tip:</span> Aim for lighter prizes (0.2 weight) first - they're easier to grab! Each prize lifts visibly with realistic physics.
+                    <span class="font-bold text-white">Pro Tip:</span> Aim for lighter prizes (0.2 weight) first -
+                    they're easier to grab! Each prize lifts visibly with realistic physics.
                   </p>
                 </div>
               </div>
@@ -421,13 +435,13 @@
       </div>
     </div>
   </main>
-  
+
   <script>
     // Create sparkle effects
     function createSparkles() {
       const sparkleContainer = document.getElementById('sparkles');
       const sparkleCount = 20;
-      
+
       for (let i = 0; i < sparkleCount; i++) {
         const sparkle = document.createElement('div');
         sparkle.className = 'sparkle';
@@ -437,22 +451,22 @@
         sparkleContainer.appendChild(sparkle);
       }
     }
-    
+
     // Add hover effects to feature bullets
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
       createSparkles();
-      
+
       document.querySelectorAll('.feature-bullet, .cute-bullet').forEach(bullet => {
-        bullet.addEventListener('mouseenter', function() {
+        bullet.addEventListener('mouseenter', function () {
           this.style.transform = 'scale(1.2) rotate(5deg)';
           this.style.transition = 'all 0.3s ease';
         });
-        
-        bullet.addEventListener('mouseleave', function() {
+
+        bullet.addEventListener('mouseleave', function () {
           this.style.transform = 'scale(1) rotate(0deg)';
         });
       });
-      
+
       // Add subtle animation to demo button
       const demoButton = document.querySelector('a[href="projects/clawmachine.html"]');
       if (demoButton) {
@@ -464,4 +478,5 @@
     });
   </script>
 </body>
+
 </html>
