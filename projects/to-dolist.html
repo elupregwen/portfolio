@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -33,7 +34,7 @@
             border-radius: 25px;
             width: 300px;
             transition: border-color 0.3s;
-            margin-right: 10px; 
+            margin-right: 10px;
         }
 
         #task-input:focus {
@@ -118,14 +119,15 @@
         }
 
         .gif-container {
-            margin-bottom: 30px; 
+            margin-bottom: 30px;
         }
-
     </style>
 </head>
+
 <body>
     <div class="gif-container">
-        <img src="https://static.wixstatic.com/media/6b7afb_f4f0eb6684aa471987fe87ab82eebaa9~mv2.gif" alt="Decorative GIF" width="300">
+        <img src="https://static.wixstatic.com/media/6b7afb_f4f0eb6684aa471987fe87ab82eebaa9~mv2.gif"
+            alt="Decorative GIF" width="300">
     </div>
 
     <h1>To-Do List Application</h1>
@@ -135,7 +137,7 @@
     </div>
     <ul id="task-list"></ul>
     <button id="remove-completed-btn">Remove Completed Tasks</button>
-    
+
     <script>
         let taskList = document.getElementById('task-list');
         let addTaskBtn = document.getElementById('add-task-btn');
@@ -162,7 +164,7 @@
             }
         }
 
-        taskList.addEventListener('click', function(event) {
+        taskList.addEventListener('click', function (event) {
             if (event.target.className === 'remove-btn') {
                 let taskElement = event.target.parentNode.parentNode;
                 taskElement.remove();
@@ -174,10 +176,11 @@
 
         function removeCompletedTasks() {
             let completedTasks = taskList.querySelectorAll('.completed');
-            completedTasks.forEach(function(task) {
+            completedTasks.forEach(function (task) {
                 task.remove();
             });
         }
     </script>
 </body>
+
 </html>
