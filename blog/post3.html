@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Raspberry Pi Installation Guide</title>
   <meta name="description" content="Complete guide to installing Raspberry Pi OS with SSH and VNC access">
-  
+
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -26,13 +27,13 @@
       }
     }
   </script>
-  
+
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  
+
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-    
+
     body {
       font-family: 'Inter', sans-serif;
       background-color: #0f172a;
@@ -40,20 +41,20 @@
       min-height: 100vh;
       overflow-x: hidden;
     }
-    
+
     .gradient-text {
       background-clip: text;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
-    
+
     .glass-card {
       background: rgba(15, 23, 42, 0.7);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       border: 1px solid rgba(255, 255, 255, 0.08);
     }
-    
+
     .blog-image {
       max-height: 50vh;
       object-fit: cover;
@@ -61,18 +62,18 @@
       box-shadow: 0 25px 50px -12px rgba(0, 191, 255, 0.15);
       transition: all 0.3s ease;
     }
-    
+
     .blog-image:hover {
       transform: translateY(-4px);
       box-shadow: 0 25px 50px -12px rgba(0, 191, 255, 0.25);
     }
-    
+
     .highlight-bullet {
       width: 24px;
       height: 24px;
       background: linear-gradient(135deg, #00BFFF 0%, #7C3AED 100%);
     }
-    
+
     .content-block {
       background: rgba(15, 23, 42, 0.5);
       border-left: 3px solid #00BFFF;
@@ -80,7 +81,7 @@
       margin: 1.5rem 0;
       border-radius: 0 8px 8px 0;
     }
-    
+
     .code-block {
       background: rgba(0, 0, 0, 0.3);
       border-radius: 8px;
@@ -88,27 +89,27 @@
       font-family: 'Courier New', monospace;
       overflow-x: auto;
     }
-    
+
     @media (max-width: 1023px) {
       .blog-image {
         max-height: 40vh;
       }
     }
-    
+
     /* Custom scrollbar */
     ::-webkit-scrollbar {
       width: 8px;
     }
-    
+
     ::-webkit-scrollbar-track {
       background: #0f172a;
     }
-    
+
     ::-webkit-scrollbar-thumb {
       background: linear-gradient(to bottom, #00BFFF, #7C3AED);
       border-radius: 4px;
     }
-    
+
     ::-webkit-scrollbar-thumb:hover {
       background: linear-gradient(to bottom, #00BFFF, #2dd4bf);
     }
@@ -135,40 +136,43 @@
       <div class="text-center mb-16">
         <span class="text-sm font-semibold text-primary tracking-wider">TECH GUIDE</span>
         <h1 class="text-4xl md:text-5xl font-bold mt-2 mb-6 leading-tight">
-          <span class="gradient-text bg-gradient-to-r from-primary to-accent">Raspberry Pi</span> Installation with SSH & VNC
+          <span class="gradient-text bg-gradient-to-r from-primary to-accent">Raspberry Pi</span> Installation with SSH
+          & VNC
         </h1>
         <div class="flex justify-center">
           <div class="w-16 h-1 bg-gradient-to-r from-primary to-secondary rounded-full"></div>
         </div>
       </div>
-      
+
       <!-- Featured Image -->
       <div class="rounded-2xl overflow-hidden mb-12">
-        <img src="https://images.unsplash.com/photo-1591488320449-011701bb6704?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
-             alt="Raspberry Pi setup" 
-             class="blog-image w-full"
-             loading="lazy">
+        <img
+          src="https://images.unsplash.com/photo-1591488320449-011701bb6704?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
+          alt="Raspberry Pi setup" class="blog-image w-full" loading="lazy">
       </div>
-      
+
       <!-- Article Content -->
       <article class="prose prose-invert max-w-none">
         <div class="glass-card rounded-2xl p-8 mb-12">
           <p class="text-xl italic text-gray-300 mb-0">
-            "The Raspberry Pi 4 is a powerful, low-cost single-board computer that is widely used for various projects, from home automation to learning programming."
+            "The Raspberry Pi 4 is a powerful, low-cost single-board computer that is widely used for various projects,
+            from home automation to learning programming."
           </p>
         </div>
-        
+
         <p class="text-lg leading-relaxed mb-6">
-          This comprehensive guide will walk you through setting up your Raspberry Pi 4 with remote access via SSH (Secure Shell) and VNC (Virtual Network Computing). SSH allows command-line access to the Raspberry Pi remotely, while VNC enables graphical access to the desktop environment.
+          This comprehensive guide will walk you through setting up your Raspberry Pi 4 with remote access via SSH
+          (Secure Shell) and VNC (Virtual Network Computing). SSH allows command-line access to the Raspberry Pi
+          remotely, while VNC enables graphical access to the desktop environment.
         </p>
-        
+
         <h2 class="text-2xl font-bold mt-12 mb-6 flex items-center">
           <span class="highlight-bullet rounded-full flex-shrink-0 mr-3 flex items-center justify-center">
             <i class="fas fa-list-check text-white text-xs"></i>
           </span>
           Goals
         </h2>
-        
+
         <ul class="space-y-4 mb-8">
           <li class="flex items-start space-x-4">
             <div class="highlight-bullet rounded-full flex-shrink-0 flex items-center justify-center mt-0.5">
@@ -178,7 +182,7 @@
               <p class="text-gray-300">Install Raspberry Pi OS on the Raspberry Pi 4</p>
             </div>
           </li>
-          
+
           <li class="flex items-start space-x-4">
             <div class="highlight-bullet rounded-full flex-shrink-0 flex items-center justify-center mt-0.5">
               <i class="fas fa-check text-white text-xs"></i>
@@ -187,24 +191,25 @@
               <p class="text-gray-300">Enable SSH and VNC services for remote access</p>
             </div>
           </li>
-          
+
           <li class="flex items-start space-x-4">
             <div class="highlight-bullet rounded-full flex-shrink-0 flex items-center justify-center mt-0.5">
               <i class="fas fa-check text-white text-xs"></i>
             </div>
             <div>
-              <p class="text-gray-300">Provide a step-by-step guide to ensure users can connect to the Raspberry Pi remotely</p>
+              <p class="text-gray-300">Provide a step-by-step guide to ensure users can connect to the Raspberry Pi
+                remotely</p>
             </div>
           </li>
         </ul>
-        
+
         <h2 class="text-2xl font-bold mt-12 mb-6 flex items-center">
           <span class="highlight-bullet rounded-full flex-shrink-0 mr-3 flex items-center justify-center">
             <i class="fas fa-microchip text-white text-xs"></i>
           </span>
           Hardware and Software Requirements
         </h2>
-        
+
         <div class="grid md:grid-cols-2 gap-6 my-8">
           <div class="glass-card rounded-2xl p-6">
             <h3 class="text-xl font-bold mb-3 text-primary">Hardware</h3>
@@ -265,14 +270,14 @@
             </ul>
           </div>
         </div>
-        
+
         <h2 class="text-2xl font-bold mt-12 mb-6 flex items-center">
           <span class="highlight-bullet rounded-full flex-shrink-0 mr-3 flex items-center justify-center">
             <i class="fas fa-laptop-code text-white text-xs"></i>
           </span>
           Step-by-Step Installation Guide
         </h2>
-        
+
         <div class="space-y-12">
           <!-- Step 1 -->
           <div>
@@ -281,14 +286,16 @@
               Install Raspberry Pi OS on the MicroSD Card
             </h3>
             <ol class="space-y-4 list-decimal list-inside">
-              <li>Download Raspberry Pi Imager from the official website: <a href="https://www.raspberrypi.org/software/" class="text-accent hover:underline" target="_blank">https://www.raspberrypi.org/software/</a></li>
+              <li>Download Raspberry Pi Imager from the official website: <a
+                  href="https://www.raspberrypi.org/software/" class="text-accent hover:underline"
+                  target="_blank">https://www.raspberrypi.org/software/</a></li>
               <li>Insert your MicroSD card into the card reader and connect it to your computer</li>
               <li>Open Raspberry Pi Imager, select Raspberry Pi OS from the list of operating systems</li>
               <li>Choose the storage device (your MicroSD card) and click Write</li>
               <li>Wait for the process to complete. Once finished, eject the card safely from your computer</li>
             </ol>
           </div>
-          
+
           <!-- Step 2 -->
           <div>
             <h3 class="text-xl font-semibold mb-4 text-primary flex items-center">
@@ -296,7 +303,8 @@
               Enable SSH and VNC on Raspberry Pi OS
             </h3>
             <ol class="space-y-4 list-decimal list-inside">
-              <li>Insert the MicroSD card into the Raspberry Pi 4 and connect it to your monitor, keyboard, and mouse</li>
+              <li>Insert the MicroSD card into the Raspberry Pi 4 and connect it to your monitor, keyboard, and mouse
+              </li>
               <li>Power on the Raspberry Pi</li>
               <li>After the Raspberry Pi OS loads, open the Terminal on the Raspberry Pi</li>
               <li>
@@ -304,16 +312,18 @@
                 <div class="code-block mt-2">
                   <p>sudo raspi-config</p>
                 </div>
-                <p class="mt-2">Navigate to <span class="font-mono bg-gray-800 px-2 py-1 rounded">Interfacing Options > SSH > Enable</span></p>
+                <p class="mt-2">Navigate to <span class="font-mono bg-gray-800 px-2 py-1 rounded">Interfacing Options >
+                    SSH > Enable</span></p>
               </li>
               <li>
                 <p>To enable VNC:</p>
-                <p class="mt-2">From the same raspi-config menu, navigate to <span class="font-mono bg-gray-800 px-2 py-1 rounded">Interfacing Options > VNC > Enable</span></p>
+                <p class="mt-2">From the same raspi-config menu, navigate to <span
+                    class="font-mono bg-gray-800 px-2 py-1 rounded">Interfacing Options > VNC > Enable</span></p>
               </li>
               <li>Exit the configuration tool by selecting Finish and rebooting your Raspberry Pi</li>
             </ol>
           </div>
-          
+
           <!-- Step 3 -->
           <div>
             <h3 class="text-xl font-semibold mb-4 text-primary flex items-center">
@@ -331,7 +341,7 @@
               <li>Note down the IP address; you will need it to connect remotely</li>
             </ol>
           </div>
-          
+
           <!-- Step 4 -->
           <div>
             <h3 class="text-xl font-semibold mb-4 text-primary flex items-center">
@@ -340,15 +350,18 @@
             </h3>
             <ol class="space-y-4 list-decimal list-inside">
               <li>On your computer (Windows, macOS, or Linux), open an SSH client</li>
-              <li>Windows: Download and install PuTTY from <a href="https://www.putty.org/" class="text-accent hover:underline" target="_blank">putty.org</a></li>
+              <li>Windows: Download and install PuTTY from <a href="https://www.putty.org/"
+                  class="text-accent hover:underline" target="_blank">putty.org</a></li>
               <li>macOS/Linux: Use the built-in terminal</li>
               <li>In the SSH client, enter the Raspberry Pi's IP address</li>
               <li>For the username, enter: <span class="font-mono bg-gray-800 px-2 py-1 rounded">pi</span></li>
-              <li>For the password, enter the default: <span class="font-mono bg-gray-800 px-2 py-1 rounded">raspberry</span></li>
-              <li>Click Open (or press Enter on macOS/Linux). You should now be connected to the Raspberry Pi via SSH</li>
+              <li>For the password, enter the default: <span
+                  class="font-mono bg-gray-800 px-2 py-1 rounded">raspberry</span></li>
+              <li>Click Open (or press Enter on macOS/Linux). You should now be connected to the Raspberry Pi via SSH
+              </li>
             </ol>
           </div>
-          
+
           <!-- Step 5 -->
           <div>
             <h3 class="text-xl font-semibold mb-4 text-primary flex items-center">
@@ -356,37 +369,46 @@
               Connect to the Raspberry Pi via VNC
             </h3>
             <ol class="space-y-4 list-decimal list-inside">
-              <li>On your computer, download and install RealVNC Viewer from <a href="https://www.realvnc.com/" class="text-accent hover:underline" target="_blank">realvnc.com</a></li>
+              <li>On your computer, download and install RealVNC Viewer from <a href="https://www.realvnc.com/"
+                  class="text-accent hover:underline" target="_blank">realvnc.com</a></li>
               <li>Open RealVNC Viewer and enter the IP address of the Raspberry Pi</li>
               <li>Click Connect</li>
-              <li>When prompted, enter the username (<span class="font-mono bg-gray-800 px-2 py-1 rounded">pi</span>) and password (<span class="font-mono bg-gray-800 px-2 py-1 rounded">raspberry</span>)</li>
+              <li>When prompted, enter the username (<span class="font-mono bg-gray-800 px-2 py-1 rounded">pi</span>)
+                and password (<span class="font-mono bg-gray-800 px-2 py-1 rounded">raspberry</span>)</li>
               <li>You should now see the Raspberry Pi desktop environment on your computer</li>
             </ol>
           </div>
         </div>
-        
+
         <div class="content-block mt-12">
           <p class="text-lg italic mb-0">
-            <i class="fas fa-lightbulb text-accent mr-2"></i> For security, remember to change the default password after your first login using the <span class="font-mono bg-gray-800 px-2 py-1 rounded">passwd</span> command in the terminal.
+            <i class="fas fa-lightbulb text-accent mr-2"></i> For security, remember to change the default password
+            after your first login using the <span class="font-mono bg-gray-800 px-2 py-1 rounded">passwd</span> command
+            in the terminal.
           </p>
         </div>
-        
+
         <h2 class="text-2xl font-bold mt-12 mb-6 flex items-center">
           <span class="highlight-bullet rounded-full flex-shrink-0 mr-3 flex items-center justify-center">
             <i class="fas fa-check-circle text-white text-xs"></i>
           </span>
           Conclusion
         </h2>
-        
+
         <p class="text-lg leading-relaxed mb-6">
-          You've now successfully set up your Raspberry Pi 4 with remote access via both SSH and VNC. This configuration allows you to work with your Raspberry Pi without needing direct access to a monitor, keyboard, or mouse, making it ideal for headless setups and remote projects.
+          You've now successfully set up your Raspberry Pi 4 with remote access via both SSH and VNC. This configuration
+          allows you to work with your Raspberry Pi without needing direct access to a monitor, keyboard, or mouse,
+          making it ideal for headless setups and remote projects.
         </p>
-        
+
         <p class="text-lg leading-relaxed">
-          With SSH, you can execute commands remotely, while VNC provides full graphical access to the desktop environment. This combination gives you complete control over your Raspberry Pi from any computer on your local network.
+          With SSH, you can execute commands remotely, while VNC provides full graphical access to the desktop
+          environment. This combination gives you complete control over your Raspberry Pi from any computer on your
+          local network.
         </p>
       </article>
     </div>
   </main>
 </body>
+
 </html>
