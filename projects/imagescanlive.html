@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Image Text Scanner | Live Demo</title>
   <meta name="description" content="Extract text from images using OCR technology - Google Lens style">
-  
+
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -26,16 +27,16 @@
       }
     }
   </script>
-  
+
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  
+
   <!-- Tesseract.js for OCR -->
   <script src="https://unpkg.com/tesseract.js@v2.1.0/dist/tesseract.min.js"></script>
-  
+
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-    
+
     body {
       font-family: 'Inter', sans-serif;
       background-color: #0f172a;
@@ -43,26 +44,26 @@
       min-height: 100vh;
       overflow-x: hidden;
     }
-    
+
     .gradient-text {
       background-clip: text;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
-    
+
     .glass-card {
       background: rgba(15, 23, 42, 0.7);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       border: 1px solid rgba(255, 255, 255, 0.08);
     }
-    
+
     .feature-bullet {
       width: 24px;
       height: 24px;
       background: linear-gradient(135deg, #00BFFF 0%, #7C3AED 100%);
     }
-    
+
     .image-container {
       border-radius: 1rem;
       box-shadow: 0 25px 50px -12px rgba(0, 191, 255, 0.15);
@@ -74,12 +75,12 @@
       justify-content: center;
       overflow: hidden;
     }
-    
+
     .image-container:hover {
       transform: translateY(-4px);
       box-shadow: 0 25px 50px -12px rgba(0, 191, 255, 0.25);
     }
-    
+
     .text-output {
       min-height: 300px;
       max-height: 500px;
@@ -87,41 +88,47 @@
       white-space: pre-wrap;
       word-wrap: break-word;
     }
-    
+
     .upload-area {
       border: 2px dashed rgba(0, 191, 255, 0.3);
       transition: all 0.3s ease;
     }
-    
-    .upload-area:hover, .upload-area.dragover {
+
+    .upload-area:hover,
+    .upload-area.dragover {
       border-color: #00BFFF;
       background-color: rgba(0, 191, 255, 0.05);
     }
-    
+
     /* Custom scrollbar */
     ::-webkit-scrollbar {
       width: 8px;
     }
-    
+
     ::-webkit-scrollbar-track {
       background: #0f172a;
     }
-    
+
     ::-webkit-scrollbar-thumb {
       background: linear-gradient(to bottom, #00BFFF, #7C3AED);
       border-radius: 4px;
     }
-    
+
     ::-webkit-scrollbar-thumb:hover {
       background: linear-gradient(to bottom, #00BFFF, #2dd4bf);
     }
-    
+
     /* Loader animation */
     @keyframes spinner {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
     }
-    
+
     .loader {
       border-top-color: #00BFFF;
       animation: spinner 1s linear infinite;
@@ -137,11 +144,12 @@
       <!-- Header -->
       <div class="text-center mb-12">
         <h1 class="text-4xl md:text-5xl font-bold mb-4 leading-tight">
-          Image Text 
+          Image Text
           <span class="gradient-text bg-gradient-to-r from-primary to-accent">Scanner</span>
         </h1>
         <p class="text-lg text-gray-300 max-w-2xl mx-auto">
-          Upload any image containing text and extract readable text instantly. Works like Google Lens but entirely in your browser.
+          Upload any image containing text and extract readable text instantly. Works like Google Lens but entirely in
+          your browser.
         </p>
         <div class="w-24 h-1 bg-gradient-to-r from-primary to-secondary rounded-full mx-auto mt-6"></div>
       </div>
@@ -156,9 +164,11 @@
               <h3 class="text-xl font-bold text-white flex items-center">
                 <i class="fas fa-upload text-primary mr-3"></i> Upload Image
               </h3>
-              <div id="uploadContainer" class="upload-area rounded-xl p-6 md:p-8 text-center cursor-pointer transition-all">
+              <div id="uploadContainer"
+                class="upload-area rounded-xl p-6 md:p-8 text-center cursor-pointer transition-all">
                 <div class="flex flex-col items-center justify-center space-y-4">
-                  <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
+                  <div
+                    class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
                     <i class="fas fa-cloud-upload-alt text-2xl md:text-3xl text-primary"></i>
                   </div>
                   <div>
@@ -178,20 +188,21 @@
                 <input type="file" id="imageInput" accept="image/*" class="hidden">
               </div>
             </div>
-            
+
             <!-- Processing Controls -->
             <div id="processingControls" class="hidden space-y-6">
               <div class="space-y-4">
                 <h3 class="text-xl font-bold text-white flex items-center">
                   <i class="fas fa-cogs text-accent mr-3"></i> Processing Options
                 </h3>
-                
+
                 <!-- Language Selection -->
                 <div>
                   <label for="languageSelect" class="block text-sm font-medium text-gray-300 mb-2">
                     <i class="fas fa-language mr-2"></i>Select Text Language
                   </label>
-                  <select id="languageSelect" class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                  <select id="languageSelect"
+                    class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
                     <option value="eng">English</option>
                     <option value="spa">Spanish</option>
                     <option value="fra">French</option>
@@ -204,7 +215,7 @@
                     <option value="chi_sim">Chinese (Simplified)</option>
                   </select>
                 </div>
-                
+
                 <!-- Action Buttons -->
                 <div class="flex flex-wrap gap-4 pt-2">
                   <button id="scanButton" class="flex-1 inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold
@@ -220,7 +231,7 @@
                   </button>
                 </div>
               </div>
-              
+
               <!-- Processing Status -->
               <div id="statusContainer" class="hidden">
                 <div class="space-y-4">
@@ -232,7 +243,8 @@
                     <div class="flex-1">
                       <p id="statusText" class="text-white font-medium">Initializing OCR engine...</p>
                       <div class="w-full bg-gray-700 rounded-full h-2 mt-2">
-                        <div id="progressBar" class="bg-gradient-to-r from-primary to-secondary h-2 rounded-full" style="width: 0%"></div>
+                        <div id="progressBar" class="bg-gradient-to-r from-primary to-secondary h-2 rounded-full"
+                          style="width: 0%"></div>
                       </div>
                       <p id="progressText" class="text-sm text-gray-400 mt-1 text-right">0%</p>
                     </div>
@@ -240,7 +252,7 @@
                 </div>
               </div>
             </div>
-            
+
             <!-- Tips Section -->
             <div class="glass-card rounded-xl p-5 mt-6">
               <h4 class="font-bold text-white mb-3 flex items-center">
@@ -266,13 +278,13 @@
               </ul>
             </div>
           </div>
-          
+
           <!-- Right Panel - Results -->
           <div class="space-y-6">
             <h3 class="text-xl font-bold text-white flex items-center">
               <i class="fas fa-search text-accent mr-3"></i> Scan Results
             </h3>
-            
+
             <!-- Preview and Output Container -->
             <div class="grid grid-cols-1 gap-6">
               <!-- Image Preview -->
@@ -291,7 +303,7 @@
                   </div>
                 </div>
               </div>
-              
+
               <!-- Extracted Text -->
               <div class="space-y-3">
                 <div class="flex items-center justify-between">
@@ -309,7 +321,7 @@
                 </div>
               </div>
             </div>
-            
+
             <!-- Text Actions -->
             <div id="textActions" class="hidden">
               <div class="space-y-4">
@@ -338,41 +350,45 @@
           </div>
         </div>
       </div>
-      
+
       <!-- How It Works Section -->
       <div class="glass-card rounded-2xl p-6 md:p-8">
         <div class="text-center mb-8">
           <h2 class="text-2xl md:text-3xl font-bold text-white mb-3">How It Works</h2>
           <div class="w-20 h-1 bg-gradient-to-r from-primary to-secondary rounded-full mx-auto"></div>
         </div>
-        
+
         <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
           <div class="text-center p-5">
-            <div class="w-16 h-16 rounded-full bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center mx-auto mb-4">
+            <div
+              class="w-16 h-16 rounded-full bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center mx-auto mb-4">
               <i class="fas fa-upload text-primary text-xl"></i>
             </div>
             <h4 class="font-bold text-white mb-2">1. Upload Image</h4>
             <p class="text-sm text-gray-300">Drag & drop or click to upload any image containing text</p>
           </div>
-          
+
           <div class="text-center p-5">
-            <div class="w-16 h-16 rounded-full bg-gradient-to-br from-secondary/20 to-purple-500/20 flex items-center justify-center mx-auto mb-4">
+            <div
+              class="w-16 h-16 rounded-full bg-gradient-to-br from-secondary/20 to-purple-500/20 flex items-center justify-center mx-auto mb-4">
               <i class="fas fa-cogs text-secondary text-xl"></i>
             </div>
             <h4 class="font-bold text-white mb-2">2. Process Image</h4>
             <p class="text-sm text-gray-300">OCR engine analyzes the image to detect and recognize characters</p>
           </div>
-          
+
           <div class="text-center p-5">
-            <div class="w-16 h-16 rounded-full bg-gradient-to-br from-accent/20 to-green-500/20 flex items-center justify-center mx-auto mb-4">
+            <div
+              class="w-16 h-16 rounded-full bg-gradient-to-br from-accent/20 to-green-500/20 flex items-center justify-center mx-auto mb-4">
               <i class="fas fa-file-alt text-accent text-xl"></i>
             </div>
             <h4 class="font-bold text-white mb-2">3. Extract Text</h4>
             <p class="text-sm text-gray-300">Text is extracted and displayed in real-time as processing completes</p>
           </div>
-          
+
           <div class="text-center p-5">
-            <div class="w-16 h-16 rounded-full bg-gradient-to-br from-purple-500/20 to-pink-500/20 flex items-center justify-center mx-auto mb-4">
+            <div
+              class="w-16 h-16 rounded-full bg-gradient-to-br from-purple-500/20 to-pink-500/20 flex items-center justify-center mx-auto mb-4">
               <i class="fas fa-clipboard text-purple-400 text-xl"></i>
             </div>
             <h4 class="font-bold text-white mb-2">4. Copy & Use</h4>
@@ -404,72 +420,72 @@
     const languageSelect = document.getElementById('languageSelect');
     const imageName = document.getElementById('imageName');
     const charCount = document.getElementById('charCount');
-    
+
     // Variables
     let uploadedImage = null;
     let extractedText = '';
     let currentFileName = '';
-    
+
     // Event Listeners
     browseButton.addEventListener('click', () => imageInput.click());
-    
+
     imageInput.addEventListener('change', handleImageUpload);
-    
+
     uploadContainer.addEventListener('dragover', (e) => {
       e.preventDefault();
       uploadContainer.classList.add('dragover');
     });
-    
+
     uploadContainer.addEventListener('dragleave', () => {
       uploadContainer.classList.remove('dragover');
     });
-    
+
     uploadContainer.addEventListener('drop', (e) => {
       e.preventDefault();
       uploadContainer.classList.remove('dragover');
-      
+
       if (e.dataTransfer.files.length) {
         imageInput.files = e.dataTransfer.files;
         handleImageUpload();
       }
     });
-    
+
     scanButton.addEventListener('click', processImage);
     resetButton.addEventListener('click', resetScanner);
     copyButton.addEventListener('click', copyText);
     clearTextButton.addEventListener('click', clearText);
     downloadButton.addEventListener('click', downloadText);
-    
+
     // Handle image upload
     function handleImageUpload() {
       const file = imageInput.files[0];
-      
+
       if (!file || !file.type.startsWith('image/')) {
         showMessage('Please upload a valid image file (JPG, PNG, GIF, BMP, or WebP)', 'error');
         return;
       }
-      
+
       // Check file size (limit to 10MB)
       if (file.size > 10 * 1024 * 1024) {
         showMessage('File size too large. Please upload an image under 10MB.', 'error');
         return;
       }
-      
+
       currentFileName = file.name;
       const reader = new FileReader();
-      
-      reader.onload = function(e) {
+
+      reader.onload = function (e) {
         uploadedImage = e.target.result;
-        
+
         // Display image preview
         imagePreview.innerHTML = `<img src="${uploadedImage}" alt="Uploaded image" class="w-full h-full object-contain max-h-[400px]">`;
-        
+
         // Show image name
         imageName.textContent = currentFileName;
-        
+
         // Show processing controls
         processingControls.classList.remove('hidden');
-        
+
         // Update text output placeholder
         textOutput.innerHTML = `
           <div class="text-center p-6">
@@ -482,50 +498,50 @@
             </div>
           </div>
         `;
-        
+
         // Update character count
         charCount.textContent = '0 characters';
-        
+
         // Hide text actions if they were visible
         textActions.classList.add('hidden');
-        
+
         showMessage('Image uploaded successfully! Ready to scan.', 'success');
       };
-      
-      reader.onerror = function() {
+
+      reader.onerror = function () {
         showMessage('Error reading the image file. Please try again.', 'error');
       };
-      
+
       reader.readAsDataURL(file);
     }
-    
+
     // Process image with OCR
     async function processImage() {
       if (!uploadedImage) {
         showMessage('Please upload an image first', 'error');
         return;
       }
-      
+
       // Show processing status
       statusContainer.classList.remove('hidden');
       statusText.textContent = 'Initializing OCR engine...';
       progressText.textContent = '0%';
       progressBar.style.width = '0%';
-      
+
       // Disable scan button during processing
       scanButton.disabled = true;
       scanButton.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Processing...';
-      
+
       try {
         // Get selected language
         const language = languageSelect.value;
         const languageName = languageSelect.options[languageSelect.selectedIndex].text;
-        
+
         // Update status
         statusText.textContent = `Loading ${languageName} language data...`;
         progressBar.style.width = '10%';
         progressText.textContent = '10%';
-        
+
         // Initialize Tesseract
         const worker = Tesseract.createWorker({
           logger: (m) => {
@@ -550,37 +566,37 @@
             }
           }
         });
-        
+
         await worker.load();
         await worker.loadLanguage(language);
         await worker.initialize(language);
-        
+
         // Update status
         statusText.textContent = 'Processing image...';
         progressBar.style.width = '90%';
         progressText.textContent = '90%';
-        
+
         // Perform OCR
         const { data: { text } } = await worker.recognize(uploadedImage);
-        
+
         // Update status
         statusText.textContent = 'Processing complete!';
         progressBar.style.width = '100%';
         progressText.textContent = '100%';
-        
+
         // Extract and display text
         extractedText = text.trim();
-        
+
         if (extractedText) {
           const textWithLineBreaks = extractedText.replace(/\n/g, '<br>');
           textOutput.innerHTML = `<div class="p-4 whitespace-pre-wrap">${textWithLineBreaks}</div>`;
-          
+
           // Update character count
           charCount.textContent = `${extractedText.length} characters`;
-          
+
           // Show text actions
           textActions.classList.remove('hidden');
-          
+
           showMessage(`Text extracted successfully! Found ${extractedText.length} characters.`, 'success');
         } else {
           textOutput.innerHTML = `
@@ -593,22 +609,22 @@
               </div>
             </div>
           `;
-          
+
           // Update character count
           charCount.textContent = '0 characters';
-          
+
           showMessage('No text detected in the image. Try a different image or language.', 'warning');
         }
-        
+
         // Terminate worker
         await worker.terminate();
-        
+
       } catch (error) {
         console.error('OCR Error:', error);
         statusText.textContent = 'Error processing image';
         progressBar.style.width = '0%';
         progressText.textContent = 'Failed';
-        
+
         textOutput.innerHTML = `
           <div class="text-center p-6">
             <i class="fas fa-exclamation-circle text-5xl text-red-500 mb-4"></i>
@@ -616,7 +632,7 @@
             <p class="text-sm text-gray-500 mt-2">${error.message || 'Please try again with a different image'}</p>
           </div>
         `;
-        
+
         showMessage('Error extracting text from image: ' + (error.message || 'Unknown error'), 'error');
       } finally {
         // Hide status and re-enable scan button after a delay
@@ -627,16 +643,16 @@
         }, 1500);
       }
     }
-    
+
     // Reset scanner to initial state
     function resetScanner() {
       uploadedImage = null;
       extractedText = '';
       currentFileName = '';
-      
+
       // Reset file input
       imageInput.value = '';
-      
+
       // Reset image preview
       imagePreview.innerHTML = `
         <div class="text-center p-6">
@@ -645,7 +661,7 @@
           <p class="text-sm text-gray-600 mt-2">Upload an image to get started</p>
         </div>
       `;
-      
+
       // Reset text output
       textOutput.innerHTML = `
         <div class="text-center p-6">
@@ -654,39 +670,39 @@
           <p class="text-sm text-gray-600 mt-2">Click "Scan Text" to begin processing</p>
         </div>
       `;
-      
+
       // Hide processing controls
       processingControls.classList.add('hidden');
-      
+
       // Hide text actions
       textActions.classList.add('hidden');
-      
+
       // Reset image name and character count
       imageName.textContent = '';
       charCount.textContent = '0 characters';
-      
+
       // Reset status
       statusContainer.classList.add('hidden');
-      
+
       showMessage('Scanner has been reset', 'info');
     }
-    
+
     // Copy extracted text to clipboard
     function copyText() {
       if (!extractedText) {
         showMessage('No text to copy', 'warning');
         return;
       }
-      
+
       navigator.clipboard.writeText(extractedText)
         .then(() => {
           showMessage('Text copied to clipboard!', 'success');
-          
+
           // Visual feedback
           copyButton.innerHTML = '<i class="fas fa-check mr-2"></i> Copied!';
           copyButton.classList.remove('bg-gray-800', 'border-gray-700');
           copyButton.classList.add('bg-green-600/20', 'border-green-500/30', 'text-green-400');
-          
+
           setTimeout(() => {
             copyButton.innerHTML = '<i class="fas fa-copy mr-2"></i> Copy Text';
             copyButton.classList.remove('bg-green-600/20', 'border-green-500/30', 'text-green-400');
@@ -695,7 +711,7 @@
         })
         .catch(err => {
           console.error('Copy failed:', err);
-          
+
           // Fallback for browsers that don't support clipboard API
           const textArea = document.createElement('textarea');
           textArea.value = extractedText;
@@ -710,7 +726,7 @@
           document.body.removeChild(textArea);
         });
     }
-    
+
     // Clear extracted text
     function clearText() {
       extractedText = '';
@@ -721,76 +737,74 @@
           <p class="text-sm text-gray-500 mt-2">Upload a new image or scan again</p>
         </div>
       `;
-      
+
       // Update character count
       charCount.textContent = '0 characters';
-      
+
       // Hide text actions
       textActions.classList.add('hidden');
-      
+
       showMessage('Text cleared', 'info');
     }
-    
+
     // Download extracted text as a .txt file
     function downloadText() {
       if (!extractedText) {
         showMessage('No text to download', 'warning');
         return;
       }
-      
-      const filename = currentFileName 
-        ? `extracted-text-${currentFileName.replace(/\.[^/.]+$/, "")}.txt` 
+
+      const filename = currentFileName
+        ? `extracted-text-${currentFileName.replace(/\.[^/.]+$/, "")}.txt`
         : `extracted-text-${new Date().getTime()}.txt`;
-      
+
       const blob = new Blob([extractedText], { type: 'text/plain;charset=utf-8' });
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
-      
+
       a.href = url;
       a.download = filename;
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);
       URL.revokeObjectURL(url);
-      
+
       showMessage('Text downloaded!', 'success');
     }
-    
+
     // Show temporary message/notification
     function showMessage(message, type) {
       // Remove any existing message
       const existingMessage = document.querySelector('.temp-message');
       if (existingMessage) existingMessage.remove();
-      
+
       // Create message element
       const messageEl = document.createElement('div');
-      messageEl.className = `temp-message fixed top-24 right-6 z-50 px-6 py-3 rounded-lg shadow-lg transform transition-all duration-300 translate-x-8 opacity-0 ${
-        type === 'success' ? 'bg-green-900/90 border border-green-700' :
-        type === 'error' ? 'bg-red-900/90 border border-red-700' :
-        type === 'warning' ? 'bg-yellow-900/90 border border-yellow-700' :
-        'bg-primary/90 border border-primary'
-      }`;
-      
+      messageEl.className = `temp-message fixed top-24 right-6 z-50 px-6 py-3 rounded-lg shadow-lg transform transition-all duration-300 translate-x-8 opacity-0 ${type === 'success' ? 'bg-green-900/90 border border-green-700' :
+          type === 'error' ? 'bg-red-900/90 border border-red-700' :
+            type === 'warning' ? 'bg-yellow-900/90 border border-yellow-700' :
+              'bg-primary/90 border border-primary'
+        }`;
+
       messageEl.innerHTML = `
         <div class="flex items-center">
-          <i class="fas ${
-            type === 'success' ? 'fa-check-circle' :
-            type === 'error' ? 'fa-exclamation-circle' :
+          <i class="fas ${type === 'success' ? 'fa-check-circle' :
+          type === 'error' ? 'fa-exclamation-circle' :
             type === 'warning' ? 'fa-exclamation-triangle' :
-            'fa-info-circle'
-          } mr-3"></i>
+              'fa-info-circle'
+        } mr-3"></i>
           <span class="font-medium">${message}</span>
         </div>
       `;
-      
+
       document.body.appendChild(messageEl);
-      
+
       // Animate in
       setTimeout(() => {
         messageEl.classList.remove('opacity-0', 'translate-x-8');
         messageEl.classList.add('opacity-100', 'translate-x-0');
       }, 10);
-      
+
       // Remove after 4 seconds
       setTimeout(() => {
         messageEl.classList.remove('opacity-100', 'translate-x-0');
@@ -800,11 +814,12 @@
         }, 300);
       }, 4000);
     }
-    
+
     // Initialize the app
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
       showMessage('Welcome to Image Text Scanner! Upload an image to begin.', 'info');
     });
   </script>
 </body>
+
 </html>
