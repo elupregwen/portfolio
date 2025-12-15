@@ -18,7 +18,7 @@ A modern, responsive portfolio website showcasing my skills, projects, and exper
   - Home/About
   - Projects showcase
   - Work experience
-  - Tech Stacks
+  - Tech Stack
   - Blog/articles
   - Contact form
 
