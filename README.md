@@ -9,7 +9,8 @@ A modern, responsive portfolio website showcasing my skills, projects, and exper
 
 
 ## Features
-- **Responsive Design**: Fully responsive layout that works on all devices
+- **Responsive Design**: 
+    Fully responsive layout that works on all devices
 - **Modern UI**: Clean, dark-themed interface with smooth animations
 - **Interactive Elements**:
   - Typewriter effect for hero section
