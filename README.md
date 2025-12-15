@@ -3,8 +3,6 @@ Here's a professional README.md file for your project:
 ```markdown
 # Shanica Gwen Elupre - Portfolio Website
 
-![Portfolio Screenshot](https://i.ibb.co/BVhzDGx7/image.png)
-
 A modern, responsive portfolio website showcasing my skills, projects, and experience as an IT student specializing in IoT development.
 
 
