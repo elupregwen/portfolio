@@ -22,9 +22,11 @@ A modern, responsive portfolio website showcasing my skills, projects, and exper
 
 ## Technologies Used
 - **Frontend**:
-  - HTML, CSS, JavaScript
-  - Tailwind CSS for styling
-  - Font Awesome for icons
+- **HTML5** - Semantic markup structure
+- **CSS3** - Custom styles with animations
+- **JavaScript (ES6+)** - Interactive functionality
+- **Tailwind CSS** - Utility-first CSS framework
+- **Font Awesome** - Icon library
 - **Performance**:
   - Resource preloading
   - Lazy loading for images
