@@ -4,20 +4,20 @@ A modern, responsive portfolio website showcasing my skills, projects, and exper
 
 
 ## Features
-- **Responsive Design**: Fully responsive layout that works on all devices
-- **Modern UI**: Clean, dark-themed interface with smooth animations
+- **Modern UI**: Clean, dark-themed interface with glass-morphism effects and smooth animations
+- **Fully Responsive**: Optimized for all devices (mobile, tablet, desktop)
 - **Interactive Elements**:
-  - Typewriter effect for hero section
-  - Animated navigation
-  - Interactive project cards
-  - Tabbed experience section
-- **Sections**:
-  - Home/About
-  - Projects showcase
-  - Work experience
-  - Tech Stack
-  - Blog/articles
-  - Contact form
+  - Typewriter effect in hero section
+  - Animated scroll transitions
+  - Interactive project cards with hover effects
+  - Tabbed experience and tech stack sections
+- **Complete Sections**:
+  - Home/Introduction with dynamic typing
+  - Projects showcase (3 featured + All Projects page)
+  - Work experience with detailed descriptions
+  - Tech Stack with categorized technologies
+  - Blog section with tech articles
+  - Contact form with FormSubmit integration
 
 
 ## Technologies Used
