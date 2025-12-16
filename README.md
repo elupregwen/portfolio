@@ -20,7 +20,7 @@ A modern, responsive portfolio website showcasing my skills, projects, and exper
   - Work experience
   - Tech Stack
   - Blog/articles
-  <!-- - Contact form -->
+  - Contact form
 
 
 ## Technologies Used
