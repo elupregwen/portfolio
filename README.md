@@ -1,9 +1,6 @@
-Here's a professional README.md file for your project:
-
-```markdown
 # Shanica Gwen Elupre - Portfolio Website
 
-A modern, responsive portfolio website showcasing my skills, projects, and experience as an IT student specializing in IoT development.
+A modern, responsive portfolio website showcasing my skills, projects, and experience as an IT student specializing in IoT and full-stack development.
 
 
 ## Features
