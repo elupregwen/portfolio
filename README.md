@@ -21,15 +21,18 @@ A modern, responsive portfolio website showcasing my skills, projects, and exper
 
 
 ## Technologies Used
+
 - **Frontend**:
-- **HTML5** - Semantic markup structure
-- **CSS3** - Custom styles with animations
-- **JavaScript (ES6+)** - Interactive functionality
-- **Tailwind CSS** - Utility-first CSS framework
-- **Font Awesome** - Icon library
-- **Performance**:
-  - Resource preloading
-  - Lazy loading for images
+- HTML5 - Semantic markup structure
+- CSS3 - Custom styles with animations
+- JavaScript (ES6+) - Interactive functionality
+- Tailwind CSS - Utility-first CSS framework
+- Font Awesome - Icon library
+ **Performance Optimizations**
+- Resource preloading for critical assets
+- Lazy loading for images
+- Intersection Observer for scroll animations
+- Minified and optimized assets
 - **Form Handling**:
   - FormSubmit.co for contact form processing
 
