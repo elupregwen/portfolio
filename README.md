@@ -105,10 +105,10 @@ portfolio/
 - **Location**: Iloilo, Philippines
 
 ### **Professional Profiles**
-- **LinkedIn**: [linkedin.com/in/shanica-gwen-elupre](https://www.linkedin.com/in/shanica-gwen-elupre-436987378?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3B28nbDN8MSwmdLJuiQfRjvA%3D%3D)
-- **GitHub**: [github.com/elupregwen](https://github.com/elupregwen)
-- **Credly**: [credly.com/users/shanica-gwen-elupre](https://www.credly.com/users/shanica-gwen-elupre)
-- **Portfolio**: [Current Website](https://elupreshanicagwenportfolio.vercel.app/)
+- **LinkedIn**: (https://www.linkedin.com/in/shanica-gwen-elupre-436987378?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3B28nbDN8MSwmdLJuiQfRjvA%3D%3D)
+- **GitHub**: (https://github.com/elupregwen)
+- **Credly**: (https://www.credly.com/users/shanica-gwen-elupre)
+- **Portfolio**: (https://elupreshanicagwenportfolio.vercel.app/)
 
 
 ---
