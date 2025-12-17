@@ -49,7 +49,7 @@ A modern, responsive portfolio website showcasing my skills, projects, and exper
 - Continuous deployment from GitHub
 - Progressive Web App ready
 
-## 🚀 Live Demo
+## Live Demo
 
 The portfolio is live and accessible at:  
 🔗 **[https://elupreshanicagwenportfolio.vercel.app/](https://elupreshanicagwenportfolio.vercel.app/)**
