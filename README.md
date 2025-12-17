@@ -7,6 +7,7 @@ Here's the updated professional README.md file:
 
 A modern, responsive portfolio website showcasing my skills, projects, and experience as an IT student specializing in IoT and full-stack development.
 
+
 ## Features
 
 - **Modern UI**: Clean, dark-themed interface with glass-morphism effects and smooth animations
@@ -23,6 +24,7 @@ A modern, responsive portfolio website showcasing my skills, projects, and exper
   - Tech Stack with categorized technologies
   - Blog section with tech articles
   - Contact form with FormSubmit integration
+
 
 ## Technologies Used
 
@@ -49,11 +51,11 @@ A modern, responsive portfolio website showcasing my skills, projects, and exper
 - Continuous deployment from GitHub
 - Progressive Web App ready
 
+
 ## Live Demo
 
 The portfolio is live and accessible at:  
 **[https://elupreshanicagwenportfolio.vercel.app/](https://elupreshanicagwenportfolio.vercel.app/)**
-
 
 
 ## Project Structure
@@ -94,6 +96,7 @@ portfolio/
 - Adaptive layouts for all screen sizes
 - Touch-friendly navigation
 - Optimized images and media
+
 
 ## Contact & Connect
 
