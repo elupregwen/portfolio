@@ -73,7 +73,7 @@ portfolio/
 │   ├── post1.html
 │   ├── post2.html
 │   └── post3.html
-└── clawmachine/               # Images and static files
+└── clawmachine/               # Images 
 ```
 
 ## 🎯 Key Features in Detail
