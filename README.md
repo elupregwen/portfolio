@@ -7,16 +7,16 @@ Here's the updated professional README.md file:
 
 A modern, responsive portfolio website showcasing my skills, projects, and experience as an IT student specializing in IoT and full-stack development.
 
-## ✨ Features
+## Features
 
-- **🎨 Modern UI**: Clean, dark-themed interface with glass-morphism effects and smooth animations
-- **📱 Fully Responsive**: Optimized for all devices (mobile, tablet, desktop)
-- **⚡ Interactive Elements**:
+- **Modern UI**: Clean, dark-themed interface with glass-morphism effects and smooth animations
+- **Fully Responsive**: Optimized for all devices (mobile, tablet, desktop)
+- **Interactive Elements**:
   - Typewriter effect in hero section
   - Animated scroll transitions
   - Interactive project cards with hover effects
   - Tabbed experience and tech stack sections
-- **📊 Complete Sections**:
+- **Complete Sections**:
   - Home/Introduction with dynamic typing
   - Projects showcase (3 featured + All Projects page)
   - Work experience with detailed descriptions
@@ -24,7 +24,7 @@ A modern, responsive portfolio website showcasing my skills, projects, and exper
   - Blog section with tech articles
   - Contact form with FormSubmit integration
 
-## 🛠️ Technologies Used
+## Technologies Used
 
 ### **Frontend Stack**
 - **HTML5** - Semantic markup structure
@@ -34,20 +34,20 @@ A modern, responsive portfolio website showcasing my skills, projects, and exper
 - **Font Awesome** - Icon library
 
 ### **Performance Optimizations**
-- 🔄 Resource preloading for critical assets
-- 🖼️ Lazy loading for images
-- ⚡ Intersection Observer for scroll animations
-- 🎯 Minified and optimized assets
+- Resource preloading for critical assets
+- Lazy loading for images
+- Intersection Observer for scroll animations
+- Minified and optimized assets
 
 ### **Form Handling**
-- 📧 FormSubmit.co for contact form processing
-- ✅ Real-time validation
-- 🎉 Success/error notifications
+- FormSubmit.co for contact form processing
+- Real-time validation
+- Success/error notifications
 
 ### **Deployment & Hosting**
-- 🌐 Vercel for deployment
-- 🔄 Continuous deployment from GitHub
-- 📱 Progressive Web App ready
+- Vercel for deployment
+- Continuous deployment from GitHub
+- Progressive Web App ready
 
 ## 🚀 Live Demo
 
@@ -73,7 +73,7 @@ portfolio/
 │   ├── post1.html
 │   ├── post2.html
 │   └── post3.html
-└── clawmachine/               # Images 
+└── clawmachine/            # Images 
 ```
 
 ## 🎯 Key Features in Detail
