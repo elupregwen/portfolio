@@ -76,42 +76,42 @@ portfolio/
 └── clawmachine/            # Images 
 ```
 
-## 🎯 Key Features in Detail
+## Key Features in Detail
 
-### **💼 Professional Sections**
+### **Professional Sections**
 - **Interactive Resume**: Professional resume matching website aesthetics
 - **Project Showcase**: Detailed project cards with live demos and descriptions
 - **Tech Stack**: Categorized skills with filterable tabs (Languages, Frameworks, Tools, Hardware)
 - **Blog**: Technical articles and learning experiences
 
-### **🎨 Design Highlights**
+### **Design Highlights**
 - **Color Scheme**: Custom primary (#00BFFF), secondary (#7C3AED), and accent (#2dd4bf) colors
 - **Typography**: Inter font for clean readability
 - **Animations**: Smooth transitions, fade-ins, and hover effects
 - **Glass Morphism**: Modern glass-like card designs throughout
 
-### **📱 Responsive Design**
+### **Responsive Design**
 - Mobile-first approach
 - Adaptive layouts for all screen sizes
 - Touch-friendly navigation
 - Optimized images and media
 
-## 📞 Contact & Connect
+## Contact & Connect
 
-- **📧 Email**: elupreshanicagwen@gmail.com
-- **📱 Phone**: 09974461580
-- **📍 Location**: Iloilo, Philippines
+- **Email**: elupreshanicagwen@gmail.com
+- **Phone**: 09974461580
+- **Location**: Iloilo, Philippines
 
 ### **Professional Profiles**
-- **💼 LinkedIn**: [linkedin.com/in/shanica-gwen-elupre](https://www.linkedin.com/in/shanica-gwen-elupre-436987378?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3B28nbDN8MSwmdLJuiQfRjvA%3D%3D)
-- **💻 GitHub**: [github.com/elupregwen](https://github.com/elupregwen)
-- **🏆 Credly**: [credly.com/users/shanica-gwen-elupre](https://www.credly.com/users/shanica-gwen-elupre)
-- **🌐 Portfolio**: [Current Website](https://elupreshanicagwenportfolio.vercel.app/)
+- **LinkedIn**: [linkedin.com/in/shanica-gwen-elupre](https://www.linkedin.com/in/shanica-gwen-elupre-436987378?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3B28nbDN8MSwmdLJuiQfRjvA%3D%3D)
+- **GitHub**: [github.com/elupregwen](https://github.com/elupregwen)
+- **Credly**: [credly.com/users/shanica-gwen-elupre](https://www.credly.com/users/shanica-gwen-elupre)
+- **Portfolio**: [Current Website](https://elupreshanicagwenportfolio.vercel.app/)
 
 
 ---
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - **Tailwind CSS** for the utility-first CSS framework
 - **Font Awesome** for the icon library
