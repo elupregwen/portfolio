@@ -52,11 +52,11 @@ A modern, responsive portfolio website showcasing my skills, projects, and exper
 ## Live Demo
 
 The portfolio is live and accessible at:  
-🔗 **[https://elupreshanicagwenportfolio.vercel.app/](https://elupreshanicagwenportfolio.vercel.app/)**
+**[https://elupreshanicagwenportfolio.vercel.app/](https://elupreshanicagwenportfolio.vercel.app/)**
 
 
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 portfolio/
