@@ -63,13 +63,13 @@ portfolio/
 ├── index.html              # Main homepage
 ├── allprojects.html        # Complete projects showcase
 ├── resume.html             # Interactive resume
-├── style.css              # Custom styles
-├── scripts.js             # JavaScript functionality
-├── projects/              # Project detail pages
+├── style.css               # Custom styles
+├── scripts.js              # JavaScript functionality
+├── projects/               # Project detail pages
 │   ├── to-dolist.html
 │   ├── videogame.html
 │   └── figma.html
-├── blog/                  # Blog articles
+├── blog/                   # Blog articles
 │   ├── post1.html
 │   ├── post2.html
 │   └── post3.html
