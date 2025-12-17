@@ -58,7 +58,6 @@ The portfolio is live and accessible at:
 
 ## Project Structure
 
-```
 portfolio/
 ├── index.html              # Main homepage
 ├── allprojects.html        # Complete projects showcase
@@ -74,7 +73,7 @@ portfolio/
 │   ├── post2.html
 │   └── post3.html
 └── clawmachine/            # Images 
-```
+
 
 ## Key Features in Detail
 
